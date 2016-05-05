@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+  <link rel="stylesheet" href="css/app.css"/>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-route.js"></script>
+  <script src="lib/angular/angular-translate.js"></script>
+  <script src="lib/angular/angular-translate-loader-static-files.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  
+</head>
+<body>
+  <div ng-controller="LunchCtrl">
+   <select ng-change="selChange(cur_lang)" ng-model="cur_lang">
+     <option value="cn">中文</option>
+     <option value="en">english</option>
+   </select>
+  </div>
+  <ul class="menu">
+    <li><a href="#/view1">view1</a></li>
+    <li><a href="#/view2">view2</a></li>
+  </ul>
+ 
+  <div ng-view></div>
+
+  <hr />
+  
+</body>
+</html>

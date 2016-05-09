@@ -2,33 +2,113 @@
 <html lang="en" ng-app="myApp">
 <head>
   <meta charset="utf-8">
-  <title>My AngularJS App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>自动服务终端设备管理平台</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" type="text/css" href="css/animate.css">
+  <link rel="stylesheet" type="text/css" href="css/common.css">
+
+  <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular/angular-route.js"></script>
   <script src="lib/angular/angular-translate.js"></script>
   <script src="lib/angular/angular-translate-loader-static-files.js"></script>
+  <script src="lib/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+
   <script src="js/app.js"></script>
+  <script src="js/router.js"></script>
   <script src="js/services.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
+  <script src="js/factory.js"></script>
   
 </head>
 <body>
-  <div ng-controller="LunchCtrl">
-   <select ng-change="selChange(cur_lang)" ng-model="cur_lang">
-     <option value="cn">中文</option>
-     <option value="en">english</option>
-   </select>
-  </div>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
- 
-  <div ng-view></div>
+  
+ <div class="app app-header-fixed" id="app">
+    <!-- navbar -->
+    <div class="app-header navbar">
+      <!-- navbar header -->
+      <div class="navbar-header">
+        <!-- brand -->
+        <a href="#/" class="navbar-brand">
+          <i class="icon-reorder"></i>
+        </a>
+        <!-- / brand -->
+      </div>
+      <!-- / navbar header -->
 
-  <hr />
+      <!-- navbar collapse -->
+      <div class="collapse pos-rlt navbar-collapse box-shadow text-center">
+        <h3 class="navbar-brand">自助服务终端设备管理平台</h3>
+        <ul class="nav navbar-nav  navbar-right h-50">
+          <li>english</li>
+          <li><span>退出</span></li>
+        </ul>
+
+      </div>
+      <!-- / navbar collapse -->
+    </div>
+    <!-- / navbar -->
+
+    <!-- menu -->
+    <div class="app-aside hidden-xs">
+      <div class="aside-wrap">
+        <div class="navi-wrap"> 
+          <!-- nav -->
+          <nav ui-nav class="navi">
+            <ul class="nav" ng-controller="menulistCtr">
+              <li ng-repeat="date in menudate" toggle-class="active">
+                <a class="auto" id="{{date.id}}">      
+                  <span class="pull-right text-muted" ng-show="{{date.isChild}}">
+                    <i class="icon-angle-right text"></i>
+                    <i class="icon-angle-down text-active"></i>
+                  </span>
+                  <i ng-class="{true: '{{date.icon}}', false: 'inactive'}[date.isicon]"  ></i>
+                  
+                  <span class="font-bold">{{date.name}}</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                  <li class="" ng-repeat = "child in date.child">
+                    <a ng-href="{{child.url}}">
+                      <span>{{child.name}}</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+               
+            </ul>
+          </nav>
+          <!-- nav --> 
+        </div>
+      </div>
+    </div>
+    <!-- / menu -->
+
+    <!-- content -->
+    <div class="app-content">
+       
+      <div class="app-content-body fade-in-up">
+        
+          <div class="app-panel">
+           <div ng-view></div>
+          </div>
+         
+      </div>
+    </div>
+    <!-- /content -->
+  
+
+    <!-- footer -->
+    <div class="app-footer wrapper b-t bg-light">
+      <span>opyright </span>
+        
+    </div>
+    <!-- / footer -->
+  </div>
+  
   
 </body>
 </html>

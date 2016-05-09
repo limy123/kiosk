@@ -1,0 +1,116 @@
+[
+{
+	"id":"001",
+	"isicon":"true",
+	"icon" : "icon-cog",
+	"name" : "设备管理",
+	"isChild" : "true",
+	"child" : [
+		{
+			"id" : "00101",
+			"icon" : "",
+			"name" : "新增客户",
+			"isChild" : "false"
+		},
+		{
+			"id" : "00102",
+			"icon" : "",
+			"name" : "新增设备",
+			"isChild" : "false",
+			"url" : "#/equipmentAdd"
+		},
+		{
+			"id" : "00103",
+			"icon" : "",
+			"name" : "设备列表",
+			"isChild" : "false",
+			"url" : "#/equipmentList"
+		},
+		{
+			"id" : "00104",
+			"icon" : "",
+			"name" : "地位定图",
+			"isChild" : "false"
+		}
+	]
+},
+{
+	"id":"002",
+	"isicon":"true",
+	"icon" : "icon-wrench",
+	"name" : "运行维护",
+	"isChild" : "true",
+	"child" : [
+		{
+			"id" : "00201",
+			"icon" : "",
+			"name" : "故障列表",
+			"isChild" : "false"
+		},
+		{
+			"id" : "00202",
+			"icon" : "",
+			"name" : "历史记录",
+			"isChild" : "false"
+		} 
+	]
+},
+{
+	"id":"003",
+	"isicon":"true",
+	"icon" : "icon-book",
+	"name" : "弹夹管理",
+	"isChild" : "true",
+	"child" : [
+		{
+			"id" : "00301",
+			"icon" : "",
+			"name" : "新增弹夹",
+			"isChild" : "false"
+		},
+		{
+			"id" : "00302",
+			"icon" : "icon-tasks",
+			"name" : "弹夹列表",
+			"isChild" : "false"
+		},
+		{
+			"id" : "00303",
+			"icon" : "",
+			"name" : "上货示意图",
+			"isChild" : "false"
+		} 
+	]
+},
+{
+	"id":"004",
+	"isicon":"true",
+	"icon" : "icon-book",
+	"name" : "订单管理",
+	"isChild" : "true",
+	"child" : [
+		{
+			"id" : "00401",
+			"icon" : "",
+			"name" : "订单列表",
+			"isChild" : "false"
+		},
+		{
+			"id" : "00402",
+			"icon" : "",
+			"name" : "押金退还",
+			"isChild" : "false"
+		}
+	]
+},
+{
+	"id":"005",
+	"isicon":"true",
+	"icon" : "icon-book",
+	"name" : "数据统计",
+	"isChild" : "false"
+	 
+}
+
+
+]

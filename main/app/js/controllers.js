@@ -1,33 +1,45 @@
 (function(){
 'use strict';
-
-/* Controllers */
-
-
-/*function MyCtrl1() {}
-MyCtrl1.$inject = [];
-
-
-function MyCtrl2($scope,$translate) {
-	 $scope.test = "abd";
-	 $scope.testClick = function(){
-	 	alert(112);
-	 }
-}
-MyCtrl2.$inject = [];*/
-
-
  
 angular.module('myApp')
-.controller('myCtrl1', function($scope) {
-    $scope.chk = "123";
-     
+.controller('equipmentListCtrl', function($scope) {
+    $scope.colors = [{
+                'id':'1',
+                'name':'red'
+            },{
+                'id':'2',
+                'name':'green'
+            },{
+                'id':'3',
+                'name':'blue'
+            }];
 })
-.controller('myCtrl2', function($scope) {
+.directive('toggleClass', function(){
+    return {
+        restrict: 'EA',
+        
+        scope: {
+            toggleClass: '@'
+        },
+        link: function($scope, $element){
+            
+            $element.children('.auto').on('click', function(e){
+                $element.siblings().removeClass('active');
+                //console.log($element.parent('.nav').children('li').html());
+
+                $element.toggleClass('active');
+                console.log($(e.target));
+                 
+            });
+        }
+    };
+})
+.controller('equipmentAddCtrl', function($scope) {
     $scope.chk11 = "wwws";
 
      
 })
+//设置多语言
 .controller('LunchCtrl',function($scope,$translate){
 	$scope.selChange = function(lang){
 		$translate.use(lang);
@@ -36,6 +48,15 @@ angular.module('myApp')
 	    $scope.cur_lang = $translate.use();
 	}
 	$scope.cur_lang = $translate.use();
+})
+.controller('menulistCtr',function($scope,serviceFactory){
+	serviceFactory.getMenulist().success(function(response){
+		$scope.menudate = response;
+		console.log($scope.menudate);
+	});
+	$scope.toggleTwoMenu = function(id){
+		$scope.currentId = id;
+	}
 })
 
 ;

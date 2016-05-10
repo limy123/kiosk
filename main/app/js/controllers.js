@@ -3,7 +3,23 @@
  
 angular.module('myApp')
 .controller('equipmentListCtrl', function($scope,$state) {
-     
+	$scope.delEquipment = function(id){
+		console.log(id);
+		swal({   
+			title: "",   
+			text: "删除设备信息将无法找回,确定删除？",   
+			type: "warning",   
+			showCancelButton: true,   
+			confirmButtonColor: "#DD6B55",   
+			confirmButtonText: "确定删除",   
+			cancelButtonText: "取消",   
+			closeOnConfirm: false,  
+			loseOnCancel: false 
+		}, 
+		function(){
+			swal("", "删除成功.", "success");
+		});
+	}
      
 })
 
@@ -23,9 +39,10 @@ angular.module('myApp')
 		$translate.use(lang);
 	    window.localStorage.lang = lang;
 	    window.location.reload();
-	    $scope.cur_lang = $translate.use();
+	    $scope.cur_lang = $translate.use(); 
 	}
-	$scope.cur_lang = $translate.use();
+	$scope.cur_lang = window.localStorage.lang;
+ 
 })
 .controller('menulistCtr',function($scope,serviceFactory){
 	serviceFactory.getMenulist().success(function(response){

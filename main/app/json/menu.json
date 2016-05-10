@@ -10,27 +10,29 @@
 			"id" : "00101",
 			"icon" : "",
 			"name" : "新增客户",
-			"isChild" : "false"
+			"isChild" : "false",
+			"url" : "equipmentAdd"
 		},
 		{
 			"id" : "00102",
 			"icon" : "",
 			"name" : "新增设备",
 			"isChild" : "false",
-			"url" : "#/equipmentAdd"
+			"url" : "equipmentAdd"
 		},
 		{
 			"id" : "00103",
 			"icon" : "",
 			"name" : "设备列表",
 			"isChild" : "false",
-			"url" : "#/equipmentList"
+			"url" : "equipmentList"
 		},
 		{
 			"id" : "00104",
 			"icon" : "",
 			"name" : "地位定图",
-			"isChild" : "false"
+			"isChild" : "false",
+			"url" : "equipmentAdd"
 		}
 	]
 },
@@ -45,13 +47,15 @@
 			"id" : "00201",
 			"icon" : "",
 			"name" : "故障列表",
-			"isChild" : "false"
+			"isChild" : "false",
+			"url" : "equipmentAdd"
 		},
 		{
 			"id" : "00202",
 			"icon" : "",
 			"name" : "历史记录",
-			"isChild" : "false"
+			"isChild" : "false",
+			"url" : "equipmentAdd"
 		} 
 	]
 },
@@ -66,19 +70,22 @@
 			"id" : "00301",
 			"icon" : "",
 			"name" : "新增弹夹",
-			"isChild" : "false"
+			"isChild" : "false",
+			"url" : "equipmentAdd"
 		},
 		{
 			"id" : "00302",
 			"icon" : "icon-tasks",
 			"name" : "弹夹列表",
-			"isChild" : "false"
+			"isChild" : "false",
+			"url" : "equipmentAdd"
 		},
 		{
 			"id" : "00303",
 			"icon" : "",
 			"name" : "上货示意图",
-			"isChild" : "false"
+			"isChild" : "false",
+			"url" : "equipmentAdd"
 		} 
 	]
 },
@@ -93,13 +100,15 @@
 			"id" : "00401",
 			"icon" : "",
 			"name" : "订单列表",
-			"isChild" : "false"
+			"isChild" : "false",
+			"url" : "equipmentAdd"
 		},
 		{
 			"id" : "00402",
 			"icon" : "",
 			"name" : "押金退还",
-			"isChild" : "false"
+			"isChild" : "false",
+			"url" : "equipmentAdd"
 		}
 	]
 },

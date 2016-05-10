@@ -1,4 +1,6 @@
 {
 	"100001":"login",
-	"100002":"register"
+	"100002":"register",
+	"自助服务终端设备管理平台":"admin",
+	"设备管理":"equiment mangenge"
 }

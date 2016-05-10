@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', ['myApp.filters', 'ui.router','pascalprecht.translate','ui.bootstrap'])
+angular.module('myApp', ['myApp.filters', 'ui.router','pascalprecht.translate','ngSanitize','ui.bootstrap'])
    
 
   /*设置多语言*/

@@ -12,7 +12,8 @@
 
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular/angular-route.js"></script>
+  <script src="lib/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <!-- <script src="lib/angular/angular-route.js"></script> -->
   <script src="lib/angular/angular-translate.js"></script>
   <script src="lib/angular/angular-translate-loader-static-files.js"></script>
   <script src="lib/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
@@ -23,6 +24,7 @@
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/factory.js"></script>
+  <script src="js/directive.js"></script>
   
 </head>
 <body>
@@ -93,7 +95,7 @@
       <div class="app-content-body fade-in-up">
         
           <div class="app-panel">
-           <div ng-view></div>
+           <div ui-view></div>
           </div>
          
       </div>
@@ -102,8 +104,8 @@
   
 
     <!-- footer -->
-    <div class="app-footer wrapper b-t bg-light">
-      <span>opyright </span>
+    <div class="app-footer wrapper bg-light">
+      <span>Copyright Amoy Studio © 2015-2016 </span>
         
     </div>
     <!-- / footer -->

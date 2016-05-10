@@ -2,42 +2,20 @@
 'use strict';
  
 angular.module('myApp')
-.controller('equipmentListCtrl', function($scope) {
-    $scope.colors = [{
-                'id':'1',
-                'name':'red'
-            },{
-                'id':'2',
-                'name':'green'
-            },{
-                'id':'3',
-                'name':'blue'
-            }];
+.controller('equipmentListCtrl', function($scope,$state) {
+     
+     
 })
-.directive('toggleClass', function(){
-    return {
-        restrict: 'EA',
-        
-        scope: {
-            toggleClass: '@'
-        },
-        link: function($scope, $element){
-            
-            $element.children('.auto').on('click', function(e){
-                $element.siblings().removeClass('active');
-                //console.log($element.parent('.nav').children('li').html());
 
-                $element.toggleClass('active');
-                console.log($(e.target));
-                 
-            });
-        }
-    };
-})
 .controller('equipmentAddCtrl', function($scope) {
     $scope.chk11 = "wwws";
 
      
+})
+.controller('equipmentDetailCtrl',function($scope,$state,$stateParams){
+	$scope.id = $stateParams.id;
+	console.log($scope.id);
+
 })
 //设置多语言
 .controller('LunchCtrl',function($scope,$translate){

@@ -100,38 +100,17 @@
 	</table>
 	 
 		<div class="row">
-		<div class="col-lg-3">
-			每页显示
-			<select>
-				<option>10</option>
-				<option>15</option>
-				<option>20</option>
-				<option>25</option>
-				<option>30</option>
-			</select>
-			条
-		</div>
-		<nav class="col-lg-6">
-		  <ul class="pagination center-block">
-		    <li>
-		      <a href="#" aria-label="Previous">
-		        <span aria-hidden="true">&laquo;</span>
-		      </a>
-		    </li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li>
-		      <a href="#" aria-label="Next">
-		        <span aria-hidden="true">&raquo;</span>
-		      </a>
-		    </li>
-		  </ul>
-		</nav>
-		<div class="col-lg-3">
+		<div class="col-lg-12">
+		 
+		<pagination boundary-links="true" 
+    max-size="3" 
+    items-per-page="itemsPerPage"
+    total-items="todos.length" 
+    ng-model="currentPage" 
+    ng-change="pageChanged()"></pagination>
+		 
 		<div class="pull-right">
+		共10页&nbsp;
 		跳转到第
 		<select>
 				<option>1</option>
@@ -141,7 +120,7 @@
 				<option>5</option>
 			</select>页
 		</div>
-		</div>
+		 </div>
 		</div>
 	 
 </div>

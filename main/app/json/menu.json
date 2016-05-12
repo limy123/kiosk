@@ -9,30 +9,23 @@
 		{
 			"id" : "00101",
 			"icon" : "",
-			"name" : "新增客户",
+			"name" : "新增设备",
 			"isChild" : "false",
 			"url" : "equipmentAdd"
 		},
 		{
 			"id" : "00102",
 			"icon" : "",
-			"name" : "新增设备",
-			"isChild" : "false",
-			"url" : "equipmentAdd"
-		},
-		{
-			"id" : "00103",
-			"icon" : "",
 			"name" : "设备列表",
 			"isChild" : "false",
 			"url" : "equipmentList"
 		},
 		{
-			"id" : "00104",
+			"id" : "00103",
 			"icon" : "",
 			"name" : "地位定图",
 			"isChild" : "false",
-			"url" : "equipmentAdd"
+			"url" : "equipmentDetail"
 		}
 	]
 },

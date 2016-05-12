@@ -13,4 +13,9 @@ angular.module('myApp', ['myApp.filters', 'ui.router','pascalprecht.translate','
             prefix: '/app/i18n/',
             suffix:'.json'
          });
-    }]);
+    }])
+  
+  /*.config(['$httpProvider',function ($httpProvider) {
+	    $httpProvider.interceptors.push('UserInterceptor');
+	}])*/
+  ;

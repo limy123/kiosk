@@ -10,10 +10,12 @@
   <link rel="stylesheet" href="css/app.css"/>
   <link rel="stylesheet" type="text/css" href="css/animate.css">
   <link rel="stylesheet" type="text/css" href="css/common.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
 
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bower_components/angular/angular.min.js"></script>
   <script src="lib/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="lib/angular/angular-route.js"></script>
   <!-- 多语言 -->
   <script src="lib/bower_components/angular-translate/angular-translate.js"></script>
   <script src="lib/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
@@ -33,9 +35,9 @@
   <script src="js/directive.js"></script>
   
 </head>
-<body>
+<body ng-controller="mainCtr">
   
- <div class="app app-header-fixed" id="app">
+  <div class="app app-header-fixed" id="app" ng-if="isLogin == true">
     <!-- navbar -->
     <div class="app-header navbar">
       <!-- navbar header -->
@@ -74,7 +76,7 @@
         <div class="navi-wrap"> 
           <!-- nav -->
           <nav ui-nav class="navi">
-            <ul class="nav" ng-controller="menulistCtr">
+            <ul class="nav">
               <li ng-repeat="date in menudate" toggle-class="active">
                 <a class="auto" id="{{date.id}}">      
                   <span class="pull-right text-muted" ng-show="{{date.isChild}}">
@@ -87,7 +89,7 @@
                 </a>
                 <ul class="nav nav-sub dk">
                   <li class="" ng-repeat = "child in date.child">
-                    <a ui-sref="{{child.url}}">
+                    <a ui-sref="{{child.url}}" ng-model="curLink" ng-class="{true:'curMenu',false:''}[child.url == curLink]">
                       <span>{{child.name}}</span>
                     </a>
                   </li>
@@ -114,7 +116,6 @@
       </div>
     </div>
     <!-- /content -->
-  
 
     <!-- footer -->
     <div class="app-footer wrapper bg-light">
@@ -123,7 +124,10 @@
     </div>
     <!-- / footer -->
   </div>
-  
-  
+<!-- 登录页面 -->
+  <div ng-if="isLogin==false" ui-view class="login-main" >
+  </div>
+
 </body>
+
 </html>

@@ -26,6 +26,13 @@ angular.module('myApp')
     		controller:"equipmentDetailCtrl"
     	}
     	);
+    $stateProvider.state(
+        'login', 
+        {  
+            url:'/login',
+            templateUrl:'view/login/login.html', 
+            controller: "loginCtrl"
+        });
     $urlRouterProvider.otherwise(
     	  '/equipmentList'
     );

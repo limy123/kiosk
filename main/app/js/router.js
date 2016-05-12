@@ -24,8 +24,69 @@ angular.module('myApp')
             url:'/detail/:id',
     		templateUrl:'view/equipment/equipment_detail.html',
     		controller:"equipmentDetailCtrl"
-    	}
-    	);
+    	});
+
+
+    $stateProvider.state(
+        'faultList',
+        {  
+            url:'/faultList',
+            templateUrl:'view/faultMangement/faultList.html',
+            controller:"faultListCtrl"
+        });
+    $stateProvider.state(
+        'historyRecord',
+        {  
+            url:'/historyRecord',
+            templateUrl:'view/faultMangement/historyRecord.html',
+            controller:"historyRecordCtrl"
+        });
+    $stateProvider.state(
+        'clipAdd',
+        {  
+            url:'/clipAdd',
+            templateUrl:'view/clipManagement/clipAdd.html',
+            controller:"clipAddCtrl"
+        });
+    $stateProvider.state(
+        'clipList',
+        {  
+            url:'/clipList',
+            templateUrl:'view/clipManagement/clipList.html',
+            controller:"clipListCtrl"
+        });
+    $stateProvider.state(
+        'diagram',
+        {  
+            url:'/diagram',
+            templateUrl:'view/clipManagement/diagram.html',
+            controller:"diagramCtrl"
+        });
+    $stateProvider.state(
+        'orderList',
+        {  
+            url:'/orderList',
+            templateUrl:'view/orderMangement/orderList.html',
+            controller:"orderListCtrl"
+        });
+    $stateProvider.state(
+        'returnDepositList',
+        {  
+            url:'/orderList',
+            templateUrl:'view/orderMangement/returnDeposit.html',
+            controller:"returnDepositCtrl"
+        });
+    $stateProvider.state(
+        'dates',
+        {  
+            url:'/dates',
+            templateUrl:'view/dateStatistics/dates.html',
+            controller:"datesCtrl"
+        });
+
+
+
+
     $stateProvider.state(
         'login', 
         {  

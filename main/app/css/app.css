@@ -37,7 +37,7 @@ a {
 
 a:hover,
 a:focus {
-  color: #141719;
+   
   text-decoration: none;
 }
 
@@ -1217,6 +1217,7 @@ html {
 
 .navi ul.nav li li a {
   padding-left: 55px;
+  border-left: 2px solid #fff;
 }
 
 .navi ul.nav li a {
@@ -1224,6 +1225,7 @@ html {
   display: block;
   padding: 10px 20px;
   font-weight: normal;
+  font-size: 15px;
   text-transform: none;
   -webkit-transition: background-color 0.2s ease-in-out 0s;
           transition: background-color 0.2s ease-in-out 0s;

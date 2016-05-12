@@ -29,7 +29,13 @@
   <script src="js/app.js"></script>
   <script src="js/router.js"></script>
   <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
+  <script src="js/controller/controllers.js"></script>
+  <script src="js/controller/clipController.js"></script>
+  <script src="js/controller/equipmentController.js"></script>
+  <script src="js/controller/faultController.js"></script>
+  <script src="js/controller/orderController.js"></script>
+  <script src="js/controller/dateController.js"></script>
+
   <script src="js/filters.js"></script>
   <script src="js/factory.js"></script>
   <script src="js/directive.js"></script>
@@ -77,9 +83,9 @@
           <!-- nav -->
           <nav ui-nav class="navi">
             <ul class="nav">
-              <li ng-repeat="date in menudate" toggle-class="active">
+              <li ng-repeat="date in menudate" toggle-class="active" ng-if="date.isChild == 'true'">
                 <a class="auto" id="{{date.id}}">      
-                  <span class="pull-right text-muted" ng-show="{{date.isChild}}">
+                  <span class="pull-right text-muted">
                     <i class="icon-angle-right text"></i>
                     <i class="icon-angle-down text-active"></i>
                   </span>
@@ -94,6 +100,12 @@
                     </a>
                   </li>
                 </ul>
+              </li>
+              <li ng-repeat="date in menudate" toggle-class="active" ng-if="date.isChild == 'false'">
+                <a class="auto" id="{{date.id}}" ui-sref="{{date.purl}}">
+                  <i ng-class="{true: '{{date.icon}}', false: 'inactive'}[date.isicon]"  ></i>
+                  <span class="font-bold">{{date.name}}</span>
+                </a>
               </li>
                
             </ul>

@@ -29,6 +29,7 @@
 }
 }
 /***************/
-.curMenu{
-	color: red;
+.navi .nav a.curMenu{
+	color: #ff8000;
+	border-left: 2px solid #ff8000;
 }

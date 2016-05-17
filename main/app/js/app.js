@@ -1,8 +1,16 @@
 'use strict';
 
-
-// Declare app level module which depends on filters, and services
-angular.module('myApp', ['myApp.filters', 'ui.router','pascalprecht.translate','ngSanitize','ui.bootstrap'])
+ 
+angular.module('myApp', [
+  'myApp.filters', 
+  'ui.router',
+  'pascalprecht.translate',
+  'ngSanitize',
+  'ui.bootstrap',
+  'ngAnimate',
+  'mgcrea.ngStrap',
+  'mgcrea.ngStrap.alert'
+  ])
    
 
   /*设置多语言*/

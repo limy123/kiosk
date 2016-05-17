@@ -1,4 +1,4 @@
-[
+[ 
 {
 	"id":"001",
 	"isicon":"true",
@@ -113,6 +113,4 @@
 	"isChild" : "false",
 	"purl" : "dates"
 }
-
-
 ]

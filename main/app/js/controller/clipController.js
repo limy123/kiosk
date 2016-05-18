@@ -6,7 +6,8 @@ angular.module('myApp')
 .controller('clipAddCtrl', function($rootScope,$scope,$state,$location,$modal,$alert) {
 	$rootScope.isLogin = true;
 	$rootScope.curLink = $state.current.name;
- 	 
+ 	
+ 	$scope.clips = [{'id':'10001'},{'id':'10002'},{'id':'10003'},{'id':'10004'},{'id':'10005'},{'id':'10006'},{'id':'10007'},{'id':'10008'},{'id':'10009'}];
 	var myOtherModal = $modal({
 		scope: $scope, templateUrl: 'view/clipManagement/addModel.html',
 		show: false,animation:'am-fade-and-slide-top'});

@@ -31,14 +31,14 @@ angular.module('myApp')
         'faultList',
         {  
             url:'/faultList',
-            templateUrl:'view/faultMangement/faultList.html',
+            templateUrl:'view/faultManagement/faultList.html',
             controller:"faultListCtrl"
         });
     $stateProvider.state(
         'historyRecord',
         {  
             url:'/historyRecord',
-            templateUrl:'view/faultMangement/historyRecord.html',
+            templateUrl:'view/faultManagement/historyRecord.html',
             controller:"historyRecordCtrl"
         });
     $stateProvider.state(
@@ -66,14 +66,14 @@ angular.module('myApp')
         'orderList',
         {  
             url:'/orderList',
-            templateUrl:'view/orderMangement/orderList.html',
+            templateUrl:'view/orderManagement/orderList.html',
             controller:"orderListCtrl"
         });
     $stateProvider.state(
         'returnDepositList',
         {  
-            url:'/orderList',
-            templateUrl:'view/orderMangement/returnDeposit.html',
+            url:'/returnDepositList',
+            templateUrl:'view/orderManagement/returnDeposit.html',
             controller:"returnDepositCtrl"
         });
     $stateProvider.state(

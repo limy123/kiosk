@@ -1,4 +1,4 @@
-[ 
+[
 {
 	"id":"001",
 	"isicon":"true",
@@ -99,9 +99,9 @@
 		{
 			"id" : "00402",
 			"icon" : "",
-			"name" : "押金退还",
+			"name" : "漫游宝入库",
 			"isChild" : "false",
-			"url" : "returnDeposit"
+			"url" : "returnDepositList"
 		}
 	]
 },
@@ -113,4 +113,6 @@
 	"isChild" : "false",
 	"purl" : "dates"
 }
+
+
 ]

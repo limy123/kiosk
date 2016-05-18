@@ -19,3 +19,11 @@
 .border-top{
 	border-top:1px solid #edf1f2; padding-top:10px;
 }
+.table-clip{
+	table-layout: fixed;
+}
+.table-clip td{
+	word-break:break-all; /*支持IE，chrome，FF不支持*/
+
+　　word-wrap:break-word;/*支持IE，chrome，FF*/
+}

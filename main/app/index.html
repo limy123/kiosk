@@ -54,6 +54,9 @@
   
 </head>
 <body ng-controller="mainCtr">
+  <!-- 登录页面 -->
+  <div ng-if="isLogin==false" ui-view class="login-main" >
+  </div>
   
   <div class="app app-header-fixed" id="app" ng-if="isLogin == true">
     <!-- navbar -->
@@ -148,9 +151,7 @@
     </div>
     <!-- / footer -->
   </div>
-<!-- 登录页面 -->
-  <div ng-if="isLogin==false" ui-view class="login-main" >
-  </div>
+
 
 </body>
 

@@ -56,6 +56,20 @@ angular.module('myApp')
             controller:"clipListCtrl"
         });
     $stateProvider.state(
+        'editSN',
+        {  
+            url:'/editSN/:code',
+            templateUrl:'view/clipManagement/editSN.html',
+            controller:"editSNCtrl"
+        });
+    $stateProvider.state(
+        'clipsin',
+        {  
+            url:'/clipsin',
+            templateUrl:'view/clipManagement/clipsIn.html',
+            controller:"clipsinCtrl"
+        });
+    $stateProvider.state(
         'diagram',
         {  
             url:'/diagram',

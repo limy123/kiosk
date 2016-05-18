@@ -7,11 +7,22 @@
       </div>
       <div class="modal-body">
       	<div class="row">
-      		<div class="col-sm-4 col-xs-6" ng-repeat="date in clips">
-      			<input type="checkbox" id="" value="{{date.id}}">{{date.id}}
+      		<div class="col-sm-4 col-xs-6" ng-repeat="date in clips" style="margin-bottom:10px;">
+      			<input type="checkbox" name="{{date.id}}" id="{{date.val}}" 
+            ng-checked="isSelected(date.val)"
+             ng-click="updateSelection($event,date.val)">
+            <label for="{{date.val}}">{{date.id}}</label>
       		</div>	
       	</div>
-      	</div>
+        <div class=" form-inline">
+        <div class="form-group">
+          <label for="eqId" class="control-label">备注:</label>
+           
+          <input type="text" class="form-control">
+         
+        </div>
+        </div>
+      </div>
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>

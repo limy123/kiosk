@@ -4,7 +4,6 @@
 angular.module('myApp')
  
 .controller('faultListCtrl', function($rootScope,$scope,$state,$location) {
-	$rootScope.isLogin = true;
 	$rootScope.curLink = $state.current.name;
 	$scope.pstart = "";
 	$scope.pend = "";
@@ -21,7 +20,6 @@ angular.module('myApp')
 })
 
 .controller('historyRecordCtrl', function($rootScope,$scope,$location,$state) {
-    $rootScope.isLogin = true;
     $rootScope.curLink = $state.current.name;
   
 })

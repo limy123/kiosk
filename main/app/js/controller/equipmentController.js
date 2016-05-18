@@ -5,6 +5,7 @@ angular.module('myApp')
  
 .controller('equipmentListCtrl', function($rootScope,$scope,$state,$location) {
 	$rootScope.isLogin = true;
+	$rootScope.curLink = $state.current.name;
 	$scope.delEquipment = function(id){
 		console.log(id);
 		swal({   
@@ -47,27 +48,19 @@ angular.module('myApp')
 	  $scope.pageChanged = function() {
 	    $scope.figureOutTodosToDisplay();
 	  };
-/////////////////////
-$rootScope.curLink = $state.current.name;
-console.log($rootScope.curLink);
+ 
+
 	     
 })
 
 .controller('equipmentAddCtrl', function($rootScope,$scope,$location,$state) {
-
-    $scope.chk11 = "wwws";
-    $rootScope.isLogin = true;
     $rootScope.curLink = $state.current.name;
     console.log($rootScope.curLink);
 
 })
 .controller('equipmentDetailCtrl',function($rootScope,$scope,$state,$stateParams){
 	$scope.id = $stateParams.id;
-	$rootScope.isLogin = true;
-	console.log($scope.id);
 	$rootScope.curLink = $state.current.name;
-console.log($rootScope.curLink);
-
 })
  
 ;

@@ -3,72 +3,129 @@
 		<h4>新增柜子</h4> 
 	</div>
   <div class="panel-body">
-     <form class="form-horizontal">
+  	<div class="row">
+  	  <div class="col-sm-offset-3 col-lg-6">
+     	<form class="form-horizontal" name="add_form">
 		  <div class="form-group">
-		    <label for="eqSN" class="col-sm-2 control-label">柜子SN:</label>
-		    <div class="col-sm-8 col-lg-4">
-		      <input type="email" class="form-control" id="eqSN">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="eqId" class="col-sm-2 control-label">柜子简码:</label>
-		    <div class="col-sm-8 col-lg-4">
-		      <input type="password" class="form-control" id="eqId">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="eqId" class="col-sm-2 control-label">地区:</label>
+		    <label for="eqId" class="col-sm-2 control-label">柜子简码</label>
 		    <div class="col-sm-10">
-		        <div class="form-inline"> 
-					<div class="form-group">
-					    <label for="eqId">国家:</label>
-					    <select class="form-control">
-					    	<option>中国</option>
-					    	<option>美国美国美</option>
-					    </select>
+		      <input type="number" name="kioskNo" ng-model="kioskNo" class="form-control"
+		       ng-maxlength=4
+		       ng-minlength=4 
+		       ng-blur = "isKioskNo(kioskNo)"
+		       ng-model="kioskNo" required />
+		       <div class="error" 
+			        ng-show="add_form.kioskNo.$dirty && add_form.kioskNo.$invalid">
+				    <small class="error" 
+				        ng-show="add_form.kioskNo.$error.required">
+				        Must be 4 digits, such as 1001
+				    </small>
+				    <small class="error" 
+				        ng-show="add_form.kioskNo.$error.minlength">
+				        Your kioskNo is required to be at least 4 characters
+				    </small>
+				    <small class="error" 
+				        ng-show="add_form.kioskNo.$error.maxlength">
+				        Your kioskNo cannot be longer than 4 characters
+				    </small>
+			  </div>
+			  <div class="error" ng-show="errorKno">柜子简码已经存在</div>
+			  <div class="error" ng-show="errornull">柜子简码不能为空</div>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">柜子SN</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" name="lsn" ng-model="lSN" required />
+		        <div class="error" 
+			        ng-show="add_form.lsn.$dirty && add_form.lsn.$invalid">
+				    <small class="error" 
+				        ng-show="add_form.lsn.$error.required">
+				        SN不能为空
+				    </small>
+				</div>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="eqId" class="col-sm-2 control-label">地区</label>
+		    <div class="col-sm-10">
+		        <div class="row"> 
+					<div class="col-sm-4">
+					  <select class="form-control" name="country"
+					     ng-model="selCountryCode" 
+					     ng-change="selectedCountry(selCountryCode)">
+					     <option value="" selected>----国家----</option>
+					     <option ng-repeat="data in countrylist" value="{{data.countryCode}}">{{data.countryName}}</option>
+					  </select>
+					  <div class="error">
+					    <small class="error" 
+					        ng-show="errorCountry">
+					        请选择国家
+					    </small>
+					  </div>
 					</div>
-					<div class="form-group">
-					    <label for="eqSN">省:</label>
-					    <select class="form-control">
-					    	<option>请选择</option>
-					    	<option>美国</option>
+					<div class="col-sm-4">
+					    <select class="form-control"
+					    	ng-model="selProvinceCode"
+					    	ng-change="selectedProvince(selProvinceCode)">
+					    	<option value="" selected>----省份----</option>
+					    	<option ng-repeat="data in provincelist" value="{{data.provinceCode}}">{{data.provinceName}}</option>
 					    </select>
+					    <div class="error">
+					    <small class="error" 
+					        ng-show="errorProvince">
+					        请选择省
+					    </small>
+					  </div>
 					</div>
-					<div class="form-group">
-					    <label for="eqSN">市:</label>
-					    <select class="form-control">
-					    	<option>请选择</option>
-					    	<option>北京</option>
+					<div class="col-sm-4">
+					    <select class="form-control"
+					    	ng-model="selCityCode"
+					    	ng-change="selectedCity(selCityCode)">
+					    	<option value="" selected>----城市----</option>
+					    	<option ng-repeat="data in citylist" value="{{data.cityCode}}">{{data.cityName}}</option>
 					    </select>
+					    <div class="error">
+						    <small class="error" 
+						        ng-show="errorCity">
+						        请选择市
+						    </small>
+						  </div>
 					</div>
 				 
 				</div>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="address" class="col-sm-2 control-label">详细地址:</label>
-		    <div class="col-sm-8 col-lg-4">
-		      <input type="text" class="form-control" id="address">
-		    </div>
+		    <label for="address" class="col-sm-2 control-label">详细地址</label>
+		    <div class="col-sm-10">
+		      	<input type="text" class="form-control" id="address" name="address" ng-model="address" required />
+		    	<div class="error" 
+			        ng-show="add_form.address.$dirty && add_form.address.$invalid">
+				    <small class="error" 
+				        ng-show="add_form.address.$error.required">
+				        详细地址不能为空
+				    </small>
+				</div>
+			</div>
 		  </div>
 		  <div class="form-group">
-		    <label for="custom" class="col-sm-2 control-label">归属客户:</label>
-		    <div class="col-sm-8 col-lg-4">
-		      	<select class="form-control" id="custom">
-		    		<option>请选择</option>
-		    		<option>携程</option>
+		    <label for="custom" class="col-sm-2 control-label">归属客户</label>
+		    <div class="col-sm-10">
+		      	<select class="form-control">
+		    		<option value="1" selected>skyroam</option>
 		    	</select>
 		    </div>
 		  </div>
-		  <div class="form-group border-top">
-		    <div class="col-sm-offset-2 col-sm-10">
-		  	 	<button type="button" class="btn btn-warning">提交</button>
-		  	</div>
-		  </div>
-		   
 		</form>
 
-
+	</div>
+	</div>
+	<div class="row form-add">
+    	<div class="center-block" style="width:90px;">
+    	<!-- <button type="button" class="btn btn-default btn-search">返回</button> -->
+  	 	<button type="button" class="btn btn-warning btn-search" ng-click="addKiosk()">保存</button> 
+  	 	</div>
   </div>
    
 </div>

@@ -25,7 +25,7 @@
 			"icon" : "",
 			"name" : "地位定图",
 			"isChild" : "false",
-			"url" : "equipmentDetail"
+			"url" : "equipmentList"
 		}
 	]
 },
@@ -55,7 +55,7 @@
 {
 	"id":"003",
 	"isicon":"true",
-	"icon" : "icon-book",
+	"icon" : "icon-th",
 	"name" : "弹夹管理",
 	"isChild" : "true",
 	"child" : [
@@ -85,7 +85,7 @@
 {
 	"id":"004",
 	"isicon":"true",
-	"icon" : "icon-book",
+	"icon" : "icon-file-alt",
 	"name" : "订单管理",
 	"isChild" : "true",
 	"child" : [
@@ -108,7 +108,7 @@
 {
 	"id":"005",
 	"isicon":"true",
-	"icon" : "icon-book",
+	"icon" : "icon-bar-chart",
 	"name" : "数据统计",
 	"isChild" : "false",
 	"purl" : "dates"

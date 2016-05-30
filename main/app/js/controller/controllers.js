@@ -4,34 +4,67 @@
 angular.module('myApp')
 .controller('mainCtr',function($rootScope,$scope,serviceFactory,$location,$state){
 	$rootScope.isLogin = true;
-	/*$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
-		console.login(22);
-		if(toState.name=='login') {
-			$scope.isLogin = false; return;// 如果是进入登录界面则允许
-		}
-		// 如果用户不存在
-		if(!$rootScope.user || !$rootScope.user.token){
-			event.preventDefault();// 取消默认跳转行为
-			$state.go("login",{from:fromState.name,w:'notLogin'});//跳转到登录界面
-		}
-	});*/
-
-	//左侧菜单
-	serviceFactory.getMenulist().success(function(response){
-		$scope.menudate = response;
-		console.log($scope.menudate);
-	});
+	 
 	$scope.toggleTwoMenu = function(id){
 		$scope.currentId = id;
 	}
-	 $rootScope.curLink = "equipmentList";
-	 console.log($rootScope.curLink);
-	 /*$scope.curLinkFun = function(curlink){
-	 	$rootScope.curLink = $location.url();
-	 	console.log($rootScope.curLink);
-	 }*/
+	$rootScope.curLink = "equipmentList";
+	//左侧菜单
+	serviceFactory.getMenulist().success(function(response){
+		$scope.menudate = response;
+		//console.log($scope.menudate);
+	});
+
+	//基础数据
+	$rootScope.paramers = { 
+					'start' : '0',
+					'limit' : '10'
+				}
+	 
+	$rootScope.selCountryCode="";
+	$rootScope.selProvinceCode ="";
+	$rootScope.selCityCode =　"";
+	$scope.provinceCode = "";
+
+	serviceFactory.getCountry().success(function(response){
+		if(response.code == 0){
+			$rootScope.countrylist = response.data;
+			/*$rootScope.selCountryCode = response.data[0].countryCode;
+			serviceFactory.getProvince($rootScope.selCountryCode).success(function(response){
+				if(response.code == 0){
+					$rootScope.provincelist = response.data;
+					$rootScope.selProvinceCode = response.data[0].provinceCode;
+					serviceFactory.getCity($rootScope.selProvinceCode).success(function(response){
+						$rootScope.citylist = response.data;
+						$rootScope.selCityCode = response.data[0].cityCode;
+					})
+				}
+				
+			});*/
+		}
+	});
 	
+	$rootScope.selectedCountry = function(selCountryCode){
+		$rootScope.errorCountry = false;
+		serviceFactory.getProvince(selCountryCode).success(function(response){
+			$rootScope.provincelist = response.data;
+		})
+	}
+	$rootScope.selectedProvince = function(selProvinceCode){
+		$rootScope.errorProvince = false;
+		serviceFactory.getCity(selProvinceCode).success(function(response){
+			$rootScope.citylist = response.data;
+		})
+	}
+	$rootScope.selectedCity = function(cityCode){
+		$rootScope.errorCity = false;
+		console.log(cityCode);
+		console.log($rootScope.selCityCode)
+	}
+
+	  
 })
+ 
  
 //设置多语言
 .controller('LunchCtrl',function($scope,$translate){
@@ -45,14 +78,23 @@ angular.module('myApp')
  
 })
 
-.controller('loginCtrl', function($rootScope,$scope,$state) {
+.controller('loginCtrl', function($rootScope,$scope,$state,serviceFactory) {
 	$rootScope.isLogin = false;
     $scope.username = "" ;
     $scope.password = "";
     $scope.submitLogin = function(){
     	$rootScope.isLogin = true;
-    	$state.go("equipmentList");//跳转到登录界面
+
+    	serviceFactory.loginIn($scope.username,$scope.password).success(function(response){
+    		 
+    		if(response.code == 0){
+    			$state.go("equipmentList");//跳转到登录界面
+    		}
+    	});
+
+    	
     }
+     
      
 })
 ;

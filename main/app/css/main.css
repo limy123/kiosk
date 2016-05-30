@@ -4,8 +4,8 @@
 	background: #fff;
 }
 .login-main .container{
-	width: 95%;
-	padding-top: 20px;
+	width: 100%;
+	padding: 50px;
 }
 
 .login-form .btn-primary{
@@ -17,6 +17,9 @@
     border-radius: 20px;
     background: #ff8000;
     border-color: #ff8000;
+}
+.login-form  .form-control{
+	height: 44px !important;
 }
 
 @media (min-width: 768px){

@@ -1,10 +1,15 @@
 <!doctype html>
 <html lang="en" ng-app="myApp">
 <head>
+  <!--[if lte IE 7]>
+    <script src="json/JSON-js-master/json2.js"></script>
+  <![endif]-->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>自动服务终端设备管理平台</title>
+  <link rel="icon" href="http://angularjs.org/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="lib/bower_components/sweetalert/dist/sweetalert.css">
   <link rel="stylesheet" href="css/app.css"/>
@@ -15,6 +20,9 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/libs.css">
 
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2pre/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.js"></script>
+
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bower_components/angular/angular.min.js"></script>
   <script src="lib/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -24,6 +32,8 @@
   <!-- angular结合bootstrap控件 -->
   <script src="lib/bower_components/angular-strap/dist/angular-strap.min.js"></script>
   <script src="lib/bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
+  <script src="lib/angular/test.js"></script>
+
 
   <!-- 多语言 -->
   <script src="lib/bower_components/angular-translate/angular-translate.js"></script>
@@ -51,7 +61,9 @@
   <script src="js/filters.js"></script>
   <script src="js/factory.js"></script>
   <script src="js/directive.js"></script>
-  
+  <!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 </head>
 <body ng-controller="mainCtr">
   <!-- 登录页面 -->
@@ -123,7 +135,7 @@
                 </a>
               </li>
                
-            </ul>
+            </ul`>
           </nav>
           <!-- nav --> 
         </div>

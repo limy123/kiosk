@@ -22,6 +22,11 @@ angular.module('myApp', [
             suffix:'.json'
          });
     }])
+  .factory('configFactory',function(){
+    return{
+      apiBaseUrl:"http://192.168.14.35:9090/kop-rim/web"
+    }
+  })
   
   /*.config(['$httpProvider',function ($httpProvider) {
 	    $httpProvider.interceptors.push('UserInterceptor');

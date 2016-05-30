@@ -20,7 +20,6 @@ angular.module('myApp')
 .directive('myDatepicker',function(){
     return{
         restrict: "EA",
-         
         scope:{
             start:'=start',
             end : '=end'
@@ -31,29 +30,56 @@ angular.module('myApp')
         ' onFocus="WdatePicker({minDate:$(\'#tostart\').val() })"/>'
          
     };
-    /*return {
-        restrict: 'A',
-        require: 'ngModel',
-        scope: {
-            minDate: '@',
-        },
-        link: function (scope, element, attr, ngModel) {
-            element.val(ngModel.$viewValue);
-            function onpicking(dp) {
-                var date = dp.cal.getNewDateStr();
-                scope.$apply(function () {
-                    ngModel.$setViewValue(date);
-                });
-            }
-            element.bind('click', function () {
-                WdatePicker({
-                    onpicking: onpicking,
-                    dateFmt: 'yyyy-MM-dd',
-                    minDate: (scope.minDate || '%y-%M-%d'),
-                })
-            });
-        }
-    };*/
-        
-        
 })
+//分页
+.directive('paging', function () {
+    return {
+        restrict: 'E',
+        //scope: {
+        //    numPages: '=',
+        //    currentPage: '=',
+        //    onSelectPage: '&'
+        //},
+        template: '',
+        replace: true,
+        link: function (scope, element, attrs) {
+            scope.$watch('totalPages', function (value) {
+                scope.pages = [];
+                //value :获取页面的数据条数
+                for (var i = 1; i <= value; i++) {
+                    scope.pages.push(i);
+                }
+                console.log(scope.currentPage)
+                if (scope.currentPage > value) {
+                    scope.selectPage(value);
+                }
+            });
+            scope.isActive = function (page) {
+                return scope.currentPage === page;
+            };
+            scope.selectPage = function (page) {
+                if (!scope.isActive(page)) {
+                    scope.currentPage = page;
+                    scope.onSelectPage(page);
+                }
+            };
+            scope.selectPrevious = function () {
+                if (!scope.noPrevious()) {
+                    scope.selectPage(scope.currentPage - 1);
+                }
+            };
+            scope.selectNext = function () {
+                if (!scope.noNext()) {
+                    scope.selectPage(scope.currentPage + 1);
+                }
+            };
+            scope.noPrevious = function () {
+                return scope.currentPage == 1;
+            };
+            scope.noNext = function () {
+                return scope.currentPage == scope.numPages;
+            };
+ 
+        }
+    };
+});

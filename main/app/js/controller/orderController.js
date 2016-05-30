@@ -5,6 +5,13 @@ angular.module('myApp')
  
 .controller('orderListCtrl', function($rootScope,$scope,$state,$location) {
 	$rootScope.curLink = $state.current.name;
+
+	$scope.fromDate = "2016-05-02";
+	$scope.untilDate = "";
+	$scope.selectForm = function(){
+		console.log($scope.fromDate);
+		console.log($scope.untilDate);
+	}
  
 	     
 })

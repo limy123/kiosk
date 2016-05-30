@@ -1,32 +1,54 @@
  <div class="panel">
-	<div class="panel-body">
-	<form class="form-inline">
-		<div class="form-group">
-			<label for="eqId">故障时间:</label>
-			<my-datepicker start="pstart" end="pend"></my-datepicker>
-		</div>
-		<div class="form-group">
-		    <label for="eqId">布放国家:</label>
-		    <select class="form-control">
-		    	<option value="中国">中国</option>
-		    	<option value="美国">美国美国美</option>
-		    </select>
-		</div>
-		<div class="form-group">
-		    <label for="eqSN">布放省份:</label>
-		    <select class="form-control">
-		    	<option>请选择</option>
-		    	<option>美国</option>
-		    </select>
-		</div>
-		<div class="form-group">
-		    <label for="eqId">柜子简码:</label>
-		    <input type="text" class="form-control" id="eqId" />
-		</div>
-		<div class="form-group pull-right">
-			<button type="button" class="btn btn-warning" ng-click="selectForm()">筛选</button>
-		</div>
-	</form>
+	<div class="panel-body panel-b-bottom">
+		<div class="row search-form">
+			<div class="col-lg-11" >
+				<div class="row">
+				    <label class="col-lg-1">故障时间</label>
+
+				    <div class="col-lg-8 form-inline">
+				     <div class="form-group">
+				    	<input type="text" class="form-control" data-date-format="yyyy-MM-dd" 
+					      data-autoclose="1" 
+					      ng-model="fromDate" data-max-date="{{untilDate}}" placeholder="From" bs-datepicker>
+					    	&nbsp;至&nbsp;
+					      <input type="text" class="form-control" data-date-format="yyyy-MM-dd"
+					       data-autoclose="1" ng-model="untilDate" data-min-date="{{fromDate}}"
+					        placeholder="To" bs-datepicker>
+					    </div>
+				    </div>
+				</div>
+				<div class="row">
+					<label class="col-lg-1">布放国家</label>
+				    <div class="col-lg-3">
+					  <select class="form-control"
+					     ng-model="selCountryCode" 
+					     ng-change="selectedCountry(selCountryCode)">
+					     <option value="" selected hidden></option>
+					     <option ng-repeat="data in countrylist" value="{{data.countryCode}}">{{data.countryName}}</option>
+					  </select>
+					    
+					</div>
+				 
+				    <label class="col-lg-1">布放省份</label>
+				    <div class="col-lg-3">
+					    <select class="form-control"
+					    	ng-model="selProvinceCode"
+					    	ng-change="selectedProvince(selProvinceCode)">
+					    	<option value="" selected hidden></option>
+					    	<option ng-repeat="data in provincelist" value="{{data.provinceCode}}">{{data.provinceName}}</option>
+					    </select>
+					</div>
+				 
+				    <label class="col-lg-1">柜子简码</label>
+				    <div class="col-lg-3">
+					    <input type="text" class="form-control" ng-model="kioskNo" />
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-1 col-sm-12">
+				<button type="button" class="btn btn-warning btn-search" ng-click="searchFault()">筛选</button>
+			</div>
+	 	</div>
 	</div>
 </div>
 

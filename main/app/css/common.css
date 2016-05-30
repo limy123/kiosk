@@ -12,12 +12,20 @@
     display: inline-block;
     margin-right: 20px;
 }
+.detail-line .panel-body{
+	padding-bottom:32px; 
+}
+.detail-line .row{
+	line-height: 30px;
+}
 .form-horizontal .form-inline .form-group{
 	margin-right: 0;
 	margin-left: 0;
 }
-.border-top{
-	border-top:1px solid #edf1f2; padding-top:10px;
+.form-footer{
+	border-top:1px solid #edf1f2; 
+	margin-top:32px;
+	padding-top:32px;
 }
 .table-clip{
 	table-layout: fixed;
@@ -26,4 +34,53 @@
 	word-break:break-all; /*支持IE，chrome，FF不支持*/
 
 　　word-wrap:break-word;/*支持IE，chrome，FF*/
+}
+.btn-search.btn{
+	padding-left:24px; padding-right:24px;
+}
+.table > tbody > tr > td{
+	vertical-align: middle;
+}
+input:focus,select:focus
+{ 
+	/*outline:1px solid red !important;*/
+	border:1px solid #ff8000 !important;
+}
+.panel-body{
+  padding:32px 20px 10px;
+}
+.form-inline .form-group label{
+	margin-right: 8px;
+}
+.search-form label{
+	margin-bottom:10px;
+	padding-top: 7px;
+	text-align: right;
+}
+.search-form .row{
+	margin-bottom: 22px;
+}
+.search-form .col-lg-1{
+	padding-right: 0;
+}
+.panel{
+	border:none !important;
+	box-shadow: none !important;
+}
+.panel-footer{
+	padding: 32px 15px;
+}
+.form-add{
+	border-top:1px solid #F1EDED;
+	padding-top:32px;
+	margin-top:17px;
+}
+.btn{
+	margin-right: 10px;
+}
+.panel-b-bottom{
+	border-bottom:1px solid #F1EDED;
+}
+.error{
+	color: red;
 }

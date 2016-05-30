@@ -419,6 +419,7 @@ a.list-group-item.hover {
 
 .panel {
   border-radius: 2px;
+  margin-bottom: 0 !important;
 }
 
 .panel .accordion-toggle {
@@ -483,11 +484,15 @@ a.list-group-item.hover {
   border:none;
 }
 .panel.panel-info > .panel-heading{
-      color: #33373b;
+    color: #33373b;
     background-color: #dcdcdc;
     border:none;
-}
+    padding-left: 20px;
 
+}
+.panel.panel-info > .panel-heading h4{
+  line-height: 30px;
+}
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
   padding: 8px 15px;
@@ -714,6 +719,7 @@ body {
 }
 .app-aside {
   float: left;
+  margin-top:20px;
 }
 
 .app-aside:before {
@@ -782,6 +788,7 @@ body {
   width: 100%;
   height: 100%;
   padding:20px 20px 70px;
+  overflow: auto;
 }
 .app-panel{
   min-height: 100%;
@@ -1090,6 +1097,7 @@ body {
   }
   .navbar-form .form-group {
     margin-bottom: 0;
+
   }
 }
 
@@ -1138,8 +1146,12 @@ html {
   .app.container.app-aside-dock .app-footer-fixed {
     max-width: 750px;
   }
-  .form-group{
+  .panel > .form-group{
     margin-right:20px;
+    margin-bottom: 22px !important;
+  }
+  .form-control{
+    /*width:180px !important;*/
   }
 }
 

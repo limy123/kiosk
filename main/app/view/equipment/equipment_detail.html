@@ -2,7 +2,7 @@
 	<div class="panel-heading">
 		<h4>柜子详情</h4> 
 	</div>
-  <div class="panel-body">
+  <div class="panel-body detail-line">
   <div class="row">
      
      	<div class="panel">
@@ -12,20 +12,26 @@
 	     	<div class="panel-body">
 		        
 		        <div class="row">
+
 		        	<div class="col-lg-3 col-sm-6">
 			        	<strong class=" ">柜子简码:</strong>
-			        	<label class=" ">{{id}}</label>
+			        	<label class=" ">{{ kioskDetail.kioskNo}}</label>
 			        </div>
 			        <div class="col-lg-6">
 						<strong class=" ">柜子SN:</strong>
-			        	<label class=" ">dbkd 1233 4333</label>
-			        	<button class="btn btn-warning pull-right">编辑</button>
+			        	<label class=" ">{{kioskDetail.lSN}}</label>
+		        	</div>
+		        	<div class="col-lg-2">
+		        		<a ui-sref="equipmentEdit({id: id })">
+	  						<button class="btn btn-warning btn-sm pull-right">编辑</button>
+	  					</a>
+		        		
 		        	</div>
 		        </div>
 		        <div class="row">
 		        	<div class="col-lg-3 col-sm-6">
 		        		<strong class=" ">软件版本:</strong>
-		        		<label class=" ">CN1.2</label>
+		        		<label class=" ">{{ kioskDetail.softwareVersion }}</label>
 		        	</div>
 		        	<div class="col-lg-6 ">
 						<strong class=" ">归属客户:</strong>
@@ -33,9 +39,9 @@
 		        	</div>
 		        </div>
 		        <div class="row">
-			        <div class="col-lg-3 col-sm-6">
+			        <div class="col-lg-12 col-sm-12">
 			        	<strong class=" ">布放位置:</strong>
-			        	<label class=" ">CN1.2</label>
+			        	<label class=" ">{{ kioskDetail.countryName }},{{ kioskDetail.provinceName }},{{ kioskDetail.cityName }},{{ kioskDetail.address }}</label>
 			        </div>
 		     	</div> 
 	     	</div>
@@ -145,11 +151,14 @@
 		        </div>
 		    </div>
 		    <div class="panel-footer">
-		     	<button class="btn btn-warning center-block">返回</button>
+		    	<div class="center-block" style="width:90px;">
+		     		<button class="btn btn-warning btn-search">返回</button>
+		     	</div>
 		    </div>
 		</div>
 
    
   </div>
-   
+  </div>
+
 </div>

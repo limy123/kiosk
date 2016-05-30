@@ -19,6 +19,13 @@ angular.module('myApp')
     		controller: "equipmentAddCtrl"
     	});
     $stateProvider.state(
+        'equipmentEdit',
+        {
+            url : '/equipmentEdit/:id',
+            templateUrl : 'view/equipment/equipment_edit.html',
+            controller: "equipmentEditCtrl"
+        });
+    $stateProvider.state(
     	'equipmentDetail',
     	{  
             url:'/detail/:id',

@@ -1,25 +1,79 @@
 (function(){
 'use strict';
- 
+
 angular.module('myApp')
  
-.controller('equipmentListCtrl', function($rootScope,$scope,$state,$location,serviceFactory) {
+.controller('equipmentListCtrl', function($rootScope,$scope,$state,$alert,$location,serviceFactory,$cookieStore) {
 	$rootScope.isLogin = true;
 	$rootScope.curLink = $state.current.name; 
-	//获取柜子列表
-	serviceFactory.getKioskList($rootScope.paramers).success(function(response){
-		console.log(response);
-		if(response.code == 1){ 
-			$scope.kiosklist = response.data.rows;
-			$scope.totalCount = response.data.totalCount;
-			$scope.totalPage = Math.ceil($scope.totalCount / 10);
-			 
+
+	$scope.selpage = "1";//跳转到第几页
+    $scope.currentPage = 1;
+    $scope.numPages = 10;//总共多少页
+    $scope.pageSize = "10";//每页显示几条
+    $scope.pages = [];
+     
+    $rootScope.curLink = $state.current.name;
+    //获取列表
+    $scope.getKioskList = function(paramers){
+    	serviceFactory.getKioskList(paramers).success(function(response){
+    		 
+    		console.log(response)
+    		if(response.code == 0){
+    			$scope.kiosklist = response.data.rows;
+    			$scope.numPages = Math.ceil(response.data.totalCount / $scope.pageSize);
+    			$scope.totalPages = ($scope.numPages) >= 10 ? "10" : $scope.numPages;//超过10页则显示10个
+    		}else if(response.code == "-1"){
+    			$alert({
+    				title: '', 
+					content: '请求出错' + response.massage, 
+					placement: 'top', 
+					container:'#app-panel',
+					type: 'info', 
+					duration:'2',
+					show: true
+    			})
+    		}else if(response.code == result_code){
+    			swal("", response.message, "error");
+    			/*$rootScope.isLogin = false;
+    			$state.go("login");*/
+
+    		}
+    	});
+    }
+    
+    $scope.getKioskList($rootScope.paramers);
+     
+    //分页
+    $scope.onSelectPage = function (page) { 
+    	$scope.currentPage = page;
+        $scope.parame = {
+    		'start' : $scope.pageSize*(page-1),
+			'limit' : $scope.pageSize
+    	}
+    	$scope.getKioskList($scope.parame);
+
+    	//设置按钮分页
+    	if($scope.numPages <=10) return;
+    	var _page = $scope.numPages - page;//距离末尾还有几个
+    	$scope.pages=[];
+    	if(_page <5){ //末尾的5个 
+    		for (var i = $scope.numPages - 9; i <= $scope.numPages ; i++) {
+                $scope.pages.push(i);
+            }
+    	}else if(page <10){ //前面10个
+    		for (var i = 1; i <= 10; i++) {
+                $scope.pages.push(i);
+            }
+		}else if(page <= $scope.numPages - 5){ 
+			for (var i = page-5; i < page + 5; i++) {
+                $scope.pages.push(i);
+            }
 		}
-		
-	});
-	//查询柜子列表
-	$scope.searchKiosk = function(){
-		var paramers = {
+    };
+    //查询
+    $scope.searchKiosk = function(){
+    	var paramers = {
 					'lSN' : $scope.lSN,
 					'kioskNo' : $scope.kioskNo,
 					'countryCode' : $scope.selCountryCode,
@@ -28,13 +82,9 @@ angular.module('myApp')
 					'start' : '0',
 					'limit' : '20'
 				}
-		serviceFactory.getKioskList(paramers).success(function(response){
-			$scope.kiosklist = response.data.rows;
-		});
-	}
-	 
-
-	
+    	$scope.getKioskList($scope.parame);
+    }
+ 
 	//删除柜子数据
 	$scope.delEquipment = function(id){
 		swal({   
@@ -50,9 +100,12 @@ angular.module('myApp')
 		}, 
 		function(){
 			serviceFactory.deleteKiosk(id).success(function(response){
+				console.log(response)
 				if(response.code == 0){
 					swal("", "删除成功.", "success");
 					$scope.searchKiosk();
+				}else{
+					swal("", "删除失败:" + response.message , "error");
 				}
 			})
 		});
@@ -119,8 +172,10 @@ angular.module('myApp')
 	    }
 	    if($scope.add_form.$valid){ //校验通过
 		   	serviceFactory.addKiosk($scope.paramers).success(function(response){
+		   		console.log(response);
 		    	if(response.code == 0){
 		    		swal("", "添加成功.", "success");
+		    		$state.go("equipmentList");
 		    	}else{
 		    		swal("", "添加失败.", "error");
 		    	}
@@ -128,6 +183,7 @@ angular.module('myApp')
 	   }
     } 
 })
+//编辑柜子信息
 .controller('equipmentEditCtrl',function($rootScope,$scope,$state,$stateParams,serviceFactory){
 	$scope.id = $stateParams.id;
 	serviceFactory.getkioskDetail($stateParams.id).success(function(response){
@@ -155,8 +211,9 @@ angular.module('myApp')
 	    serviceFactory.updateKiosk($scope.paramers).success(function(response){
 	    	if(response.code == 0){
 	    		swal("", "保存成功.", "success");
+	    		
 	    	}else{
-	    		swal("", "添加失败.", "error");
+	    		swal("", "保存失败.", "error");
 	    	}
 	    })
 	}
@@ -169,6 +226,9 @@ angular.module('myApp')
 		}
 	});		
 
+})
+.controller('mapsCtrl',function($rootScope,$scope,$state,$stateParams,serviceFactory){
+	$rootScope.curLink = $state.current.name;
 })
  
 ;

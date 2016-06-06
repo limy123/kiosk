@@ -3,29 +3,29 @@
 	"id":"001",
 	"isicon":"true",
 	"icon" : "icon-cog",
-	"name" : "设备管理",
+	"name" : "柜子管理",
 	"isChild" : "true",
 	"child" : [
 		{
 			"id" : "00101",
 			"icon" : "",
-			"name" : "新增设备",
+			"name" : "新增柜子",
 			"isChild" : "false",
 			"url" : "equipmentAdd"
 		},
 		{
 			"id" : "00102",
 			"icon" : "",
-			"name" : "设备列表",
+			"name" : "柜子列表",
 			"isChild" : "false",
 			"url" : "equipmentList"
 		},
 		{
 			"id" : "00103",
 			"icon" : "",
-			"name" : "地位定图",
+			"name" : "定位地图",
 			"isChild" : "false",
-			"url" : "equipmentList"
+			"url" : "maps"
 		}
 	]
 },

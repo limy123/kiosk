@@ -40,16 +40,17 @@ angular.module('myApp')
         //    currentPage: '=',
         //    onSelectPage: '&'
         //},
-        template: '',
+        templateUrl: '',
         replace: true,
         link: function (scope, element, attrs) {
             scope.$watch('totalPages', function (value) {
                 scope.pages = [];
+                if(value == 0) return;
                 //value :获取页面的数据条数
                 for (var i = 1; i <= value; i++) {
                     scope.pages.push(i);
                 }
-                console.log(scope.currentPage)
+                
                 if (scope.currentPage > value) {
                     scope.selectPage(value);
                 }
@@ -82,4 +83,103 @@ angular.module('myApp')
  
         }
     };
-});
+})
+//上传组件
+.directive("fileread", [function () {
+    return {
+        restrict: 'EA',
+        scope: {
+            fileread: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function (loadEvent) {
+                    scope.$apply(function () {
+                        scope.fileread = loadEvent.target.result;
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    }
+}])
+.directive("fileUpload", [function () {
+    return {
+        restrict: 'EA',
+        scope: {
+             
+        },
+        templateUrl : 'view/template/upload.html',
+        link: function (scope, element, attributes) {
+            $(element).find('#uploadForm').click(function(event) {
+                var formData = new FormData();
+                var dfile = $(element).find('#file')[0].files[0];
+
+                if(dfile == "" || dfile == null){
+                    alert("请选择文件");
+                    /*$alert({
+                        title: '', 
+                        content: '请选择文件', 
+                        placement: 'top', 
+                        container:'#uploadModel',
+                        type: 'info', 
+                        duration:'2',
+                        show: true
+                    })*/
+                    return false;
+                }
+                var _xlsx = dfile.name.substr(dfile.name.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+                console.log(_xlsx)
+               if(_xlsx !=".xlsx" && _xlsx !=".xlsx"){
+                    alert("请上传excel文件!");
+                    return false;
+                }
+                formData.append('file', dfile);
+                console.log(formData);
+                $.ajax({
+                    url: 'http://192.168.14.35:9090/kop-rim/web/deviceBox/batchUpdateSNs',
+                    type: 'POST',
+                    cache: false,
+                    data: formData,
+                    processData: false,
+                    contentType: false
+                }).done(function(res) {
+                    console.log(res)
+                    if(res.code == "-1"){
+                        $(element).find('.error').text(res.message)
+                    }else{
+                         
+                        myOtherModal.$promise.then(myOtherModal.hide);//隐藏modal
+
+                        var result = eval("(" + res.message + ")");
+                       
+                        swal({   
+                            title: "",   
+                            text: "操作结果:"+ result.msg +",是否需要下载本次操作结果？",   
+                            type: "warning",   
+                            showCancelButton: true,   
+                            confirmButtonColor: "#DD6B55",   
+                            confirmButtonText: "取消",   
+                            cancelButtonText: "下载",   
+                            closeOnConfirm: false,  
+                            loseOnCancel: false 
+                        }, 
+                        function(isConfirm){   
+                            if (isConfirm) {    
+                                location.reload();
+                            } else {     
+                                //下载
+                                var _url = "http://192.168.14.35:9090/kop-rim"+result.url;
+                                window.location = _url;
+                            }
+                    });
+                }
+                }).fail(function(res) {});
+ 
+  
+            });
+        }
+    }
+}])
+;

@@ -32,6 +32,14 @@ angular.module('myApp')
     		templateUrl:'view/equipment/equipment_detail.html',
     		controller:"equipmentDetailCtrl"
     	});
+    
+    $stateProvider.state(
+        'maps',
+        {  
+            url:'/maps',
+            templateUrl:'view/equipment/map.html',
+            controller:"mapsCtrl"
+        });
 
 
     $stateProvider.state(

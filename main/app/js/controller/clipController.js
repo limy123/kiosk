@@ -31,7 +31,7 @@ angular.module('myApp')
 	}
 })
 //获取弹夹列表
-.controller('clipListCtrl', function($rootScope,$scope,$location,$state,$alert,serviceFactory) {
+.controller('clipListCtrl', function($rootScope,$scope,$location,$state,$alert,serviceFactory,configFactory,$modal,Upload,$http) {
 	$scope.selpage = "1";//跳转到第几页
     $scope.currentPage = 1;
     $scope.numPages = 10;//总共多少页
@@ -39,6 +39,7 @@ angular.module('myApp')
     $scope.pages = [];
      
     $rootScope.curLink = $state.current.name;
+     
     //获取列表
     $scope.getDeviceBox = function(paramers){
     	serviceFactory.getDeviceBoxList(paramers).success(function(response){
@@ -62,10 +63,8 @@ angular.module('myApp')
     			})
     		}
     	});
-    }
-    
+    }   
     $scope.getDeviceBox($rootScope.paramers);
-     
     //分页
     $scope.onSelectPage = function (page) { 
     	$scope.currentPage = page;
@@ -87,7 +86,7 @@ angular.module('myApp')
     		for (var i = 1; i <= 10; i++) {
                 $scope.pages.push(i);
             }
-		}else if(page < $scope.numPages - 5){ 
+		}else if(page <= $scope.numPages - 5){ 
 			for (var i = page-5; i < page + 5; i++) {
                 $scope.pages.push(i);
             }
@@ -99,14 +98,14 @@ angular.module('myApp')
     		'boxNumber' : $scope.boxNumber,
     		'deviceType' : $scope.deviceType,
     		'status' : $scope.status,
-    		'startTime' : ($scope.fromDate == 'undefined' || $scope.fromDate == "" || $scope.fromDate == null) ? undefined: $scope.fromDate.valueOf(),
-    		'endTime' : ($scope.untilDate == 'undefined' || $scope.untilDate == "" || $scope.untilDate == null) ? undefined : $scope.untilDate.valueOf(),
+    		'startTime' : ($scope.fromDate == 'undefined' || $scope.fromDate == "" || $scope.fromDate == null) ? undefined: serviceFactory.formatDateTime($scope.fromDate),
+    		'endTime' : ($scope.untilDate == 'undefined' || $scope.untilDate == "" || $scope.untilDate == null) ? undefined : serviceFactory.formatDateTime($scope.untilDate),
     		'start' : '0',
-			'limit' : '10'
+			'limit' : $scope.pageSize
     	}
+
     	$scope.getDeviceBox($scope.parame);
     }
-    
     //删除弹夹
     $scope.delectDeviceBox = function(id){
     	swal({   
@@ -128,8 +127,51 @@ angular.module('myApp')
 				}
 			})
 		});
-    	
     }
+    //上传文件
+    myOtherModal = $modal({
+		scope: $scope, templateUrl: 'view/clipManagement/uploadFile.html',
+		show: false,animation:'am-fade-and-slide-top'});
+    console.log(myOtherModal)
+    $scope.showUploadModel = function(){
+		myOtherModal.$promise.then(myOtherModal.show);
+    }
+    //文件上传
+    /*$scope.formData={};
+    $scope.uploadForm = function(){
+    	console.log($scope.formData);
+	    $http({
+	        method  : 'POST',
+	        url     :  configFactory.apiBaseUrl +'/deviceBox/batchUpdateSNs',
+	        data    : $.param($scope.formData),  // pass in data as strings
+	        headers: {"Content-Type": "multipart/form-data"}  
+	    })
+        .success(function(data) {
+            console.log(data);
+ 
+             
+        });
+    }
+*/
+
+    /*$scope.uploadFile = function(file){
+    	console.log(file);
+    	Upload.upload({
+            url:  configFactory.apiBaseUrl +'/deviceBox/batchUpdateSNs',
+            data: {file: file},
+            headers: {"Content-Type": "multipart/form-data"}
+        }).then(function (response) {
+        	console.log(response)
+             
+        }, function (response) {
+            console.log('Error status: ' + response.status);
+        }, function (response) {
+           
+        });
+    	 
+    	
+    }*/
+
     
      
 })

@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<div class="col-lg-1 col-sm-12">
-				<button type="button" class="btn btn-warning btn-search" ng-click="searchFault()">筛选</button>
+				<button type="button" class="btn btn-warning btn-search" ng-click="searchhisFault()">筛选</button>
 			</div>
 	 	</div>
 	</div>
@@ -59,23 +59,32 @@
 			<tr>
 				<th>柜子简码</th>
 				<th>布放位置</th>
-				<th>故障时间</th>
-				<th>修复时间</th>
-				<th>维修时长<i class="icon-double-angle-down"></i><i class="icon-double-angle-up"></i></th>
+				<th>故障时间
+					<i class="icon-double-angle-down" ng-click="orderByTime('-createDate')"></i>
+					<i class="icon-double-angle-up" ng-click="orderByTime('createDate')"></i>
+				</th>
+				<th>修复时间
+					<i class="icon-double-angle-down" ng-click="orderByTime('-updateDate')"></i>
+					<i class="icon-double-angle-up" ng-click="orderByTime('updateDate')"></i>
+				</th>
+				<th>维修时长
+					<i class="icon-double-angle-down" ng-click="orderByTime('-totaltime')"></i>
+					<i class="icon-double-angle-up" ng-click="orderByTime('totaltime')"></i>
+				</th>
 				<th>故障类别</th>
 				<th>备注</th>
 			</tr>
 		</thead>
   		<tbody>
-  			<tr>
-  				<td> 1001 </td>
-  				<td>中国-四川-成都-成都机场航站楼C6进站口左侧A103柜台</td>
-  				<td>2016-06-22 10:09:21</td>
-  				<td>2016-05-12 10:02:09</td>
-  				<td>7h 15m</td>
-  				<td>传送带故障</td>
+  			<tr ng-repeat="data in breakDownHisList | orderBy:fortime">
+  				<td> {{data.kioskNo}} </td>
+  				<td>{{ data.countryName}},{{data.provinceName}},{{data.cityName}},{{data.address}}</td>
+  				<td>{{ data.createDate }}</td>
+  				<td>{{ data.updateDate }}</td>
+  				<td>{{ data.howtime }}</td>
+  				<td>{{ data.breakDownType }}</td>
   				<td>
-  					维修人员工号22号 哈哈张三
+  					{{ data.repairedRemarks }}
   				</td>
   			</tr>
   			 
@@ -86,25 +95,33 @@
 		<div class="row">
 		<div class="col-lg-12">
 		 
-		<pagination boundary-links="true" 
-    max-size="3" 
-    items-per-page="itemsPerPage"
-    total-items="todos.length" 
-    ng-model="currentPage" 
-    ng-change="pageChanged()"></pagination>
+		<paging>
+					<ul class="pagination" num-pages="tasks.pageCount" current-page="tasks.currentPage" on-select-page="selectPage(page)">
+					    <li ng-class="{disabled: noPrevious()}"> <a ng-click="selectPrevious()">&laquo;</a></li>
+					    <li ng-repeat="page in pages" ng-class="{active: isActive(page)}"> <a ng-click="selectPage(page)">{{page}}</a></li>
+					    <li ng-class="{disabled: noNext()}"> <a ng-click="selectNext()">&raquo;</a></li>
+					</ul>
+
+					<div class="pull-right">
+						共{{ numPages }}页&nbsp;
+						每页显示
+						<select ng-model="pageSize" ng-change="onSelectPage(1)">
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+							<option value="30">30</option>
+							<option value="50">50</option>
+						</select>条&nbsp;&nbsp;&nbsp;
+						跳转到第
+						<input type="number" min="1" max="{{numPages}}" ng-model="forPage"
+								name="">
+						页
+						<button type="button" class="btn btn-warning btn-xs" ng-click="onSelectPage(forPage)" ng-if="forPage">点击跳转</button>
+					</div>
+				</paging> 
 		 
-		<div class="pull-right">
-		共10页&nbsp;
-		跳转到第
-		<select>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			</select>页
+		 
 		</div>
-		 </div>
 		</div>
 	 
 </div>

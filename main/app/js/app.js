@@ -1,6 +1,7 @@
 'use strict';
 
- 
+var result_code = "6";
+var myOtherModal = "";
 angular.module('myApp', [
   'myApp.filters', 
   'ui.router',
@@ -9,8 +10,12 @@ angular.module('myApp', [
   'ui.bootstrap',
   'ngAnimate',
   'mgcrea.ngStrap',
-  'mgcrea.ngStrap.alert'
+  'mgcrea.ngStrap.alert',
+  'ngFileUpload',
+  'ngCookies'
   ])
+ 
+  
    
 
   /*设置多语言*/
@@ -24,9 +29,12 @@ angular.module('myApp', [
     }])
   .factory('configFactory',function(){
     return{
-      apiBaseUrl:"http://192.168.14.35:9090/kop-rim/web"
+      apiBaseUrl:"http://192.168.14.35:9090/kop-rim/web",
+      //apiBaseUrl : "http://192.168.12.12:9090/kop-rim/web",
+       
     }
   })
+
   
   /*.config(['$httpProvider',function ($httpProvider) {
 	    $httpProvider.interceptors.push('UserInterceptor');

@@ -2,7 +2,7 @@
 'use strict';
  
 angular.module('myApp')
-.controller('mainCtr',function($rootScope,$scope,serviceFactory,$location,$state){
+.controller('mainCtr',function($rootScope,$scope,serviceFactory,$location,$state,$cookieStore){
 	$rootScope.isLogin = true;
 	 
 	$scope.toggleTwoMenu = function(id){
@@ -18,7 +18,8 @@ angular.module('myApp')
 	//基础数据
 	$rootScope.paramers = { 
 					'start' : '0',
-					'limit' : '10'
+					'limit' : '10',
+					'token' :$cookieStore.get("token")
 				}
 	 
 	$rootScope.selCountryCode="";
@@ -78,17 +79,21 @@ angular.module('myApp')
  
 })
 
-.controller('loginCtrl', function($rootScope,$scope,$state,serviceFactory) {
+.controller('loginCtrl', function($rootScope,$scope,$state,serviceFactory,tokenValue,$cookieStore) {
 	$rootScope.isLogin = false;
     $scope.username = "" ;
     $scope.password = "";
     $scope.submitLogin = function(){
-    	$rootScope.isLogin = true;
-
     	serviceFactory.loginIn($scope.username,$scope.password).success(function(response){
-    		 
+    		console.log(response);
     		if(response.code == 0){
-    			$state.go("equipmentList");//跳转到登录界面
+    			$rootScope.isLogin = true;
+
+    			$cookieStore.put("token",response.data.token);
+    			$rootScope.token = $cookieStore.get("token");
+    			console.log($rootScope.token)
+
+    			$state.go("equipmentList");//跳转到主界面
     		}
     	});
 

@@ -1,0 +1,24 @@
+<paging>
+	<ul class="pagination" num-pages="tasks.pageCount" current-page="tasks.currentPage" on-select-page="selectPage(page)">
+	    <li ng-class="{disabled: noPrevious()}"> <a ng-click="selectPrevious()">&laquo;</a></li>
+	    <li ng-repeat="page in pages" ng-class="{active: isActive(page)}"> <a ng-click="selectPage(page)">{{page}}</a></li>
+	    <li ng-class="{disabled: noNext()}"> <a ng-click="selectNext()">&raquo;</a></li>
+	</ul>
+
+	<div class="pull-right">
+		共{{ numPages }}页&nbsp;
+		每页显示
+		<select ng-model="pageSize" ng-change="onSelectPage(1)">
+			<option value="10">10</option>
+			<option value="15">15</option>
+			<option value="20">20</option>
+			<option value="30">30</option>
+			<option value="50">50</option>
+		</select>条&nbsp;&nbsp;&nbsp;
+		跳转到第
+		<input type="number" min="1" max="{{numPages}}" ng-model="forPage"
+				name="">
+		页
+		<button type="button" class="btn btn-warning btn-xs" ng-click="onSelectPage(forPage)" ng-if="forPage">点击跳转</button>
+	</div>
+</paging>

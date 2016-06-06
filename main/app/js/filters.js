@@ -28,4 +28,22 @@ angular.module('myApp.filters', []).
       return result;
     }
   })
+  .filter('breakStatu',function(){
+    return function(code){
+      var result = code;
+      switch(code){
+        case 0 : result = "正常";break;
+        case 1 : result = "离线";break;
+        case 2 : result = "维修中";break;
+        case 3 : result = "故障";break;
+        
+      }
+      return result;
+      /*RUNNING("0","正常"),
+      OFFLINE("1","离线"),
+      REPAIR("2","维修"),
+      FAULT("3","故障");*/
+    }
+  })
+
   ;

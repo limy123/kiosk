@@ -1,7 +1,8 @@
 'use strict';
 
 var result_code = "6";
-var myOtherModal = "";
+var myOtherModal = "";//上传文件弹出框
+var cookies = "";
 angular.module('myApp', [
   'myApp.filters', 
   'ui.router',
@@ -29,14 +30,14 @@ angular.module('myApp', [
     }])
   .factory('configFactory',function(){
     return{
-      apiBaseUrl:"http://192.168.14.35:9090/kop-rim/web",
+      //apiBaseUrl:"http://192.168.14.35:9090/kop-rim/web",
+      apiBaseUrl:"http://192.168.10.88:9090/kop-rim/web",
       //apiBaseUrl : "http://192.168.12.12:9090/kop-rim/web",
-       
+
+
     }
   })
-
   
-  /*.config(['$httpProvider',function ($httpProvider) {
-	    $httpProvider.interceptors.push('UserInterceptor');
-	}])*/
+  
+ 
   ;

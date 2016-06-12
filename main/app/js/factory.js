@@ -1,15 +1,15 @@
 (function(){
 	'use strict';
 	angular.module('myApp')
-	.factory('serviceFactory',function($http,configFactory,$cookieStore){
+	.factory('serviceFactory',function($http,configFactory,$cookieStore,$state){
 		return {
-			formatDateTime : function (date) {  
+			formatDateTime : function (date,str) {  
 			    var y = date.getFullYear();  
 			    var m = date.getMonth() + 1;  
 			    m = m < 10 ? ('0' + m) : m;  
 			    var d = date.getDate();  
 			    d = d < 10 ? ('0' + d) : d;
-			    return y + '-' + m + '-' + d +' 00:00:00';  
+			    return y + '-' + m + '-' + d + str;  
 			},
 			//获取当前日期 ：2016-05-31 16:54:10
 			CurentTime : function(){
@@ -67,17 +67,18 @@
 				/*var url = configFactory.apiBaseUrl + "/auth/getResource";*/
 				return $http.get(url);
 			},
-			getModel :function(){
-				var url = configFactory.apiBaseUrl + "";
-				return $http.get(url);
-				
-			},
+			 
 			loginIn:function(userName,pwd){
 				var url = configFactory.apiBaseUrl + "/auth/login";
 				var paramers = {
 					'userName' : userName,
 					'password' : pwd
 				}
+				return $http.post(url,paramers);
+			},
+			loginOut:function(){
+				var url = configFactory.apiBaseUrl + "/auth/logout";
+				var paramers = {'token' : $cookieStore.get("token")}
 				return $http.post(url,paramers);
 			},
 			getCountry : function(){
@@ -121,7 +122,6 @@
 			},
 			//柜子/////////////////////////
 			getKioskList : function(paramers){
-				console.log($cookieStore.get("token") + "-----------------");
 				console.log(paramers)
 				var url = configFactory.apiBaseUrl + "/kiosk/query";
 				return $http.post(url,paramers,{
@@ -137,11 +137,14 @@
 			},
 			getkioskDetail : function(id){
 				var url = configFactory.apiBaseUrl +"/kiosk/query/" + id;
-				return $http.post(url);
+				var paramers = {'token' : $cookieStore.get("token")};
+				return $http.post(url,paramers);
 			},
 			deleteKiosk : function(id){
+				console.log(id)
 				var url = configFactory.apiBaseUrl +"/kiosk/disable/" + id;
-				return $http.post(url);
+				var paramers = {'token' : $cookieStore.get("token")}
+				return $http.post(url,paramers);
 			},
 			updateKiosk : function(paramers){
 				var url = configFactory.apiBaseUrl + "/kiosk/update";
@@ -150,9 +153,14 @@
 			//校验柜子简码是否唯一
 			isKioskNo : function(id){
 				var url = configFactory.apiBaseUrl + "/kiosk/check/" + id;
-				console.log(url);
-				console.log(id)
-				return $http.post(url);
+				var paramers = {'token' : $cookieStore.get("token")};
+				return $http.post(url,paramers);
+			},
+			//校验sn是否唯一
+			isLsnNo : function(lSn){
+				var url = configFactory.apiBaseUrl + "/kiosk/checkLSn/" + lSn;
+				var paramers = {'token' : $cookieStore.get("token")};
+				return $http.post(url,paramers);
 			},
 			//故障列表//////////////////////
 			getBreakDownList : function(paramers){
@@ -168,7 +176,10 @@
 			addDeviceBox : function(count){
 				var url = configFactory.apiBaseUrl + "/deviceBox/create";
 
-				var paramers ={"count" : parseInt(count)};
+				var paramers ={
+					"count" : parseInt(count),
+					'token' : $cookieStore.get("token")
+				};
 				console.log(paramers);
 				return $http.post(url,paramers);
 			},
@@ -179,16 +190,38 @@
 			addOrUpdateSNs : function(paramers){
 				var url = configFactory.apiBaseUrl + "/deviceBox/addOrUpdateSNs";
 				 //skych5913uu896d7
+				 console.log(paramers)
 				return $http.post(url,paramers);
 			},
 			delectDeviceBox : function(id){
 				var url = configFactory.apiBaseUrl +"/deviceBox/disable/" + id;
-				return $http.post(url);
+				var paramers = {'token' : $cookieStore.get("token")};
+				return $http.post(url,paramers);
 			},
 			upload : function(fileName){
 				var url = configFactory.apiBaseUrl + "/deviceBox/batchUpdateSNs";
+				var paramers = {'token' : $cookieStore.get("token")};
 				return $http.post(url,fileName);
-			}
+			},
+			loginTimeout : function(text){
+	        //登录超时提示
+	          swal({   
+	            title: "",   
+	            text: text,   
+	            type: "warning",   
+	            showCancelButton: true,   
+	            confirmButtonColor: "#DD6B55",   
+	            confirmButtonText: "重新登录",   
+	            cancelButtonText: "取消",   
+	            closeOnConfirm: true,  
+	            loseOnCancel: false 
+	          }, 
+	          function(isConfirm){
+	            if (isConfirm) {
+	              $state.go("login");
+	            }
+	          });
+	      	}
 
 			
 

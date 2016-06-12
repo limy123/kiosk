@@ -9,11 +9,16 @@
 		  <div class="form-group">
 		    <label for="eqId" class="col-sm-2 control-label">柜子简码</label>
 		    <div class="col-sm-10">
-		      <input type="number" name="kioskNo" ng-model="kioskNo" class="form-control"
+		      <!-- <input type="number" name="kioskNo" ng-model="kioskNo" class="form-control"
 		       ng-maxlength=4
 		       ng-minlength=4 
 		       ng-blur = "isKioskNo(kioskNo)"
-		       ng-model="kioskNo" required />
+		       ng-model="kioskNo" required /> -->
+		       <input type="text" ng-pattern="/^\d{4}$/"
+		       		  name="kioskNo" ng-model="kioskNo" 
+		       		  ng-maxlength=4
+		       		  class="form-control" 
+		       		  ng-blur = "isKioskNo(kioskNo)" required />
 		       <div class="error" 
 			        ng-show="add_form.kioskNo.$dirty && add_form.kioskNo.$invalid">
 				    <small class="error" 
@@ -21,9 +26,10 @@
 				        Must be 4 digits, such as 1001
 				    </small>
 				    <small class="error" 
-				        ng-show="add_form.kioskNo.$error.minlength">
-				        Your kioskNo is required to be at least 4 characters
+				        ng-show="add_form.kioskNo.$error.pattern">
+				        必须是4位数字,如1001
 				    </small>
+				     
 				    <small class="error" 
 				        ng-show="add_form.kioskNo.$error.maxlength">
 				        Your kioskNo cannot be longer than 4 characters
@@ -51,12 +57,20 @@
 		    <div class="col-sm-10">
 		        <div class="row"> 
 					<div class="col-sm-4">
-					  <select class="form-control" name="country"
+					  <!-- <select class="form-control" name="country"
 					     ng-model="selCountryCode" 
 					     ng-change="selectedCountry(selCountryCode)">
 					     <option value="" selected>----国家----</option>
 					     <option ng-repeat="data in countrylist" value="{{data.countryCode}}">{{data.countryName}}</option>
-					  </select>
+					  </select> -->
+					  <select class="form-control"  
+					    ng-model="selCountryCode" 
+					    ng-options="data.countryCode as data.countryName for data in countrylist"
+					    ng-selected="data.countryCode==selCountryCode"
+					    ng-change="selectedCountry(selCountryCode)">
+						<option value="">----国家----</option>
+						</select>
+
 					  <div class="error">
 					    <small class="error" 
 					        ng-show="errorCountry">
@@ -65,12 +79,19 @@
 					  </div>
 					</div>
 					<div class="col-sm-4">
-					    <select class="form-control"
+					    <!-- <select class="form-control"
 					    	ng-model="selProvinceCode"
 					    	ng-change="selectedProvince(selProvinceCode)">
 					    	<option value="" selected>----省份----</option>
 					    	<option ng-repeat="data in provincelist" value="{{data.provinceCode}}">{{data.provinceName}}</option>
-					    </select>
+					    </select> -->
+					    <select class="form-control"  
+					    ng-model="selProvinceCode" 
+					    ng-options="data.provinceCode as data.provinceName for data in provincelist"
+					    ng-selected="data.provinceCode==selProvinceCode"
+					    ng-change="selectedProvince(selProvinceCode)">
+						<option value="">----省份----</option>
+						</select>
 					    <div class="error">
 					    <small class="error" 
 					        ng-show="errorProvince">
@@ -79,12 +100,19 @@
 					  </div>
 					</div>
 					<div class="col-sm-4">
-					    <select class="form-control"
+					    <!-- <select class="form-control"
 					    	ng-model="selCityCode"
 					    	ng-change="selectedCity(selCityCode)">
 					    	<option value="" selected>----城市----</option>
 					    	<option ng-repeat="data in citylist" value="{{data.cityCode}}">{{data.cityName}}</option>
-					    </select>
+					    </select> -->
+					    <select class="form-control"  
+					    ng-model="selCityCode" 
+					    ng-options="data.cityCode as data.cityName for data in citylist"
+					    ng-selected="data.cityCode==selCityCode"
+					    ng-change="selectedCity(selCityCode)">
+						<option value="">----城市----</option>
+						</select>
 					    <div class="error">
 						    <small class="error" 
 						        ng-show="errorCity">

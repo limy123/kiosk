@@ -136,6 +136,7 @@ angular.module('myApp')
                     return false;
                 }
                 formData.append('file', dfile);
+                formData.append('token',cookies);
                 console.log(formData);
                 $.ajax({
                     url: 'http://192.168.14.35:9090/kop-rim/web/deviceBox/batchUpdateSNs',

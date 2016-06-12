@@ -4,126 +4,201 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp')
   .config(function($stateProvider, $urlRouterProvider) {
-    $stateProvider.state(
-    	'equipmentList', 
-    	{  
-            url:'/equipmentList',
-    		templateUrl:'view/equipment/equipment_list.html', 
-    		controller: "equipmentListCtrl"
-    	});
-    $stateProvider.state(
-    	'equipmentAdd', 
-    	{
-            url:'/equipmentAdd',
-    		templateUrl:'view/equipment/equipment_add.html', 
-    		controller: "equipmentAddCtrl"
-    	});
-    $stateProvider.state(
-        'equipmentEdit',
-        {
-            url : '/equipmentEdit/:id',
-            templateUrl : 'view/equipment/equipment_edit.html',
-            controller: "equipmentEditCtrl"
-        });
-    $stateProvider.state(
-    	'equipmentDetail',
-    	{  
-            url:'/detail/:id',
-    		templateUrl:'view/equipment/equipment_detail.html',
-    		controller:"equipmentDetailCtrl"
-    	});
+    $stateProvider
+        .state('layout',{
+            url:'/layout',
+            templateUrl:'view/common/layout.html'
+        })
+        .state(
+        	'layout.equipmentList', 
+        	{  
+                url:'/equipmentList',
+                views : {
+                    'content' : {
+                        templateUrl:'view/equipment/equipment_list.html', 
+                        controller: "equipmentListCtrl"
+                    }
+                }
+        		
+        	})
+        .state(
+        	'layout.equipmentAdd', 
+        	{
+                url:'/equipmentAdd',
+                views : {
+                    'content' : {
+                        templateUrl:'view/equipment/equipment_add.html', 
+                        controller: "equipmentAddCtrl"
+                    }
+                }
+        		
+        	})
+        .state(
+            'layout.equipmentEdit',
+            {
+                url : '/equipmentEdit/:id',
+                views : {
+                    'content' : {
+                        templateUrl : 'view/equipment/equipment_edit.html',
+                        controller: "equipmentEditCtrl"
+                    }
+                }
+                
+            })
+        .state(
+        	'layout.equipmentDetail',
+        	{  
+                url:'/detail/:id',
+                views : {
+                    'content' : {
+                        templateUrl:'view/equipment/equipment_detail.html',
+                        controller:"equipmentDetailCtrl"
+                    }
+                }
+        		
+        	})
+        .state(
+            'layout.maps',
+            {  
+                url:'/maps',
+                views:{
+                    'content':{
+                        templateUrl:'view/equipment/map.html',
+                        controller:"mapsCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.faultList',
+            {  
+                url:'/faultList',
+                views:{
+                    'content':{
+                        templateUrl:'view/faultManagement/faultList.html',
+                        controller:"faultListCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.historyRecord',
+            {  
+                url:'/historyRecord',
+                views:{
+                    'content':{
+                        templateUrl:'view/faultManagement/historyRecord.html',
+                        controller:"historyRecordCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.clipAdd',
+            {  
+                url:'/clipAdd',
+                views :{
+                    'content':{
+                        templateUrl:'view/clipManagement/clipAdd.html',
+                        controller:"clipAddCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.clipList',
+            {  
+                url:'/clipList',
+                views:{
+                    'content':{
+                        templateUrl:'view/clipManagement/clipList.html',
+                        controller:"clipListCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.editSN',
+            {  
+                url:'/editSN/:code',
+                views:{
+                    'content':{
+                        templateUrl:'view/clipManagement/editSN.html',
+                        controller:"editSNCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.clipsin',
+            {  
+                url:'/clipsin',
+                views:{
+                    'content':{
+                        templateUrl:'view/clipManagement/clipsIn.html',
+                        controller:"clipsinCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.diagram',
+            {  
+                url:'/diagram',
+                views : {
+                    'content':{
+                        templateUrl:'view/clipManagement/diagram.html',
+                        controller:"diagramCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.orderList',
+            {  
+                url:'/orderList',
+                views:{
+                    'content':{
+                        templateUrl:'view/orderManagement/orderList.html',
+                        controller:"orderListCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.returnDepositList',
+            {  
+                url:'/returnDepositList',
+                views:{
+                    'content':{
+                        templateUrl:'view/orderManagement/returnDeposit.html',
+                        controller:"returnDepositCtrl"
+                    }
+                }
+                
+            })
+        .state(
+            'layout.dates',
+            {  
+                url:'/dates',
+                views:{
+                    'content':{
+                        templateUrl:'view/dateStatistics/dates.html',
+                        controller:"datesCtrl"
+                    }
+                }
+                
+            }) 
+
+        .state(
+            'login', 
+            {  
+                url:'/login',
+                templateUrl:'view/login/login.html', 
+                controller: "loginCtrl"
+            });
     
-    $stateProvider.state(
-        'maps',
-        {  
-            url:'/maps',
-            templateUrl:'view/equipment/map.html',
-            controller:"mapsCtrl"
-        });
-
-
-    $stateProvider.state(
-        'faultList',
-        {  
-            url:'/faultList',
-            templateUrl:'view/faultManagement/faultList.html',
-            controller:"faultListCtrl"
-        });
-    $stateProvider.state(
-        'historyRecord',
-        {  
-            url:'/historyRecord',
-            templateUrl:'view/faultManagement/historyRecord.html',
-            controller:"historyRecordCtrl"
-        });
-    $stateProvider.state(
-        'clipAdd',
-        {  
-            url:'/clipAdd',
-            templateUrl:'view/clipManagement/clipAdd.html',
-            controller:"clipAddCtrl"
-        });
-    $stateProvider.state(
-        'clipList',
-        {  
-            url:'/clipList',
-            templateUrl:'view/clipManagement/clipList.html',
-            controller:"clipListCtrl"
-        });
-    $stateProvider.state(
-        'editSN',
-        {  
-            url:'/editSN/:code',
-            templateUrl:'view/clipManagement/editSN.html',
-            controller:"editSNCtrl"
-        });
-    $stateProvider.state(
-        'clipsin',
-        {  
-            url:'/clipsin',
-            templateUrl:'view/clipManagement/clipsIn.html',
-            controller:"clipsinCtrl"
-        });
-    $stateProvider.state(
-        'diagram',
-        {  
-            url:'/diagram',
-            templateUrl:'view/clipManagement/diagram.html',
-            controller:"diagramCtrl"
-        });
-    $stateProvider.state(
-        'orderList',
-        {  
-            url:'/orderList',
-            templateUrl:'view/orderManagement/orderList.html',
-            controller:"orderListCtrl"
-        });
-    $stateProvider.state(
-        'returnDepositList',
-        {  
-            url:'/returnDepositList',
-            templateUrl:'view/orderManagement/returnDeposit.html',
-            controller:"returnDepositCtrl"
-        });
-    $stateProvider.state(
-        'dates',
-        {  
-            url:'/dates',
-            templateUrl:'view/dateStatistics/dates.html',
-            controller:"datesCtrl"
-        });
-
-
-
-
-    $stateProvider.state(
-        'login', 
-        {  
-            url:'/login',
-            templateUrl:'view/login/login.html', 
-            controller: "loginCtrl"
-        });
     $urlRouterProvider.otherwise(
-    	  '/equipmentList'
+    	'layout/equipmentList'
     );
   });

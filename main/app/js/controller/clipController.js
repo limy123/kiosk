@@ -10,9 +10,26 @@ angular.module('myApp')
 		scope: $scope, templateUrl: 'view/clipManagement/addModel.html',
 		show: false,animation:'am-fade-and-slide-top'});
 	$scope.showModal = function() {
-		myOtherModal.$promise.then(myOtherModal.show);
+		
 		serviceFactory.addDeviceBox($scope.clipNum).success(function(response){
-			$scope.clips = response.data;
+            if(response.code == 0 ){
+                $scope.clips = response.data;
+                myOtherModal.$promise.then(myOtherModal.show);
+            }else if(response.code == result_code){
+                serviceFactory.loginTimeout(response.message);
+            }else{
+                //提示框
+                $alert({
+                    title: '', 
+                    content: '新增失败！' + response.message, 
+                    placement: 'top', 
+                    container:'#app-panel',
+                    type: 'info', 
+                    duration:'2',
+                    show: true
+                });
+            }
+			
 		});
 	};
 	$scope.addClipBtn = function(){
@@ -31,7 +48,7 @@ angular.module('myApp')
 	}
 })
 //获取弹夹列表
-.controller('clipListCtrl', function($rootScope,$scope,$location,$state,$alert,serviceFactory,configFactory,$modal,Upload,$http) {
+.controller('clipListCtrl', function($rootScope,$scope,$location,$state,$alert,serviceFactory,$modal,Upload,$http,$cookieStore) {
 	$scope.selpage = "1";//跳转到第几页
     $scope.currentPage = 1;
     $scope.numPages = 10;//总共多少页
@@ -50,8 +67,9 @@ angular.module('myApp')
 				
     			$scope.totalPages = ($scope.numPages) >= 10 ? "10" : $scope.numPages;//超过10页则显示10个
 
-
-    		}else if(response.code == "-1"){
+    		}else if(response.code == result_code){
+                serviceFactory.loginTimeout(response.message);
+            }else{
     			$alert({
     				title: '', 
 					content: '请求出错' + response.massage, 
@@ -70,7 +88,8 @@ angular.module('myApp')
     	$scope.currentPage = page;
         $scope.parame = {
     		'start' : $scope.pageSize*(page-1),
-			'limit' : $scope.pageSize
+			'limit' : $scope.pageSize,
+            'token' :$cookieStore.get("token")
     	}
     	$scope.getDeviceBox($scope.parame);
 
@@ -101,7 +120,8 @@ angular.module('myApp')
     		'startTime' : ($scope.fromDate == 'undefined' || $scope.fromDate == "" || $scope.fromDate == null) ? undefined: serviceFactory.formatDateTime($scope.fromDate),
     		'endTime' : ($scope.untilDate == 'undefined' || $scope.untilDate == "" || $scope.untilDate == null) ? undefined : serviceFactory.formatDateTime($scope.untilDate),
     		'start' : '0',
-			'limit' : $scope.pageSize
+			'limit' : $scope.pageSize,
+            'token' :$cookieStore.get("token")
     	}
 
     	$scope.getDeviceBox($scope.parame);
@@ -124,7 +144,11 @@ angular.module('myApp')
 				if(response.code == 0){
 					swal("", "删除成功.", "success");
 					$scope.searchClip();
-				}
+				}else if(response.code == result_code){
+                    serviceFactory.loginTimeout(response.message);
+                }else{
+                    swal("", "删除失败.", "error");
+                }
 			})
 		});
     }
@@ -171,7 +195,13 @@ angular.module('myApp')
     	 
     	
     }*/
-
+    //提示
+    $scope.showTip = function(title){
+        $scope.tooltip = {
+          "title": title
+          
+        };
+    }
     
      
 })
@@ -180,45 +210,127 @@ angular.module('myApp')
 
 })
 //添加或编辑sns
-.controller('editSNCtrl',function($rootScope,$scope,$location,$state,$stateParams,serviceFactory){
+.controller('editSNCtrl',function($rootScope,$scope,$location,$state,$stateParams,serviceFactory,$cookieStore){
     $rootScope.curLink = $state.current.name;
     $scope.boxNumber = $stateParams.code;
     //根据id获取数据
     $scope.parame = {
     		'boxNumber' : $scope.boxNumber,
     		'start' : '0',
-			'limit' : '10'
+			'limit' : '10',
+            'token' : $cookieStore.get("token")
     	}
-    serviceFactory.getDeviceBoxList($scope.parame).success(function(response){
+   
+        serviceFactory.getDeviceBoxList($scope.parame).success(function(response){
     		console.log(response);
-    		if(response.data.rows[0].sns != null ){
-    			var snsedit = response.data.rows[0].sns;
-    			$scope.sn1 = snsedit[0];
-    			$scope.sn2 = snsedit[1];
-    			$scope.sn3 = snsedit[2];
-    			$scope.sn4 = snsedit[3];
-    			$scope.sn5 = snsedit[4];
-    			$scope.sn6 = snsedit[5];
-    			$scope.sn7 = snsedit[6];
-    		}
+            if(response.code == 0){
+                if(response.data.rows[0].sns != null ){
+                    var snsedit = response.data.rows[0].sns;
+                    $scope.sn1 = snsedit[0];
+                    $scope.sn2 = snsedit[1];
+                    $scope.sn3 = snsedit[2];
+                    $scope.sn4 = snsedit[3];
+                    $scope.sn5 = snsedit[4];
+                    $scope.sn6 = snsedit[5];
+                    $scope.sn7 = snsedit[6];
+                }
+            }else if(response.code == result_code){
+                serviceFactory.loginTimeout(response.message);
+            }else{
+                $alert({
+                    title: '', 
+                    content: '请求出错', 
+                    placement: 'top', 
+                    container:'#app-panel',
+                    type: 'info', 
+                    duration:'2',
+                    show: true});
+            }
+    		
     	});
 
+    $scope.validSn = function(sns){
+        console.log(sns)
+         
+        if(sns == ' ' || sns == undefined || sns == null || sns.length == 0)
+        {
+            console.log(sns + "--------")
+            return true;
+        }else if(sns.length != 16){
+            console.log(sns + "+++++++")
+         return false;
+        }
+         
+
+        var reg = new RegExp("/^[a-zA-Z0-9]{16,16}$|^[a-zA-Z0-9]{16,16}$|^[a-zA-Z]{16,16}$|^[0-9]{16,16}$/");  
+     
+        if(reg.test(sns)){
+            return true;
+        }else{
+            return false
+        }
+    }
      
     $scope.deviceType = "1";
+
     $scope.saveSns = function(){
+        if(!$scope.validSn($scope.sn1)){
+            $scope.esn1 = true; 
+            return;
+        }
+        if(!$scope.validSn($scope.sn2)){
+            $scope.esn2 = true;
+            return;
+        }
+        if(!$scope.validSn($scope.sn3)){
+            $scope.esn3 = true;
+            return;
+        }
+        if(!$scope.validSn($scope.sn4)){
+            $scope.esn4 = true;
+            return;
+        }
+        if(!$scope.validSn($scope.sn5)){
+            $scope.esn5 = true;
+            return;
+        }
+        if(!$scope.validSn($scope.sn6)){
+            $scope.esn6 = true;
+            return;
+        }
+        if(!$scope.validSn($scope.sn7)){
+            $scope.esn7 = true;
+            return;
+        }
+        $scope.sn1 ==null?$scope.sn1=' ':$scope.sn1.replace(/^\s+|\s+$/g,"");
+        $scope.sn2 ==null?$scope.sn2=' ':$scope.sn2.replace(/^\s+|\s+$/g,"");
+        $scope.sn3 ==null?$scope.sn3=' ':$scope.sn3.replace(/^\s+|\s+$/g,"");
+        $scope.sn4 ==null?$scope.sn4=' ':$scope.sn4.replace(/^\s+|\s+$/g,"");
+        $scope.sn5 ==null?$scope.sn5=' ':$scope.sn5.replace(/^\s+|\s+$/g,"");
+        $scope.sn6 ==null?$scope.sn6=' ':$scope.sn6.replace(/^\s+|\s+$/g,"");
+        $scope.sn7 ==null?$scope.sn7=' ':$scope.sn7.replace(/^\s+|\s+$/g,"");
     	$scope.snsList = $scope.sn1 + "," + $scope.sn2 + "," + $scope.sn3 + "," + $scope.sn4 + "," + $scope.sn5 + "," + $scope.sn6 + "," + $scope.sn7;
-	    console.log($scope.snsList);
+	  
 	    $scope.paramers = {
 	    	'boxNumber' : $stateParams.code,
 	    	'deviceType' : $scope.deviceType,
-	    	'sns' : $scope.snsList.toString()
+	    	'sns' : $scope.snsList.toString(),
+            'token' : $cookieStore.get("token")
 	    }
+         
+        
     	serviceFactory.addOrUpdateSNs($scope.paramers).success(function(response){
     		if(response.code == 0){
     			swal("", "成功", "success");
-    		}
+                $state.go("layout.clipList");
+    		}else if(response.code == result_code){
+                serviceFactory.loginTimeout(response.message);
+            }else{
+                swal("", "error", "error");
+            }
     		console.log(response);
-    	})
+    	});
+        
     }
 })
 .controller('clipsinCtrl',function($rootScope,$scope,$location,$state,$alert){

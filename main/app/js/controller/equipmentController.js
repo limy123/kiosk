@@ -4,7 +4,6 @@
 angular.module('myApp')
  
 .controller('equipmentListCtrl', function($rootScope,$scope,$state,$alert,$location,serviceFactory,$cookieStore) {
-	$rootScope.isLogin = true;
 	$rootScope.curLink = $state.current.name; 
 
 	$scope.selpage = "1";//跳转到第几页
@@ -34,10 +33,7 @@ angular.module('myApp')
 					show: true
     			})
     		}else if(response.code == result_code){
-    			swal("", response.message, "error");
-    			/*$rootScope.isLogin = false;
-    			$state.go("login");*/
-
+    			serviceFactory.loginTimeout(response.message);
     		}
     	});
     }
@@ -49,7 +45,8 @@ angular.module('myApp')
     	$scope.currentPage = page;
         $scope.parame = {
     		'start' : $scope.pageSize*(page-1),
-			'limit' : $scope.pageSize
+			'limit' : $scope.pageSize,
+			'token' :$cookieStore.get("token")
     	}
     	$scope.getKioskList($scope.parame);
 
@@ -80,9 +77,10 @@ angular.module('myApp')
 					'provinceCode' : $scope.selProvinceCode,
 					'cityCode' : "",
 					'start' : '0',
-					'limit' : '20'
+					'limit' : '10',
+					'token' : $cookieStore.get("token")
 				}
-    	$scope.getKioskList($scope.parame);
+    	$scope.getKioskList(paramers);
     }
  
 	//删除柜子数据
@@ -104,7 +102,9 @@ angular.module('myApp')
 				if(response.code == 0){
 					swal("", "删除成功.", "success");
 					$scope.searchKiosk();
-				}else{
+				}else if(response.code == result_code){
+	    			serviceFactory.loginTimeout(response.message);
+	    		}else{
 					swal("", "删除失败:" + response.message , "error");
 				}
 			})
@@ -114,7 +114,7 @@ angular.module('myApp')
 	 
 })
 
-.controller('equipmentAddCtrl', function($rootScope,$scope,$location,$state,serviceFactory) {
+.controller('equipmentAddCtrl', function($rootScope,$scope,$location,$state,serviceFactory,$cookieStore) {
     $rootScope.curLink = $state.current.name;
     $scope.lSN = "";
     $scope.kioskNo;
@@ -122,15 +122,22 @@ angular.module('myApp')
     $scope.errorKno;
     //校验是否唯一
     $scope.isKioskNo = function(kioskNo){
+    	if(kioskNo == null || kioskNo == undefined) return;
     	console.log(kioskNo);
+    	if($scope.kioskNo == null || $scope.kioskNo == ""){
+    		$scope.errornull = true;
+    		$scope.errorKno = false;
+    		return;
+    	} 
     	serviceFactory.isKioskNo(kioskNo).success(function(response){
     		console.log(response);
+    		$scope.errornull = false;
 	    	if(response){
 	    		$scope.errorKno = true;//柜子简码已经存在
 	    	}
 	    	else{
 	    		$scope.errorKno = false;
-	    		$scope.errornull = false;
+	    		
 	    	}
 	    }); 
 	    return $scope.errorKno;
@@ -143,8 +150,10 @@ angular.module('myApp')
 	    	'provinceCode' : $scope.selProvinceCode,
 	    	'cityCode' : $scope.selCityCode,
 	    	'address' : $scope.address,
-	    	'gid' : '1'
+	    	'gid' : '1',
+	    	'token' :$cookieStore.get("token")
 	    }
+
 	    if($scope.isKioskNo($scope.kioskNo)) return;
 	    
 	    if(!$scope.add_form.kioskNo.$valid){
@@ -158,6 +167,7 @@ angular.module('myApp')
 	    	$scope.add_form.address.$dirty = true;  
 	    	$scope.add_form.address.$invalid = true;
 	    }
+	    console.log($scope.selCountryCode)
 	    if($scope.selCountryCode == ""){//国家不能为空
 	    	$rootScope.errorCountry = true;
 	    	return
@@ -175,16 +185,18 @@ angular.module('myApp')
 		   		console.log(response);
 		    	if(response.code == 0){
 		    		swal("", "添加成功.", "success");
-		    		$state.go("equipmentList");
-		    	}else{
-		    		swal("", "添加失败.", "error");
-		    	}
-		    });
+		    		$state.go("layout.equipmentList");
+		    	}else if(response.code == result_code){
+	    			serviceFactory.loginTimeout(response.message);
+	    		}else{
+			    		swal("", "添加失败.", "error");
+			    	}
+			    });
 	   }
     } 
 })
 //编辑柜子信息
-.controller('equipmentEditCtrl',function($rootScope,$scope,$state,$stateParams,serviceFactory){
+.controller('equipmentEditCtrl',function($rootScope,$scope,$state,$stateParams,serviceFactory,$cookieStore){
 	$scope.id = $stateParams.id;
 	serviceFactory.getkioskDetail($stateParams.id).success(function(response){
 		console.log(response);
@@ -196,23 +208,29 @@ angular.module('myApp')
 			$rootScope.selCityCode = $scope.kioskDetail.cityCode;
 			$rootScope.selectedCountry($rootScope.selCountryCode);
 			$rootScope.selectedProvince($rootScope.selProvinceCode);
+		}else if(response.code == result_code){
+			serviceFactory.loginTimeout(response.message);
 		}
 	});
 	$scope.editKiosk = function(){
 		$scope.paramers = {
 	    	'kioskNo' : $scope.kioskDetail.kioskNo,
-	    	'countryCode' : $scope.selCountryCode,
-	    	'provinceCode' : $scope.selProvinceCode,
+	    	'countryCode' : ($scope.selCountryCode == 'undefined' || $scope.selCountryCode == "" || $scope.selCountryCode == null ) ? '' : $scope.selCountryCode,
+			'provinceCode' : ($scope.selProvinceCode  == 'undefined' || $scope.selProvinceCode == "" || $scope.selProvinceCode == null) ? '' : $scope.selProvinceCode,
 	    	'cityCode' : $scope.selCityCode,
 	    	'address' : $scope.kioskDetail.address,
-	    	'gid' : "1"
+	    	'gid' : "1",
+	    	'token' :$cookieStore.get("token")
 	    }
 	    console.log($scope.paramers);
 	    serviceFactory.updateKiosk($scope.paramers).success(function(response){
 	    	if(response.code == 0){
 	    		swal("", "保存成功.", "success");
-	    		
-	    	}else{
+	    		$state.go('layout.equipmentDetail',{id:$scope.kioskDetail.kioskNo});
+
+	    	}else if(response.code == result_code){
+    			serviceFactory.loginTimeout(response.message);
+    		}else{
 	    		swal("", "保存失败.", "error");
 	    	}
 	    })
@@ -223,7 +241,9 @@ angular.module('myApp')
 	serviceFactory.getkioskDetail($stateParams.id).success(function(response){
 		if (response.code == 0) {
 			$rootScope.kioskDetail = response.data.kioskInfoVo;
-		}
+		}else if(response.code == result_code){
+    			serviceFactory.loginTimeout(response.message);
+    		}
 	});		
 
 })

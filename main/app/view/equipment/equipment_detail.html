@@ -22,7 +22,7 @@
 			        	<label class=" ">{{kioskDetail.lSN}}</label>
 		        	</div>
 		        	<div class="col-lg-2">
-		        		<a ui-sref="equipmentEdit({id: id })">
+		        		<a ui-sref="layout.equipmentEdit({id: id })">
 	  						<button class="btn btn-warning btn-sm pull-right">编辑</button>
 	  					</a>
 		        		
@@ -152,7 +152,9 @@
 		    </div>
 		    <div class="panel-footer">
 		    	<div class="center-block" style="width:90px;">
-		     		<button class="btn btn-warning btn-search">返回</button>
+		    		<a ui-sref="layout.equipmentList">
+		     			<button class="btn btn-warning btn-search">返回</button>
+		     		</a>
 		     	</div>
 		    </div>
 		</div>

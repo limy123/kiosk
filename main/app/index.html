@@ -68,104 +68,11 @@
 <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 </head>
-<body ng-controller="mainCtr">
-  <!-- 登录页面 -->
-  <div ng-if="isLogin==false" ui-view class="login-main" >
-  </div>
+<body>
+   
+  <div ui-view style="height:100vh;"></div>
   
-  <div class="app app-header-fixed" id="app" ng-if="isLogin == true">
-    <!-- navbar -->
-    <div class="app-header navbar">
-      <!-- navbar header -->
-      <div class="navbar-header">
-        <!-- brand -->
-        <a href="#/" class="navbar-brand">
-          <i class="icon-reorder"></i>
-        </a>
-        <!-- / brand -->
-      </div>
-      <!-- / navbar header -->
-
-      <!-- navbar collapse -->
-      <div class="collapse pos-rlt navbar-collapse box-shadow text-center">
-        <h3 class="navbar-brand">自助服务终端设备管理平台</h3>
-        <ul class="nav navbar-nav  navbar-right h-50">
-          <li ng-controller="LunchCtrl"> 
-          english
-           <!-- <select ng-change="selChange(cur_lang)" class="form-control" ng-model="cur_lang" style="color: #333;">
-             <option value="cn">中文</option>
-             <option value="en">english</option>
-           </select> -->
-          
-          </li>
-          <li><span>退出</span></li>
-        </ul>
-
-      </div>
-      <!-- / navbar collapse -->
-    </div>
-    <!-- / navbar -->
-
-    <!-- menu -->
-    <div class="app-aside hidden-xs">
-      <div class="aside-wrap">
-        <div class="navi-wrap"> 
-          <!-- nav -->
-          <nav ui-nav class="navi">
-            <ul class="nav">
-              <li ng-repeat="date in menudate" toggle-class="active" ng-if="date.isChild == 'true'">
-                <a class="auto" id="{{date.id}}">      
-                  <span class="pull-right text-muted">
-                    <i class="icon-angle-right text"></i>
-                    <i class="icon-angle-down text-active"></i>
-                  </span>
-                  <i ng-class="{true: '{{date.icon}}', false: 'inactive'}[date.isicon]"  ></i>
-                  
-                  <span class="font-bold">{{date.name}}</span>
-                </a>
-                <ul class="nav nav-sub dk">
-                  <li class="" ng-repeat = "child in date.child">
-                    <a ui-sref="{{child.url}}" ng-model="curLink" ng-class="{true:'curMenu',false:''}[child.url == curLink]">
-                      <span>{{child.name}}</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li ng-repeat="date in menudate" toggle-class="active" ng-if="date.isChild == 'false'">
-                <a class="auto" id="{{date.id}}" ui-sref="{{date.purl}}">
-                  <i ng-class="{true: '{{date.icon}}', false: 'inactive'}[date.isicon]"  ></i>
-                  <span class="font-bold">{{date.name}}</span>
-                </a>
-              </li>
-               
-            </ul`>
-          </nav>
-          <!-- nav --> 
-        </div>
-      </div>
-    </div>
-    <!-- / menu -->
-
-    <!-- content -->
-    <div class="app-content">
-       
-      <div class="app-content-body fade-in-up">
-        
-          <div class="app-panel" id="app-panel">
-           <div ui-view></div>
-          </div>
-         
-      </div>
-    </div>
-    <!-- /content -->
-
-    <!-- footer -->
-    <div class="app-footer wrapper bg-light">
-      <span>Copyright Amoy Studio © 2015-2016 </span>
-        
-    </div>
-    <!-- / footer -->
-  </div>
+  
 
 
 </body>

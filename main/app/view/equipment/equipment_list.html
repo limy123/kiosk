@@ -17,23 +17,36 @@
 				<div class="row">
 				    <label class="col-lg-1">布放国家</label>
 				    <div class="col-lg-3">
-					  <select class="form-control"
+					  <!-- <select class="form-control"
 					     ng-model="selCountryCode" 
 					     ng-change="selectedCountry(selCountryCode)">
-					     <option value="" selected hidden></option>
-					     <option ng-repeat="data in countrylist" value="{{data.countryCode}}">{{data.countryName}}</option>
-					  </select>
-					    
+					     <option value="all">全部</option>
+					     <option ng-repeat="data in countrylist" ng-model="optionCountryList"  value="{{data.countryCode}}">{{data.countryName}}</option>
+					  </select> -->
+					    <select class="form-control"  
+					    ng-model="selCountryCode" 
+					    ng-options="data.countryCode as data.countryName for data in countrylist"
+					    ng-selected="data.countryCode==selCountryCode"
+					    ng-change="selectedCountry(selCountryCode)">
+						<option value="">全部</option>
+						</select>
 					</div>
 				 
 				    <label class="col-lg-1">布放省份</label>
 				    <div class="col-lg-3">
-					    <select class="form-control"
+					    <!-- <select class="form-control"
 					    	ng-model="selProvinceCode"
 					    	ng-change="selectedProvince(selProvinceCode)">
-					    	<option value="" selected hidden></option>
-					    	<option ng-repeat="data in provincelist" value="{{data.provinceCode}}">{{data.provinceName}}</option>
-					    </select>
+					    	<option value="all">全部</option>
+					    	<option ng-repeat="data in provincelist" ng-model="optionProvinceList" value="{{data.provinceCode}}">{{data.provinceName}}</option>
+					    </select> -->
+					    <select class="form-control"  
+					    ng-model="selProvinceCode" 
+					    ng-options="data.provinceCode as data.provinceName for data in provincelist"
+					    ng-selected="data.provinceCode==selProvinceCode"
+					    ng-change="selectedProvince(selProvinceCode)">
+						<option value="">全部</option>
+						</select>
 					</div>
 				 
 				    <label class="col-lg-1">归属客户</label>
@@ -80,7 +93,7 @@
   				<td>skyroam</td>
   				<td>
   					<button type="button" class="btn btn-danger btn-sm" ng-click="delEquipment(data.kioskNo)">删除</button>
-  					<a ui-sref="equipmentDetail({id: data.kioskNo })">
+  					<a ui-sref="layout.equipmentDetail({id: data.kioskNo })">
   						<button type="button" class="btn btn-warning btn-sm">详情</button>
   					</a>
   				</td>

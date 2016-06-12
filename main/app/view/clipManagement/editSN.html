@@ -5,7 +5,7 @@
   <div class="panel-body">
   	<div class="row">
   	  <div class="col-sm-offset-3 col-lg-6">
-     	<form class="form-horizontal">
+     	<form class="form-horizontal" name="add_sn">
 		  <div class="form-group">
 		    <label class="col-sm-3 control-label">弹夹号:</label>
 		    <div class="col-sm-9 col-lg-4"><label class="control-label"> {{ boxNumber }} </label></div>
@@ -21,44 +21,58 @@
 		  </div>
 		  <div class="form-group">
 		    <label class="col-sm-3 control-label">SN码(NO.1):</label>
-		    <div class="col-sm-9">
-		        <input type="text" class="form-control" ng-model="sn1" />
-		    </div>
+			    <div class="col-sm-9">
+			        <input type="text" name="sn1" ng-model="sn1" class="form-control"/>
+		        <div class="error" 
+			        ng-show="esn1">必须是16个数字+字母</div>
+			  </div>
 		  </div>
 		  <div class="form-group">
 		    <label class="col-sm-3 control-label">SN码(NO.2):</label>
 		    <div class="col-sm-9">
-		        <input type="text" class="form-control" ng-model="sn2" />
+		        <input type="text" name="sn2" ng-model="sn2" class="form-control"/>
+		        <div class="error" 
+			        ng-show="esn2">必须是16个数字+字母</div>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label class="col-sm-3 control-label">SN码(NO.3):</label>
 		    <div class="col-sm-9">
-		        <input type="text" class="form-control" ng-model="sn3" />
+		        <input type="text" name="sn3" ng-model="sn3" class="form-control"/>
+		        <div class="error" 
+			        ng-show="esn3">必须是16个数字+字母</div>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label class="col-sm-3 control-label">SN码(NO.4):</label>
 		    <div class="col-sm-9">
-		        <input type="text" class="form-control" ng-model="sn4" />
+		        <input type="text" name="sn4" ng-model="sn4" class="form-control"/>
+		        <div class="error" 
+			        ng-show="esn4">必须是16个数字+字母</div>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label class="col-sm-3 control-label">SN码(NO.5):</label>
 		    <div class="col-sm-9">
-		        <input type="text" class="form-control" ng-model="sn5" />
+		        <input type="text" name="sn5" ng-model="sn5" class="form-control"/>
+		        <div class="error" 
+			        ng-show="esn5">必须是16个数字+字母</div>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label class="col-sm-3 control-label">SN码(NO.6):</label>
 		    <div class="col-sm-9">
-		        <input type="text" class="form-control" ng-model="sn6" />
+		        <input type="text" name="sn6" ng-model="sn6" class="form-control"/>
+		        <div class="error" 
+			        ng-show="esn6">必须是16个数字+字母</div>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label class="col-sm-3 control-label">SN码(NO.7):</label>
 		    <div class="col-sm-9">
-		        <input type="text" class="form-control" ng-model="sn7" />
+		        <input type="text" name="sn7" ng-model="sn7" class="form-control"/>
+		        <div class="error" 
+			        ng-show="esn7">必须是16个数字+字母</div>
 		    </div>
 		  </div>
 		  
@@ -67,7 +81,7 @@
 	</div>
 	<div class="row form-add">
     	<div class="center-block" style="width:190px;">
-    	<a ui-sref="clipList">
+    	<a ui-sref="layout.clipList">
     		<button type="button" class="btn btn-default btn-search">返回</button>
     	</a>
   	 	<button type="button" class="btn btn-warning btn-search" ng-click="saveSns()">保存</button> 

@@ -11,21 +11,21 @@
 			"icon" : "",
 			"name" : "新增柜子",
 			"isChild" : "false",
-			"url" : "equipmentAdd"
+			"url" : "layout.equipmentAdd"
 		},
 		{
 			"id" : "00102",
 			"icon" : "",
 			"name" : "柜子列表",
 			"isChild" : "false",
-			"url" : "equipmentList"
+			"url" : "layout.equipmentList"
 		},
 		{
 			"id" : "00103",
 			"icon" : "",
 			"name" : "定位地图",
 			"isChild" : "false",
-			"url" : "maps"
+			"url" : "layout.maps"
 		}
 	]
 },
@@ -41,14 +41,14 @@
 			"icon" : "",
 			"name" : "故障列表",
 			"isChild" : "false",
-			"url" : "faultList"
+			"url" : "layout.faultList"
 		},
 		{
 			"id" : "00202",
 			"icon" : "",
 			"name" : "历史记录",
 			"isChild" : "false",
-			"url" : "historyRecord"
+			"url" : "layout.historyRecord"
 		} 
 	]
 },
@@ -64,21 +64,21 @@
 			"icon" : "",
 			"name" : "新增弹夹",
 			"isChild" : "false",
-			"url" : "clipAdd"
+			"url" : "layout.clipAdd"
 		},
 		{
 			"id" : "00302",
 			"icon" : "icon-tasks",
 			"name" : "弹夹列表",
 			"isChild" : "false",
-			"url" : "clipList"
+			"url" : "layout.clipList"
 		},
 		{
 			"id" : "00303",
 			"icon" : "",
 			"name" : "上货示意图",
 			"isChild" : "false",
-			"url" : "diagram"
+			"url" : "layout.diagram"
 		} 
 	]
 },
@@ -94,14 +94,14 @@
 			"icon" : "",
 			"name" : "订单列表",
 			"isChild" : "false",
-			"url" : "orderList"
+			"url" : "layout.orderList"
 		},
 		{
 			"id" : "00402",
 			"icon" : "",
 			"name" : "漫游宝入库",
 			"isChild" : "false",
-			"url" : "returnDepositList"
+			"url" : "layout.returnDepositList"
 		}
 	]
 },
@@ -111,7 +111,7 @@
 	"icon" : "icon-bar-chart",
 	"name" : "数据统计",
 	"isChild" : "false",
-	"purl" : "dates"
+	"purl" : "layout.dates"
 }
 
 

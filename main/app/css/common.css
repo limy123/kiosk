@@ -28,7 +28,17 @@
 	padding-top:32px;
 }
 .table-clip{
-	table-layout: fixed;
+	 table-layout: fixed;
+}
+.table-clip .sn-td{
+	   
+  	padding: 8px 2px 8px 15px;
+}
+.sn-span{
+	cursor:pointer;display:block;width:100%;
+	 overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .table-clip td{
 	word-break:break-all; /*支持IE，chrome，FF不支持*/
@@ -36,7 +46,8 @@
 　　word-wrap:break-word;/*支持IE，chrome，FF*/
 }
 .btn-search.btn{
-	padding-left:24px; padding-right:24px;
+	padding-left:20px;
+	padding-right:20px;
 }
 .table > tbody > tr > td{
 	vertical-align: middle;
@@ -76,7 +87,7 @@ input:focus,select:focus
 	margin-top:17px;
 }
 .btn{
-	margin-right: 10px;
+	margin-right: 5px;
 }
 .panel-b-bottom{
 	border-bottom:1px solid #F1EDED;

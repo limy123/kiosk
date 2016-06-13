@@ -62,16 +62,16 @@
 				<th>柜子简码</th>
 				<th>布放位置</th>
 				<th>故障时间
-					<i class="icon-double-angle-down" ng-click="orderByTime('-createDate')"></i>
-					<i class="icon-double-angle-up" ng-click="orderByTime('createDate')"></i>
+					<i desc-dir class="icon-double-angle-down" ng-click="orderByTime('-createDate')"></i>
+					<i desc-dir class="icon-double-angle-up" ng-click="orderByTime('createDate')"></i>
 				</th>
 				<th>修复时间
-					<i class="icon-double-angle-down" ng-click="orderByTime('-updateDate')"></i>
-					<i class="icon-double-angle-up" ng-click="orderByTime('updateDate')"></i>
+					<i desc-dir class="icon-double-angle-down" ng-click="orderByTime('-updateDate')"></i>
+					<i desc-dir class="icon-double-angle-up" ng-click="orderByTime('updateDate')"></i>
 				</th>
 				<th>维修时长
-					<i class="icon-double-angle-down" ng-click="orderByTime('-totaltime')"></i>
-					<i class="icon-double-angle-up" ng-click="orderByTime('totaltime')"></i>
+					<i desc-dir class="icon-double-angle-down" ng-click="orderByTime('-totaltime')"></i>
+					<i desc-dir class="icon-double-angle-up" ng-click="orderByTime('totaltime')"></i>
 				</th>
 				<th>故障类别</th>
 				<th>备注</th>
@@ -104,7 +104,7 @@
 					    <li ng-class="{disabled: noNext()}"> <a ng-click="selectNext()">&raquo;</a></li>
 					</ul>
 
-					<div class="pull-right">
+					<div class="pull-right num-page">
 						共{{ numPages }}页&nbsp;
 						每页显示
 						<select ng-model="pageSize" ng-change="onSelectPage(1)">

@@ -112,7 +112,7 @@
 					    <li ng-class="{disabled: noNext()}"> <a ng-click="selectNext()">&raquo;</a></li>
 					</ul>
 
-					<div class="pull-right">
+					<div class="pull-right num-page">
 						共{{ numPages }}页&nbsp;
 						每页显示
 						<select ng-model="pageSize" ng-change="onSelectPage(1)">
@@ -123,8 +123,7 @@
 							<option value="50">50</option>
 						</select>条&nbsp;&nbsp;&nbsp;
 						跳转到第
-						<input type="number" min="1" max="{{numPages}}" ng-model="forPage"
-								name="">
+						<input type="number" min="1" max="{{numPages}}" ng-model="forPage" name="">
 						页
 						<button type="button" class="btn btn-warning btn-xs" ng-click="onSelectPage(forPage)" ng-if="forPage">点击跳转</button>
 					</div>

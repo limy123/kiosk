@@ -57,12 +57,13 @@ angular.module('myApp')
     //分页
     $scope.onSelectPage = function (page) { 
     	$scope.currentPage = page;
-        $scope.parame = {
+        /*$scope.parame = {
     		'start' : $scope.pageSize*(page-1),
 			'limit' : $scope.pageSize,
             'token' :$cookieStore.get("token")
     	}
-    	$scope.getBreakDown($scope.parame);
+    	$scope.getBreakDown($scope.parame);*/
+        $scope.searchFault();
 
     	//设置按钮分页
     	if($scope.numPages <=10) return;
@@ -92,7 +93,7 @@ angular.module('myApp')
 			'countryCode' : ($scope.selCountryCode == 'undefined' || $scope.selCountryCode == "" || $scope.selCountryCode == null ) ? '' : $scope.selCountryCode,
 			'provinceCode' : ($scope.selProvinceCode  == 'undefined' || $scope.selProvinceCode == "" || $scope.selProvinceCode == null) ? '' : $scope.selProvinceCode,
 			'cityCode' : "",
-			'start' : '0',
+			'start' : $scope.pageSize*($scope.currentPage-1),
 			'limit' : $scope.pageSize,
             'token' :$cookieStore.get("token")
 		}
@@ -143,7 +144,7 @@ angular.module('myApp')
     	});
     }
     //排序
-    $scope.orderByTime = function(orderBy){
+    $scope.orderByTime = function(orderBy,p){
     	$scope.fortime = orderBy;
     }
     $scope.getBreakDownHis($rootScope.paramers);
@@ -151,12 +152,13 @@ angular.module('myApp')
     //分页
     $scope.onSelectPage = function (page) { 
     	$scope.currentPage = page;
-        $scope.parame = {
+        /*$scope.parame = {
     		'start' : $scope.pageSize*(page-1),
 			'limit' : $scope.pageSize,
             'token' :$cookieStore.get("token")
     	}
-    	$scope.getBreakDownHis($scope.parame);
+    	$scope.getBreakDownHis($scope.parame);*/
+        $scope.searchhisFault();
 
     	//设置按钮分页
     	if($scope.numPages <=10) return;
@@ -186,7 +188,7 @@ angular.module('myApp')
 			'countryCode' : ($scope.selCountryCode == 'undefined' || $scope.selCountryCode == "" || $scope.selCountryCode == null ) ? '' : $scope.selCountryCode,
             'provinceCode' : ($scope.selProvinceCode  == 'undefined' || $scope.selProvinceCode == "" || $scope.selProvinceCode == null) ? '' : $scope.selProvinceCode,
 			'cityCode' : "",
-			'start' : '0',
+			'start' : $scope.pageSize*($scope.currentPage-1),
 			'limit' : $scope.pageSize,
             'token' :$cookieStore.get("token")
 		}

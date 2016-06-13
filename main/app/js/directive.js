@@ -104,6 +104,19 @@ angular.module('myApp')
         }
     }
 }])
+//排序升降箭头
+.directive("descDir", [function () {
+    return {
+        restrict: 'EA',
+        link: function (scope, element, attributes) {
+            element.bind("click", function (event) {
+                $(element).parents('th').siblings().find('i').removeClass('font-color');
+                $(element).siblings('i').removeClass('font-color');
+                $(element).addClass("font-color");
+            });
+        }
+    }
+}])
 .directive("fileUpload", [function () {
     return {
         restrict: 'EA',
@@ -115,7 +128,6 @@ angular.module('myApp')
             $(element).find('#uploadForm').click(function(event) {
                 var formData = new FormData();
                 var dfile = $(element).find('#file')[0].files[0];
-
                 if(dfile == "" || dfile == null){
                     alert("请选择文件");
                     /*$alert({
@@ -130,21 +142,23 @@ angular.module('myApp')
                     return false;
                 }
                 var _xlsx = dfile.name.substr(dfile.name.lastIndexOf(".")).toLowerCase();//获得文件后缀名
-                console.log(_xlsx)
+               
                if(_xlsx !=".xlsx" && _xlsx !=".xlsx"){
                     alert("请上传excel文件!");
                     return false;
                 }
+                
                 formData.append('file', dfile);
                 formData.append('token',cookies);
-                console.log(formData);
+                console.log(cookies);
                 $.ajax({
                     url: 'http://192.168.14.35:9090/kop-rim/web/deviceBox/batchUpdateSNs',
                     type: 'POST',
                     cache: false,
                     data: formData,
                     processData: false,
-                    contentType: false
+                    contentType: false,
+
                 }).done(function(res) {
                     console.log(res)
                     if(res.code == "-1"){

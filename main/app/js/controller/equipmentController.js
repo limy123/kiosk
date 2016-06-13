@@ -43,12 +43,13 @@ angular.module('myApp')
     //分页
     $scope.onSelectPage = function (page) { 
     	$scope.currentPage = page;
-        $scope.parame = {
+       /* $scope.parame = {
     		'start' : $scope.pageSize*(page-1),
 			'limit' : $scope.pageSize,
 			'token' :$cookieStore.get("token")
     	}
-    	$scope.getKioskList($scope.parame);
+    	$scope.getKioskList($scope.parame);*/
+    	$scope.searchKiosk();
 
     	//设置按钮分页
     	if($scope.numPages <=10) return;
@@ -76,8 +77,8 @@ angular.module('myApp')
 					'countryCode' : $scope.selCountryCode,
 					'provinceCode' : $scope.selProvinceCode,
 					'cityCode' : "",
-					'start' : '0',
-					'limit' : '10',
+					'start' : $scope.pageSize*($scope.currentPage-1),
+					'limit' : $scope.pageSize,
 					'token' : $cookieStore.get("token")
 				}
     	$scope.getKioskList(paramers);
@@ -203,11 +204,13 @@ angular.module('myApp')
 		if (response.code == 0) {
 			$scope.kioskDetail = response.data.kioskInfoVo;
 
-			$rootScope.selCountryCode = $scope.kioskDetail.countryCode;
-			$rootScope.selProvinceCode = $scope.kioskDetail.provinceCode;
-			$rootScope.selCityCode = $scope.kioskDetail.cityCode;
-			$rootScope.selectedCountry($rootScope.selCountryCode);
-			$rootScope.selectedProvince($rootScope.selProvinceCode);
+			$scope.selCountryCode = $scope.kioskDetail.countryCode;
+			$scope.selProvinceCode = $scope.kioskDetail.provinceCode;
+			$scope.selCityCode = $scope.kioskDetail.cityCode;
+			console.log($scope.selCountryCode + "----" + $scope.selProvinceCode + "====" + $scope.selCityCode)
+			$rootScope.selectedCountry($scope.selCountryCode);
+			$rootScope.selectedProvince($scope.selProvinceCode);
+			$rootScope.selectedCity($scope.selCityCode);
 		}else if(response.code == result_code){
 			serviceFactory.loginTimeout(response.message);
 		}
@@ -231,7 +234,7 @@ angular.module('myApp')
 	    	}else if(response.code == result_code){
     			serviceFactory.loginTimeout(response.message);
     		}else{
-	    		swal("", "保存失败.", "error");
+	    		swal("", "保存失败."+response.message, "error");
 	    	}
 	    })
 	}

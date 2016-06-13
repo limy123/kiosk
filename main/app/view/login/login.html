@@ -6,32 +6,48 @@
 		<section class="login-form">
 			<div class="panel">
 				<div class="panel-body">
-					<form class="form-horizontal ">
+					<form class="form-horizontal" name="loginForm">
 					  <div class="form-group">
 					      <img src="img/ll.png" width="45%" class="center-block" />
 					  </div>
 					  <div class="form-group text-center" style="margin-bottom: 50px !important;">
 					  <strong>Self-service &nbsp;device &nbsp;management <br />platform</strong>
 					  </div> 
-
+					  <div class="form-group" ng-show="loginError">
+					  	<span class="error">{{ showError }}</span>
+					  </div>
 					  <div class="form-group">
 					    <div class="input-group">
 					      <div class="input-group-addon">
 					      	<i class="icon-user"></i>
 					      </div>
-					      <input type="text" class="form-control" ng-model="username" value="" id="exampleInputAmount" placeholder="Skyroam@skyroam.com">
+					        <input type="text" class="form-control" name="username" ng-model="username" placeholder="username" required />
 					    </div>
+					    <div class="error" 
+					        ng-show="loginForm.username.$dirty && loginForm.username.$invalid">
+						    <small class="error" 
+						        ng-show="loginForm.username.$error.required">
+						        用户名不能为空
+						    </small>
+						</div>
 					  </div>
 					  <div class="form-group">
 					    <div class="input-group">
 					      <div class="input-group-addon">
 					      	<i class="icon-lock"></i>
 					      </div>
-					      <input type="password" class="form-control" ng-model="password" value="" id="exampleInputAmount" placeholder="password">
+					      <input type="password" class="form-control" name="password" ng-model="password" id="exampleInputAmount" placeholder="password" required />
 					    </div>
+					    <div class="error" 
+					        ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+						    <small class="error" 
+						        ng-show="loginForm.password.$error.required">
+						        密码不能为空
+						    </small>
+						  </div>
 					  </div>
 					  <div class="form-group">
-					  		<button type="button" class="btn btn-primary" ng-click="submitLogin()">login</button>
+					  	<button type="button" class="btn btn-primary" ng-click="submitLogin()">login</button>
 					  </div>
 					</form>
 				</div>

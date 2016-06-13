@@ -79,10 +79,10 @@
 		  				<td> {{ data.createDate  }} </td>
 		  				<td> {{ data.status | clipStatusFilter }} </td>
 		  				<td>
-		  					<a ui-sref="layout.editSN({code:data.boxNumber})" ng-if="data.sns == null">
+		  					<a ui-sref="layout.editSN({code:data.boxNumber,type:'add'})" ng-if="data.sns == null">
 		  						<button type="button" class="btn btn-warning btn-sm">添加</button>
 		  					</a>
-		  					<a ui-sref="layout.editSN({code:data.boxNumber})" ng-if="data.sns != null">
+		  					<a ui-sref="layout.editSN({code:data.boxNumber,type:'edit'})" ng-if="data.sns != null">
 		  						<button type="button" class="btn btn-warning btn-sm">编辑</button>
 		  					</a>
 		  					<button type="button" class="btn btn-danger btn-sm" ng-click="delectDeviceBox(data.boxNumber)">删除</button>
@@ -108,7 +108,7 @@
 					    <li ng-class="{disabled: noNext()}"> <a ng-click="selectNext()">&raquo;</a></li>
 					</ul>
 
-					<div class="pull-right">
+					<div class="pull-right num-page">
 						共{{ numPages }}页&nbsp;
 						每页显示
 						<select ng-model="pageSize" ng-change="onSelectPage(1)">

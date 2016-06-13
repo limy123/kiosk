@@ -120,7 +120,7 @@ angular.module('myApp')
         .state(
             'layout.editSN',
             {  
-                url:'/editSN/:code',
+                url:'/editSN/:code/:type',
                 views:{
                     'content':{
                         templateUrl:'view/clipManagement/editSN.html',

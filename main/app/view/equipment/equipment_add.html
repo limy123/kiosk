@@ -23,7 +23,7 @@
 			        ng-show="add_form.kioskNo.$dirty && add_form.kioskNo.$invalid">
 				    <small class="error" 
 				        ng-show="add_form.kioskNo.$error.required">
-				        Must be 4 digits, such as 1001
+				        必须是4位数字,如1001
 				    </small>
 				    <small class="error" 
 				        ng-show="add_form.kioskNo.$error.pattern">
@@ -32,7 +32,7 @@
 				     
 				    <small class="error" 
 				        ng-show="add_form.kioskNo.$error.maxlength">
-				        Your kioskNo cannot be longer than 4 characters
+				        柜子简码不能超过4位数
 				    </small>
 			  </div>
 			  <div class="error" ng-show="errorKno">柜子简码已经存在</div>

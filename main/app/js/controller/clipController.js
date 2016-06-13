@@ -54,7 +54,8 @@ angular.module('myApp')
     $scope.numPages = 10;//总共多少页
     $scope.pageSize = "10";//每页显示几条
     $scope.pages = [];
-     
+    $scope.cookiess = $cookieStore.get("token");
+    cookies = $cookieStore.get("token");
     $rootScope.curLink = $state.current.name;
      
     //获取列表
@@ -86,12 +87,8 @@ angular.module('myApp')
     //分页
     $scope.onSelectPage = function (page) { 
     	$scope.currentPage = page;
-        $scope.parame = {
-    		'start' : $scope.pageSize*(page-1),
-			'limit' : $scope.pageSize,
-            'token' :$cookieStore.get("token")
-    	}
-    	$scope.getDeviceBox($scope.parame);
+       
+        $scope.searchClip();
 
     	//设置按钮分页
     	if($scope.numPages <=10) return;
@@ -117,13 +114,13 @@ angular.module('myApp')
     		'boxNumber' : $scope.boxNumber,
     		'deviceType' : $scope.deviceType,
     		'status' : $scope.status,
-    		'startTime' : ($scope.fromDate == 'undefined' || $scope.fromDate == "" || $scope.fromDate == null) ? undefined: serviceFactory.formatDateTime($scope.fromDate),
-    		'endTime' : ($scope.untilDate == 'undefined' || $scope.untilDate == "" || $scope.untilDate == null) ? undefined : serviceFactory.formatDateTime($scope.untilDate),
-    		'start' : '0',
+    		'startTime' : ($scope.fromDate == 'undefined' || $scope.fromDate == "" || $scope.fromDate == null) ? undefined: serviceFactory.formatDateTime($scope.fromDate,' 00:00:00'),
+    		'endTime' : ($scope.untilDate == 'undefined' || $scope.untilDate == "" || $scope.untilDate == null) ? undefined : serviceFactory.formatDateTime($scope.untilDate,' 23:59:59'),
+    		'start' : $scope.pageSize*($scope.currentPage-1),
 			'limit' : $scope.pageSize,
             'token' :$cookieStore.get("token")
     	}
-
+        console.log($scope.parame);
     	$scope.getDeviceBox($scope.parame);
     }
     //删除弹夹
@@ -213,17 +210,18 @@ angular.module('myApp')
 .controller('editSNCtrl',function($rootScope,$scope,$location,$state,$stateParams,serviceFactory,$cookieStore){
     $rootScope.curLink = $state.current.name;
     $scope.boxNumber = $stateParams.code;
-    //根据id获取数据
-    $scope.parame = {
-    		'boxNumber' : $scope.boxNumber,
-    		'start' : '0',
-			'limit' : '10',
-            'token' : $cookieStore.get("token")
-    	}
-   
+    if($stateParams.type == "edit"){
+        //根据id获取数据
+        $scope.parame = {
+        		'boxNumber' : $scope.boxNumber,
+        		'start' : '0',
+    			'limit' : '10',
+                'token' : $cookieStore.get("token")
+        	}
         serviceFactory.getDeviceBoxList($scope.parame).success(function(response){
     		console.log(response);
             if(response.code == 0){
+                //if(response.data.rows.length != 0)
                 if(response.data.rows[0].sns != null ){
                     var snsedit = response.data.rows[0].sns;
                     $scope.sn1 = snsedit[0];
@@ -233,7 +231,9 @@ angular.module('myApp')
                     $scope.sn5 = snsedit[4];
                     $scope.sn6 = snsedit[5];
                     $scope.sn7 = snsedit[6];
+                 
                 }
+                
             }else if(response.code == result_code){
                 serviceFactory.loginTimeout(response.message);
             }else{
@@ -246,24 +246,17 @@ angular.module('myApp')
                     duration:'2',
                     show: true});
             }
-    		
     	});
-
+    }
+    ///////////////////////////////
+    //校验
     $scope.validSn = function(sns){
-        console.log(sns)
-         
-        if(sns == ' ' || sns == undefined || sns == null || sns.length == 0)
-        {
-            console.log(sns + "--------")
+        if(sns == ' ' || sns == undefined || sns == null || sns.length == 0){
             return true;
         }else if(sns.length != 16){
-            console.log(sns + "+++++++")
          return false;
         }
-         
-
-        var reg = new RegExp("/^[a-zA-Z0-9]{16,16}$|^[a-zA-Z0-9]{16,16}$|^[a-zA-Z]{16,16}$|^[0-9]{16,16}$/");  
-     
+        var reg = new RegExp("/^[a-zA-Z0-9]{16,16}$|^[a-zA-Z0-9]{16,16}$|^[a-zA-Z]{16,16}$|^[0-9]{16,16}$/");
         if(reg.test(sns)){
             return true;
         }else{
@@ -272,34 +265,29 @@ angular.module('myApp')
     }
      
     $scope.deviceType = "1";
-
+    $scope.validSnChange = function(sns){
+        return $scope.validSn(sns);
+    }
     $scope.saveSns = function(){
         if(!$scope.validSn($scope.sn1)){
-            $scope.esn1 = true; 
             return;
         }
         if(!$scope.validSn($scope.sn2)){
-            $scope.esn2 = true;
             return;
         }
         if(!$scope.validSn($scope.sn3)){
-            $scope.esn3 = true;
             return;
         }
         if(!$scope.validSn($scope.sn4)){
-            $scope.esn4 = true;
             return;
         }
         if(!$scope.validSn($scope.sn5)){
-            $scope.esn5 = true;
             return;
         }
         if(!$scope.validSn($scope.sn6)){
-            $scope.esn6 = true;
             return;
         }
         if(!$scope.validSn($scope.sn7)){
-            $scope.esn7 = true;
             return;
         }
         $scope.sn1 ==null?$scope.sn1=' ':$scope.sn1.replace(/^\s+|\s+$/g,"");
@@ -318,7 +306,7 @@ angular.module('myApp')
             'token' : $cookieStore.get("token")
 	    }
          
-        
+        console.log($scope.paramers);
     	serviceFactory.addOrUpdateSNs($scope.paramers).success(function(response){
     		if(response.code == 0){
     			swal("", "成功", "success");

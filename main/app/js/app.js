@@ -30,8 +30,8 @@ angular.module('myApp', [
     }])
   .factory('configFactory',function(){
     return{
-      //apiBaseUrl:"http://192.168.14.35:9090/kop-rim/web",
-      apiBaseUrl:"http://192.168.10.88:9090/kop-rim/web",
+      apiBaseUrl:"http://192.168.14.35:9090/kop-rim/web",
+      //apiBaseUrl:"http://192.168.10.88:9090/kop-rim/web",
       //apiBaseUrl : "http://192.168.12.12:9090/kop-rim/web",
 
 

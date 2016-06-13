@@ -64,8 +64,8 @@
 				<th>整机状态</th>
 				<th>故障时间</th>
 				<th>故障时长
-					<i class="icon-double-angle-down" ng-click="orderByTime('-takeTime')"></i>
-					<i class="icon-double-angle-up" ng-click="orderByTime('takeTime')"></i>
+					<i desc-dir class="icon-double-angle-down" ng-click="orderByTime('-takeTime','down')"></i>
+					<i desc-dir class="icon-double-angle-up" ng-click="orderByTime('takeTime','up')"></i>
 				</th>
 				<th>备注</th>
 			</tr>
@@ -97,7 +97,7 @@
 					    <li ng-class="{disabled: noNext()}"> <a ng-click="selectNext()">&raquo;</a></li>
 					</ul>
 
-					<div class="pull-right">
+					<div class="pull-right num-page">
 						共{{ numPages }}页&nbsp;
 						每页显示
 						<select ng-model="pageSize" ng-change="onSelectPage(1)">

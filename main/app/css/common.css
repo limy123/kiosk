@@ -95,3 +95,19 @@ input:focus,select:focus
 .error{
 	color: red;
 }
+.num-page input[type='number']{
+	width: 40px;
+}
+.icon-double-angle-down,.icon-double-angle-up{
+	cursor: pointer;
+}
+.font-color{
+	color:#fb9126;
+}
+.sinout{
+	cursor: pointer;
+
+}
+.sinout:active{
+	color: #428bca;
+}

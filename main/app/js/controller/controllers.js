@@ -108,17 +108,30 @@ angular.module('myApp')
     $scope.username = "" ;
     $scope.password = "";
     $scope.submitLogin = function(){
-    	serviceFactory.loginIn($scope.username,$scope.password).success(function(response){
-    		console.log(response);
-    		if(response.code == 0){
-    			 
-    			$cookieStore.put("token",response.data.token);
-    			cookies = $cookieStore.get("token");
-    			console.log($rootScope.token)
+    	if(!$scope.loginForm.username.$valid){ //柜子简码不能为空
+	    	$scope.loginForm.username.$dirty = true;  
+	    	$scope.loginForm.username.$invalid = true;
+	    }
+	    if(!$scope.loginForm.password.$valid){ //柜子简码不能为空
+	    	$scope.loginForm.password.$dirty = true;  
+	    	$scope.loginForm.password.$invalid = true;
+	    }
+	    if($scope.loginForm.$valid){ //校验通过
+	    	serviceFactory.loginIn($scope.username,$scope.password).success(function(response){
+	    		console.log(response);
+	    		if(response.code == 0){
+	    			 
+	    			$cookieStore.put("token",response.data.token);
+	    			cookies = $cookieStore.get("token");
+	    			console.log($rootScope.token)
 
-    			$state.go("layout.equipmentList");//跳转到主界面
-    		}
-    	});
+	    			$state.go("layout.equipmentList");//跳转到主界面
+	    		}else if(response.code == -1){
+	    			$scope.loginError = true;
+	    			$scope.showError = response.message;
+	    		}
+	    	});
+	    }
 
     	
     }

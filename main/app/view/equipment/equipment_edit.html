@@ -25,28 +25,49 @@
 		    <div class="col-sm-10">
 		        <div class="row"> 
 					<div class="col-sm-4">
-					  <select class="form-control"
+					  <!-- <select class="form-control"
 					     ng-model="selCountryCode" 
 					     ng-change="selectedCountry(selCountryCode)">
 					     <option value="" selected hidden></option>
 					     <option ng-repeat="data in countrylist" value="{{data.countryCode}}">{{data.countryName}}</option>
-					  </select>
+					  </select> -->
+					  <select class="form-control"  
+					    ng-model="selCountryCode" 
+					    ng-options="data.countryCode as data.countryName for data in countrylist"
+					    ng-selected="data.countryCode==selCountryCode"
+					    ng-change="selectedCountry(selCountryCode)">
+						<option value="">---国家---</option>
+						</select>
 					</div>
 					<div class="col-sm-4">
-					    <select class="form-control"
+					    <!-- <select class="form-control"
 					    	ng-model="selProvinceCode"
 					    	ng-change="selectedProvince(selProvinceCode)"> 
 					    	<option value="" selected hidden></option>
 					    	<option ng-repeat="data in provincelist" value="{{data.provinceCode}}">{{data.provinceName}}</option>
-					    </select>
+					    </select> -->
+					    <select class="form-control"  
+					    ng-model="selProvinceCode" 
+					    ng-options="data.provinceCode as data.provinceName for data in provincelist"
+					    ng-selected="data.provinceCode==selProvinceCode"
+					    ng-change="selectedProvince(selProvinceCode)">
+						<option value="">---省份---</option>
+						</select>
 					</div>
 					<div class="col-sm-4">
-					    <select class="form-control"
+					    <!-- <select class="form-control"
 					    	ng-model="selCityCode"
 					    	ng-change="selectedCity(selCityCode)">
 					    	<option value="" selected hidden></option>
 					    	<option ng-repeat="data in citylist" value="{{data.cityCode}}">{{data.cityName}}</option>
-					    </select>
+					    </select> -->
+					    <select class="form-control"  
+					    ng-model="selCityCode" 
+					    ng-options="data.cityCode as data.cityName for data in citylist"
+					    ng-selected="data.cityCode==selCityCode"
+					    ng-change="selectedCity(selCityCode)">
+						<option value="">---城市---</option>
+						</select>
 					</div>
 				 
 				</div>

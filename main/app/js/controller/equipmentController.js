@@ -3,7 +3,7 @@
 
 angular.module('myApp')
  
-.controller('equipmentListCtrl', function($rootScope,$scope,$state,$alert,$location,serviceFactory,$cookieStore) {
+.controller('equipmentListCtrl', function($rootScope,$scope,$state,$alert,$location,serviceFactory,$cookieStore,$filter) {
 	$rootScope.curLink = $state.current.name; 
 
 	$scope.selpage = "1";//跳转到第几页
@@ -25,7 +25,7 @@ angular.module('myApp')
     		}else if(response.code == "-1"){
     			$alert({
     				title: '', 
-					content: '请求出错' + response.massage, 
+					content: $filter("translate")("请求出错") + ":"+ response.massage, 
 					placement: 'top', 
 					container:'#app-panel',
 					type: 'info', 
@@ -86,14 +86,15 @@ angular.module('myApp')
  
 	//删除柜子数据
 	$scope.delEquipment = function(id){
+		console.log($rootScope.isDelete);
 		swal({   
 			title: "",   
-			text: "删除设备信息将无法找回,确定删除？",   
+			text: $filter("translate")("删除柜子信息将无法找回,确定删除?"),   
 			type: "warning",   
 			showCancelButton: true,   
 			confirmButtonColor: "#DD6B55",   
-			confirmButtonText: "确定删除",   
-			cancelButtonText: "取消",   
+			confirmButtonText: $filter("translate")("确定删除"),   
+			cancelButtonText: $filter("translate")("取消"),   
 			closeOnConfirm: false,  
 			loseOnCancel: false 
 		}, 
@@ -101,12 +102,12 @@ angular.module('myApp')
 			serviceFactory.deleteKiosk(id).success(function(response){
 				console.log(response)
 				if(response.code == 0){
-					swal("", "删除成功.", "success");
+					swal("", $filter("translate")("删除成功"), "success");
 					$scope.searchKiosk();
 				}else if(response.code == result_code){
 	    			serviceFactory.loginTimeout(response.message);
 	    		}else{
-					swal("", "删除失败:" + response.message , "error");
+					swal("", $filter("translate")("删除失败") + response.message , "error");
 				}
 			})
 		});
@@ -115,7 +116,7 @@ angular.module('myApp')
 	 
 })
 
-.controller('equipmentAddCtrl', function($rootScope,$scope,$location,$state,serviceFactory,$cookieStore) {
+.controller('equipmentAddCtrl', function($rootScope,$scope,$location,$state,serviceFactory,$cookieStore,$filter) {
     $rootScope.curLink = $state.current.name;
     $scope.lSN = "";
     $scope.kioskNo;
@@ -185,19 +186,19 @@ angular.module('myApp')
 		   	serviceFactory.addKiosk($scope.paramers).success(function(response){
 		   		console.log(response);
 		    	if(response.code == 0){
-		    		swal("", "添加成功.", "success");
+		    		swal("", $filter("translate")("添加成功"), "success");
 		    		$state.go("layout.equipmentList");
 		    	}else if(response.code == result_code){
 	    			serviceFactory.loginTimeout(response.message);
 	    		}else{
-			    		swal("", "添加失败.", "error");
+			    		swal("", $filter("translate")("添加失败"), "error");
 			    	}
 			    });
 	   }
     } 
 })
 //编辑柜子信息
-.controller('equipmentEditCtrl',function($rootScope,$scope,$state,$stateParams,serviceFactory,$cookieStore){
+.controller('equipmentEditCtrl',function($rootScope,$scope,$state,$stateParams,serviceFactory,$cookieStore,$filter){
 	$scope.id = $stateParams.id;
 	serviceFactory.getkioskDetail($stateParams.id).success(function(response){
 		console.log(response);
@@ -207,7 +208,7 @@ angular.module('myApp')
 			$scope.selCountryCode = $scope.kioskDetail.countryCode;
 			$scope.selProvinceCode = $scope.kioskDetail.provinceCode;
 			$scope.selCityCode = $scope.kioskDetail.cityCode;
-			console.log($scope.selCountryCode + "----" + $scope.selProvinceCode + "====" + $scope.selCityCode)
+			 
 			$rootScope.selectedCountry($scope.selCountryCode);
 			$rootScope.selectedProvince($scope.selProvinceCode);
 			$rootScope.selectedCity($scope.selCityCode);
@@ -228,13 +229,13 @@ angular.module('myApp')
 	    console.log($scope.paramers);
 	    serviceFactory.updateKiosk($scope.paramers).success(function(response){
 	    	if(response.code == 0){
-	    		swal("", "保存成功.", "success");
+	    		swal("", $filter("translate")("保存成功"), "success");
 	    		$state.go('layout.equipmentDetail',{id:$scope.kioskDetail.kioskNo});
 
 	    	}else if(response.code == result_code){
     			serviceFactory.loginTimeout(response.message);
     		}else{
-	    		swal("", "保存失败."+response.message, "error");
+	    		swal("", $filter("translate")("保存失败") + ":" + response.message, "error");
 	    	}
 	    })
 	}

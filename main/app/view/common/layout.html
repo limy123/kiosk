@@ -13,14 +13,14 @@
 
       <!-- navbar collapse -->
       <div class="collapse pos-rlt navbar-collapse box-shadow text-center">
-        <h3 class="navbar-brand">自助服务终端设备管理平台</h3>
+        <h3 class="navbar-brand">{{ '自助服务终端管理平台' | translate }}</h3>
         <ul class="nav navbar-nav  navbar-right h-50">
           <li ng-controller="LunchCtrl"> 
-          english
-           <!-- <select ng-change="selChange(cur_lang)" class="form-control" ng-model="cur_lang" style="color: #333;">
+          <!-- english -->
+          <select ng-change="selChange(cur_lang)"  ng-model="cur_lang" style="color: #333;">
              <option value="cn">中文</option>
              <option value="en">english</option>
-           </select> -->
+           </select>
           
           </li>
           <li ng-click="loginOut()"><span class="sinout">退出</span></li>
@@ -46,12 +46,12 @@
                   </span>
                   <i ng-class="{true: '{{date.icon}}', false: 'inactive'}[date.isicon]"  ></i>
                   
-                  <span class="font-bold">{{date.name}}</span>
+                  <span class="font-bold">{{date.name | translate}}</span>
                 </a>
                 <ul class="nav nav-sub dk">
                   <li class="" ng-repeat = "child in date.child">
                     <a ui-sref="{{child.url}}" ng-model="curLink" ng-class="{true:'curMenu',false:''}[child.url == curLink]">
-                      <span>{{child.name}}</span>
+                      <span>{{child.name | translate }}</span>
                     </a>
                   </li>
                 </ul>
@@ -59,7 +59,7 @@
               <li ng-repeat="date in menudate" toggle-class="active" ng-if="date.isChild == 'false'">
                 <a class="auto" id="{{date.id}}" ui-sref="{{date.purl}}">
                   <i ng-class="{true: '{{date.icon}}', false: 'inactive'}[date.isicon]"  ></i>
-                  <span class="font-bold">{{date.name}}</span>
+                  <span class="font-bold">{{date.name | translate }}</span>
                 </a>
               </li>
                
@@ -90,4 +90,5 @@
         
     </div>
     <!-- / footer -->
+    
   </div>

@@ -46,7 +46,7 @@
 		{
 			"id" : "00202",
 			"icon" : "",
-			"name" : "历史记录",
+			"name" : "故障历史",
 			"isChild" : "false",
 			"url" : "layout.historyRecord"
 		} 

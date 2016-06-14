@@ -3,8 +3,12 @@
  
 angular.module('myApp')
  
-.controller('orderListCtrl', function($rootScope,$scope,$state,$location) {
+.controller('orderListCtrl', function($rootScope,$scope,$state,$location,serviceFactory) {
 	$rootScope.curLink = $state.current.name;
+
+  serviceFactory.getOrderlist($rootScope.paramers).success(function(response){
+      console.log(response);
+  })
 
  
 })

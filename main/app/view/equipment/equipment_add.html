@@ -1,13 +1,13 @@
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h4>新增柜子</h4> 
+		<h4>{{'新增柜子' | translate }}</h4> 
 	</div>
   <div class="panel-body">
   	<div class="row">
   	  <div class="col-lg-offset-3 col-lg-6">
      	<form class="form-horizontal" name="add_form">
 		  <div class="form-group">
-		    <label for="eqId" class="col-sm-2 control-label">柜子简码</label>
+		    <label for="eqId" class="col-sm-2 control-label">{{'柜子简码' | translate }}</label>
 		    <div class="col-sm-10">
 		      <!-- <input type="number" name="kioskNo" ng-model="kioskNo" class="form-control"
 		       ng-maxlength=4
@@ -40,7 +40,7 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-2 control-label">柜子SN</label>
+		    <label class="col-sm-2 control-label">{{'柜子SN' | translate }}</label>
 		    <div class="col-sm-10">
 		      <input type="text" class="form-control" name="lsn" ng-model="lSN" required />
 		        <div class="error" 
@@ -53,7 +53,7 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="eqId" class="col-sm-2 control-label">地区</label>
+		    <label for="eqId" class="col-sm-2 control-label">{{'地区' | translate}}</label>
 		    <div class="col-sm-10">
 		        <div class="row"> 
 					<div class="col-sm-4">
@@ -68,7 +68,7 @@
 					    ng-options="data.countryCode as data.countryName for data in countrylist"
 					    ng-selected="data.countryCode==selCountryCode"
 					    ng-change="selectedCountry(selCountryCode)">
-						<option value="">----国家----</option>
+						<option value="">----{{'国家' | translate}}----</option>
 						</select>
 
 					  <div class="error">
@@ -90,7 +90,7 @@
 					    ng-options="data.provinceCode as data.provinceName for data in provincelist"
 					    ng-selected="data.provinceCode==selProvinceCode"
 					    ng-change="selectedProvince(selProvinceCode)">
-						<option value="">----省份----</option>
+						<option value="">----{{ '省' | translate}}----</option>
 						</select>
 					    <div class="error">
 					    <small class="error" 
@@ -111,7 +111,7 @@
 					    ng-options="data.cityCode as data.cityName for data in citylist"
 					    ng-selected="data.cityCode==selCityCode"
 					    ng-change="selectedCity(selCityCode)">
-						<option value="">----城市----</option>
+						<option value="">----{{ '市' | translate}}----</option>
 						</select>
 					    <div class="error">
 						    <small class="error" 
@@ -125,7 +125,7 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="address" class="col-sm-2 control-label">详细地址</label>
+		    <label for="address" class="col-sm-2 control-label">{{ '详细地址' | translate}}</label>
 		    <div class="col-sm-10">
 		      	<input type="text" class="form-control" id="address" name="address" ng-model="address" required />
 		    	<div class="error" 
@@ -138,7 +138,7 @@
 			</div>
 		  </div>
 		  <div class="form-group">
-		    <label for="custom" class="col-sm-2 control-label">归属客户</label>
+		    <label for="custom" class="col-sm-2 control-label">{{ '归属客户' | translate}}</label>
 		    <div class="col-sm-10">
 		      	<select class="form-control">
 		    		<option value="1" selected>skyroam</option>
@@ -152,7 +152,7 @@
 	<div class="row form-add">
     	<div class="center-block" style="width:90px;">
     	<!-- <button type="button" class="btn btn-default btn-search">返回</button> -->
-  	 	<button type="button" class="btn btn-warning btn-search" ng-click="addKiosk()">保存</button> 
+  	 	<button type="button" class="btn btn-warning btn-search" ng-click="addKiosk()">{{ '提交' | translate}}</button> 
   	 	</div>
   </div>
    

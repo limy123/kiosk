@@ -117,7 +117,7 @@ angular.module('myApp')
         }
     }
 }])
-.directive("fileUpload", [function () {
+.directive("fileUpload", function (configFactory) {
     return {
         restrict: 'EA',
         scope: {
@@ -147,12 +147,13 @@ angular.module('myApp')
                     alert("请上传excel文件!");
                     return false;
                 }
-                
+                var _cookies = $(element).find('#token').val(cookies);
                 formData.append('file', dfile);
-                formData.append('token',cookies);
+                formData.append('token',_cookies);
                 console.log(cookies);
                 $.ajax({
-                    url: 'http://192.168.14.35:9090/kop-rim/web/deviceBox/batchUpdateSNs',
+                    url : configFactory.apiBaseUrl + "/deviceBox/batchUpdateSNs",
+                    //url: 'http://192.168.14.35:9090/kop-rim/web/deviceBox/batchUpdateSNs',
                     type: 'POST',
                     cache: false,
                     data: formData,
@@ -185,7 +186,8 @@ angular.module('myApp')
                                 location.reload();
                             } else {     
                                 //下载
-                                var _url = "http://192.168.14.35:9090/kop-rim"+result.url;
+                                //var _url = "http://192.168.14.35:9090/kop-rim"+result.url;
+                                var _url = configFactory.apiBaseUrl+result.url;
                                 window.location = _url;
                             }
                     });
@@ -196,5 +198,5 @@ angular.module('myApp')
             });
         }
     }
-}])
+})
 ;

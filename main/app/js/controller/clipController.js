@@ -3,7 +3,7 @@
  
 angular.module('myApp')
 //新增弹夹
-.controller('clipAddCtrl', function($rootScope,$scope,$state,$location,$modal,$alert,serviceFactory) {
+.controller('clipAddCtrl', function($rootScope,$scope,$state,$location,$modal,$alert,serviceFactory,$filter) {
 	$rootScope.curLink = $state.current.name;
 	$scope.clipNum = "5"; 
 	var myOtherModal = $modal({
@@ -21,7 +21,7 @@ angular.module('myApp')
                 //提示框
                 $alert({
                     title: '', 
-                    content: '新增失败！' + response.message, 
+                    content: $filter("translate")("添加失败") + ":" + response.message, 
                     placement: 'top', 
                     container:'#app-panel',
                     type: 'info', 
@@ -38,7 +38,7 @@ angular.module('myApp')
 		//提示框
 		$alert({
 			title: '', 
-			content: '新增成功！', 
+			content:  $filter("translate")("添加成功"), 
 			placement: 'top', 
 			container:'#app-panel',
 			type: 'success', 
@@ -48,7 +48,7 @@ angular.module('myApp')
 	}
 })
 //获取弹夹列表
-.controller('clipListCtrl', function($rootScope,$scope,$location,$state,$alert,serviceFactory,$modal,Upload,$http,$cookieStore) {
+.controller('clipListCtrl', function($rootScope,$scope,$location,$state,$alert,serviceFactory,$modal,$http,$cookieStore,$filter) {
 	$scope.selpage = "1";//跳转到第几页
     $scope.currentPage = 1;
     $scope.numPages = 10;//总共多少页
@@ -73,7 +73,7 @@ angular.module('myApp')
             }else{
     			$alert({
     				title: '', 
-					content: '请求出错' + response.massage, 
+					content: $filter("translate")("请求出错") + ":" + response.massage, 
 					placement: 'top', 
 					container:'#app-panel',
 					type: 'info', 
@@ -127,24 +127,24 @@ angular.module('myApp')
     $scope.delectDeviceBox = function(id){
     	swal({   
 			title: "",   
-			text: "确定删除" + id + "?",   
+			text: $filter("translate")("确定删除") + id + "?",   
 			type: "warning",   
 			showCancelButton: true,   
 			confirmButtonColor: "#DD6B55",   
-			confirmButtonText: "确定删除",   
-			cancelButtonText: "取消",   
+			confirmButtonText: $filter("translate")("确定删除"),   
+			cancelButtonText: $filter("translate")("取消"),   
 			closeOnConfirm: false,  
 			loseOnCancel: false 
 		}, 
 		function(){
 			serviceFactory.delectDeviceBox(id).success(function(response){
 				if(response.code == 0){
-					swal("", "删除成功.", "success");
+					swal("", $filter("translate")("删除成功"), "success");
 					$scope.searchClip();
 				}else if(response.code == result_code){
                     serviceFactory.loginTimeout(response.message);
                 }else{
-                    swal("", "删除失败.", "error");
+                    swal("", $filter("translate")("删除失败"), "error");
                 }
 			})
 		});
@@ -207,7 +207,7 @@ angular.module('myApp')
 
 })
 //添加或编辑sns
-.controller('editSNCtrl',function($rootScope,$scope,$location,$state,$stateParams,serviceFactory,$cookieStore){
+.controller('editSNCtrl',function($rootScope,$scope,$location,$state,$stateParams,serviceFactory,$cookieStore,$filter){
     $rootScope.curLink = $state.current.name;
     $scope.boxNumber = $stateParams.code;
     if($stateParams.type == "edit"){
@@ -239,7 +239,7 @@ angular.module('myApp')
             }else{
                 $alert({
                     title: '', 
-                    content: '请求出错', 
+                    content: $filter("translate")("请求出错"), 
                     placement: 'top', 
                     container:'#app-panel',
                     type: 'info', 
@@ -309,31 +309,19 @@ angular.module('myApp')
         console.log($scope.paramers);
     	serviceFactory.addOrUpdateSNs($scope.paramers).success(function(response){
     		if(response.code == 0){
-    			swal("", "成功", "success");
+    			swal("", $filter("translate")("保存成功"), "success");
                 $state.go("layout.clipList");
     		}else if(response.code == result_code){
                 serviceFactory.loginTimeout(response.message);
             }else{
-                swal("", "error", "error");
+                swal("", $filter("translate")("保存失败"), "error");
             }
     		console.log(response);
     	});
         
     }
 })
-.controller('clipsinCtrl',function($rootScope,$scope,$location,$state,$alert){
-    $rootScope.curLink = $state.current.name;
-    $scope.okClipsin = function(){
-    	$alert({
-			title: '', 
-			content: '导入成功！', 
-			placement: 'top', 
-			container:'#app-panel',
-			type: 'success', 
-			duration:'2',
-			show: true});
-    }
-})
+ 
 ;
 })();
  

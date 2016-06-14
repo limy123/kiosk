@@ -221,6 +221,12 @@
 	              $state.go("login");
 	            }
 	          });
+	      	},
+	      	//订单
+	      	getOrderlist : function(paramers){
+	      		var url = configFactory.apiBaseUrl + "/order/query";
+	      		//var paramers = {'token' : $cookieStore.get("token")};
+				return $http.post(url,paramers);
 	      	}
 
 			

@@ -935,7 +935,7 @@ body {
   .app-content-body {
    
     position: absolute;
-    left: 220px;
+    left: 230px;
     top: 70px;
     right: 20px;
     bottom: 70px;
@@ -944,7 +944,7 @@ body {
 }
   .app-aside,
   .navbar-header {
-    width: 200px;
+    width: 210px;
   }
   .navbar-collapse,
   /*.app-content,*/
@@ -1241,14 +1241,14 @@ html {
 }
 
 .navi ul.nav li li a {
-  padding-left: 55px;
+  padding-left: 45px;
   border-left: 2px solid #fff;
 }
 
 .navi ul.nav li a {
   position: relative;
   display: block;
-  padding: 10px 20px;
+  padding: 10px;
   font-weight: normal;
   font-size: 15px;
   text-transform: none;
@@ -1266,7 +1266,7 @@ html {
 .navi ul.nav li a > i {
   position: relative;
   float: left;
-  width: 40px;
+  width: 35px;
   margin: -10px -10px;
   margin-right: 5px;
   overflow: hidden;

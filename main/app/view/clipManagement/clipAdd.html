@@ -1,15 +1,15 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-	<h4>新增弹夹</h4> 
+	<h4>{{ '新增弹夹号' | translate }}</h4> 
   </div>
   <div class="panel-body">
   <div class="row">
-  <div class="col-sm-offset-4 col-lg-4">
+  <div class="col-sm-offset-4 col-sm-4">
 
   	<form class="form-inline" style="padding:40% 0;">
 
-	  <div class="form-group center-block" style="width:260px;display:block;">
-	    <label>新增弹夹</label>
+	  <div class="form-group center-block">
+	    <label>{{ '新增弹夹号' | translate }}</label>
 	    <div class="input-group">
 		    <select class="form-control" ng-model="clipNum" style="padding:6px 50px;">
 	    		<option value="5">5</option>
@@ -25,7 +25,7 @@
 </div>
 	<div class="row form-add">
 		<div class="center-block" style="width:90px">
-			<button type="button" class="btn btn-warning btn-search" ng-click="showModal()">提交</button>
+			<button type="button" class="btn btn-warning btn-search" ng-click="showModal()">{{'提交' | translate }}</button>
 		</div>
 	</div>
   </div>

@@ -9,6 +9,14 @@ angular.module('myApp')
             url:'/layout',
             templateUrl:'view/common/layout.html'
         })
+        .state('layout.translate',{
+            url:'/translate',
+            views : {
+                'content' : {
+                    templateUrl:'view/common/translate.html'
+                }
+            }
+        })
         .state(
         	'layout.equipmentList', 
         	{  
@@ -129,18 +137,7 @@ angular.module('myApp')
                 }
                 
             })
-        .state(
-            'layout.clipsin',
-            {  
-                url:'/clipsin',
-                views:{
-                    'content':{
-                        templateUrl:'view/clipManagement/clipsIn.html',
-                        controller:"clipsinCtrl"
-                    }
-                }
-                
-            })
+         
         .state(
             'layout.diagram',
             {  

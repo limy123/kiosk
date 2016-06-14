@@ -3,7 +3,7 @@
  
 angular.module('myApp')
  
-.controller('faultListCtrl', function($rootScope,$scope,$state,$location,$alert,serviceFactory,$cookieStore) { 
+.controller('faultListCtrl', function($rootScope,$scope,$state,$location,$alert,serviceFactory,$cookieStore,$filter) { 
 	$scope.fortime = "";
  	$scope.selpage = "1";//跳转到第几页
     $scope.currentPage = 1;
@@ -36,7 +36,7 @@ angular.module('myApp')
             }else if(response.code == "-1"){
     			$alert({
     				title: '', 
-					content: '请求出错' + response.massage, 
+					content: $filter("translate")("请求出错") + ":" + response.massage, 
 					placement: 'top', 
 					container:'#app-panel',
 					type: 'info', 
@@ -102,7 +102,7 @@ angular.module('myApp')
     }
 })
 //故障历史列表
-.controller('historyRecordCtrl', function($rootScope,$scope,$location,$state,$alert,serviceFactory,$cookieStore) {
+.controller('historyRecordCtrl', function($rootScope,$scope,$location,$state,$alert,serviceFactory,$cookieStore,filter) {
 	$scope.selpage = "1";//跳转到第几页
     $scope.currentPage = 1;
     $scope.numPages = 10;//总共多少页
@@ -133,7 +133,7 @@ angular.module('myApp')
             }else if(response.code == "-1"){
     			$alert({
     				title: '', 
-					content: '请求出错' + response.massage, 
+					content: $filter("translate")("请求出错") + ":" + response.massage, 
 					placement: 'top', 
 					container:'#app-panel',
 					type: 'info', 

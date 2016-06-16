@@ -1,53 +1,53 @@
 <div class="panel panel-info eq-detail">
 	<div class="panel-heading">
-		<h4>柜子详情</h4> 
+		<h4>{{'柜子详情' | translate }}</h4> 
 	</div>
   <div class="panel-body detail-line">
   <div class="row">
      
      	<div class="panel">
      		<div class="panel-heading">
-     			<h5 class="title-detail">基本信息</h5>
+     			<h5 class="title-detail">{{'基本信息' | translate }}</h5>
      		</div>
 	     	<div class="panel-body">
 		        
 		        <div class="row">
 
 		        	<div class="col-lg-3 col-sm-6">
-			        	<strong class=" ">柜子简码:</strong>
+			        	<strong class=" ">{{'柜子简码' | translate}}:</strong>
 			        	<label class=" ">{{ kioskDetail.kioskNo}}</label>
 			        </div>
 			        <div class="col-lg-6">
-						<strong class=" ">柜子SN:</strong>
+						<strong class=" ">{{'柜子SN' | translate}}:</strong>
 			        	<label class=" ">{{kioskDetail.lSN}}</label>
 		        	</div>
 		        	<div class="col-lg-2">
 		        		<a ui-sref="layout.equipmentEdit({id: id })">
-	  						<button class="btn btn-warning btn-sm pull-right">编辑</button>
+	  						<button class="btn btn-warning btn-sm pull-right">{{'修改' | translate }}</button>
 	  					</a>
 		        		
 		        	</div>
 		        </div>
 		        <div class="row">
 		        	<div class="col-lg-3 col-sm-6">
-		        		<strong class=" ">软件版本:</strong>
+		        		<strong class=" ">{{'软件版本' | translate }}:</strong>
 		        		<label class=" ">{{ kioskDetail.softwareVersion }}</label>
 		        	</div>
 		        	<div class="col-lg-6 ">
-						<strong class=" ">归属客户:</strong>
+						<strong class=" ">{{'归属客户' | translate}}:</strong>
 		        		<label class=" ">skyroam</label>
 		        	</div>
 		        </div>
 		        <div class="row">
 			        <div class="col-lg-12 col-sm-12">
-			        	<strong class=" ">布放位置:</strong>
+			        	<strong class=" ">{{'布放位置' | translate }}:</strong>
 			        	<label class=" ">{{ kioskDetail.countryName }},{{ kioskDetail.provinceName }},{{ kioskDetail.cityName }},{{ kioskDetail.address }}</label>
 			        </div>
 		     	</div> 
 	     	</div>
      	</div>
 
-     	<div class="panel">
+     	<!-- <div class="panel">
      		<div class="panel-heading">
      			<h5 class="title-detail">柜子状态</h5>
      		</div>
@@ -138,9 +138,9 @@
 
 		        </div>
 		    </div>
-		</div>
+		</div> -->
 		<div class="panel">
-     		<div class="panel-heading">
+     		<!-- <div class="panel-heading">
      			<h5 class="title-detail">故障记录</h5>
      		</div>
 	     	<div class="panel-body">
@@ -149,11 +149,11 @@
 		        	<p class=" ">1、[运行中]&nbsp;2016-01-21 10:00 &nbsp;1001号柜子维修完毕恢复正常运行;</p>
 		        </div>
 		        </div>
-		    </div>
+		    </div> -->
 		    <div class="panel-footer">
 		    	<div class="center-block" style="width:90px;">
 		    		<a ui-sref="layout.equipmentList">
-		     			<button class="btn btn-warning btn-search">返回</button>
+		     			<button class="btn btn-warning btn-search">{{'返回' | translate }}</button>
 		     		</a>
 		     	</div>
 		    </div>

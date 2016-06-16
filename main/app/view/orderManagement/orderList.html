@@ -1,106 +1,120 @@
  <div class="panel">
-	<div class="panel-body">
-	<form class="form-inline">
-		<div class="form-group">
-			<label for="eqId">创建时间:</label>
-			<!-- <my-datepicker start="aa" end="bb"></my-datepicker> -->
+ 	<div class="panel-body panel-b-bottom">
+		<div class="row search-form">
+			<div class="col-lg-11">
+				<div class="row">
+				    <label class="col-lg-1" style="width:140px;">{{'创建时间' | translate }}</label>
 
-			  
-		    
-		      <input type="text" class="form-control" data-date-format="yyyy-MM-dd" 
-		      data-autoclose="1" 
-		      ng-model="fromDate" data-max-date="{{untilDate}}" placeholder="From" bs-datepicker>
-		    	至
-		      <input type="text" class="form-control" data-date-format="yyyy-MM-dd"
-		       data-autoclose="1" ng-model="untilDate" data-min-date="{{fromDate}}"
-		        placeholder="To" bs-datepicker>
-		   
-  
-
-
-
-		</div>
-		<div class="form-group">
-		    <label for="clipId">取机柜子简码:</label>
-		    <input type="text" class="form-control" id="clipId" />
-		</div>
-		<div class="form-group">
-		    <label for="">订单来源:</label>
-		    <select class="form-control">
-		    	<option>已占用</option>
-		    </select>
-		</div>
-		<div class="form-group">
-		    <label for="eqSN">订单状态:</label>
-		    <select class="form-control">
-		    	<option>已占用</option>
-		</div>
-		    </select>
-		<div class="form-group pull-right">
-			<button type="button" class="btn btn-warning" ng-click="selectForm()">筛选</button>
-		</div>
-	</form>
+				    <div class="col-lg-8 form-inline">
+				     <div class="form-group">
+				    	<input type="text" class="form-control" data-date-format="yyyy-MM-dd" 
+					      data-autoclose="1" 
+					      ng-model="fromDate" data-max-date="{{untilDate}}" placeholder="From" bs-datepicker>
+					    	&nbsp;{{'至' | translate }}&nbsp;
+					      <input type="text" class="form-control" data-date-format="yyyy-MM-dd"
+					       data-autoclose="1" ng-model="untilDate" data-min-date="{{fromDate}}"
+					        placeholder="To" bs-datepicker>
+					    </div>
+				    </div>
+				</div>
+				<div class="row">
+					<label class="col-lg-1" style="width:140px;">{{'柜子简码' | translate }}</label>
+				    <div class="col-lg-2">
+					   <input type="text" class="form-control" id="clipId" />
+					</div>
+				 
+				    <label class="col-lg-1" style="width:140px;">{{'订单来源' | translate }}</label>
+				    <div class="col-lg-2">
+					    <select class="form-control"  
+					    ng-model="selProvinceCode" 
+					    ng-options="data.provinceCode as data.provinceName for data in provincelist"
+					    ng-selected="data.provinceCode==selProvinceCode"
+					    ng-change="selectedProvince(selProvinceCode)">
+						<option value="">{{'全部' | translate }}</option>
+						</select>
+					</div>
+				    <label class="col-lg-1" style="width:140px;">{{'订单状态' | translate }}</label>
+				    <div class="col-lg-2">
+					    <select class="form-control" ng-model="status">
+					    	<option value="">{{ '全部' | translate}}</option>
+					    	<option value="1">{{ '已占用'| translate}}</option>
+					    	<option value="0">{{ '未占用'| translate}}</option>
+					    </select>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-1 col-sm-12">
+				<button type="button" class="btn btn-warning btn-search" ng-click="searchOrder()">{{'筛选' | translate }}</button>
+			</div>
+	 	</div>
 	</div>
 </div>
 <div class="panel">
 	<div class="panel-body">
-	<table class="table table-striped table-bordered">
-		<thead>
-			<tr>
-				<th>创建时间</th>
-				<th>更新时间</th>
-				<th>用户电话</th>
-				<th>用户邮箱</th>
-				<th>取机柜子简码</th>
-				<th>系统订单号</th>
-				<th>订单来源</th>
-				<th>第三方订单号</th>
-				<th>订单状态</th>
-			</tr>
-		</thead>
-  		<tbody>
-  			<tr>
-  				<td>2016-05-17 19:00:00 </td>
-  				<td>2016-05-17 19:00:00</td>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>{{'创建时间' | translate }}</th>
+					<th>{{'更新时间' | translate }}</th>
+					<th>{{'用户电话' | translate }}</th>
+					<th>{{'用户邮箱' | translate }}</th>
+					<th>{{'取机柜子简码' | translate }}</th>
+					<th>{{'系统订单号' | translate }}</th>
+					<th>{{'订单来源' | translate }}</th>
+					<th>{{'第三方订单号' | translate }}</th>
+					<th>{{'订单状态' | translate }}</th>
+				</tr>
+			</thead>
+	  		<tbody>
+	  			<tr>
+	  				<td>2016-05-17 19:00:00 </td>
+	  				<td>2016-05-17 19:00:00</td>
 
-  				<td>18666596536</td>
-  				<td>451236569@qq.com</td>
-  				<td>1001</td>
-  				<td>2124 5458 2326 2546</td>
-  				<td>途牛</td>
-  				<td>ktw2454545878</td>
-  				 
-  				<td>已占用</td>
-  				 
-  			</tr>
-  			 
-  			 
-  		</tbody>
-	</table>
-	 
+	  				<td>18666596536</td>
+	  				<td>451236569@qq.com</td>
+	  				<td>1001</td>
+	  				<td>2124 5458 2326 2546</td>
+	  				<td>途牛</td>
+	  				<td>ktw2454545878</td>
+	  				 
+	  				<td>已占用</td>
+	  				 
+	  			</tr>
+	  			 
+	  			 
+	  		</tbody>
+		</table>
+	</div>
+	<div class="panel-footer">
 		<div class="row">
-		<div class="col-lg-12">
-		 
-		<pagination boundary-links="true" 
-    max-size="3" 
-    items-per-page="itemsPerPage"
-    total-items="todos.length" 
-    ng-model="currentPage" 
-    ng-change="pageChanged()"></pagination>
-		 
-		<div class="pull-right">
-		共10页&nbsp;
-		跳转到第
-		<select>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			</select>页
+			<div class="col-lg-12 ">
+				<paging>
+					<ul class="pagination" num-pages="tasks.pageCount" current-page="tasks.currentPage" on-select-page="selectPage(page)">
+					    <li ng-class="{disabled: noPrevious()}"> <a ng-click="selectPrevious()">&laquo;</a></li>
+					    <li ng-repeat="page in pages" ng-class="{active: isActive(page)}"> <a ng-click="selectPage(page)">{{page}}</a></li>
+					    <li ng-class="{disabled: noNext()}"> <a ng-click="selectNext()">&raquo;</a></li>
+					</ul>
+
+					<div class="pull-right num-page">
+						共{{ numPages }}页&nbsp;
+						每页显示
+						<select ng-model="pageSize" ng-change="onSelectPage(1)">
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+							<option value="30">30</option>
+							<option value="50">50</option>
+						</select>条&nbsp;&nbsp;&nbsp;
+						跳转到第
+						<input type="number" min="1" max="{{numPages}}" ng-model="forPage"
+								name="">
+						页
+						<button type="button" class="btn btn-warning btn-xs" ng-click="onSelectPage(forPage)" ng-if="forPage">点击跳转</button>
+					</div>
+				</paging>
+	   		</div>
 		</div>
-		 </div>
-		</div>
-	 
+	</div>	 
+		 
 </div>
  

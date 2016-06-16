@@ -17,13 +17,13 @@
         <ul class="nav navbar-nav  navbar-right h-50">
           <li ng-controller="LunchCtrl"> 
           <!-- english -->
-          <select ng-change="selChange(cur_lang)"  ng-model="cur_lang" style="color: #333;">
+          <select ng-change="selChange(cur_lang)" ng-model="cur_lang" style="color: #333;">
              <option value="cn">中文</option>
              <option value="en">english</option>
            </select>
           
           </li>
-          <li ng-click="loginOut()"><span class="sinout">退出</span></li>
+          <li ng-click="loginOut()"><span class="sinout">{{'退出' | translate }}</span></li>
         </ul>
 
       </div>

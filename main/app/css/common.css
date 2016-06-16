@@ -30,10 +30,6 @@
 .table-clip{
 	 table-layout: fixed;
 }
-.table-clip .sn-td{
-	   
-  	padding: 8px 2px 8px 15px;
-}
 .sn-span{
 	cursor:pointer;display:block;width:100%;
 	 overflow: hidden;
@@ -49,6 +45,7 @@
 	padding-left:20px;
 	padding-right:20px;
 }
+.table > thead > tr > th,
 .table > tbody > tr > td{
 	vertical-align: middle;
 }
@@ -86,7 +83,7 @@ input:focus,select:focus
 	padding-top:32px;
 	margin-top:17px;
 }
-.btn{
+.btn.btn-warning.btn-sm{
 	margin-right: 5px;
 }
 .panel-b-bottom{
@@ -110,4 +107,11 @@ input:focus,select:focus
 }
 .sinout:active{
 	color: #428bca;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+	.search-form label{
+		 
+		text-align: left;
+	}
 }

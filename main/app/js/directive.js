@@ -84,7 +84,7 @@ angular.module('myApp')
         }
     };
 })
-//上传组件
+//上传组件 有bug
 .directive("fileread", [function () {
     return {
         restrict: 'EA',
@@ -117,6 +117,7 @@ angular.module('myApp')
         }
     }
 }])
+//上传组件
 .directive("fileUpload", function (configFactory) {
     return {
         restrict: 'EA',

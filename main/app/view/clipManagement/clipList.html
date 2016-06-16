@@ -3,14 +3,14 @@
 		<div class="row search-form">
 			<div class="col-lg-10" >
 				<div class="row">
-				    <label class="col-lg-1 col-sm-2" style="width:90px;text-align:left;">{{'更新时间' | translate}}</label>
+				    <label class="col-lg-1 col-sm-2" style="width:100px;text-align:left;">{{'更新时间' | translate}}</label>
 
 				    <div class="col-lg-8 form-inline">
 				     <div class="form-group">
 				    	<input type="text" class="form-control" data-date-format="yyyy-MM-dd" 
 					      data-autoclose="1" 
 					      ng-model="fromDate" data-max-date="{{untilDate}}" placeholder="From" bs-datepicker>
-					    	&nbsp;至&nbsp;
+					    	&nbsp;{{'至' | translate }}&nbsp;
 					      <input type="text" class="form-control" data-date-format="yyyy-MM-dd"
 					       data-autoclose="1" ng-model="untilDate" data-min-date="{{fromDate}}"
 					        placeholder="To" bs-datepicker>
@@ -18,24 +18,22 @@
 				    </div>
 				</div>
 				<div class="row">
-					<label class="col-lg-1 col-sm-2" style="width:90px;text-align:left;">{{'弹夹号' | translate }}</label>
+					<label class="col-lg-1 col-sm-2" style="width:100px;text-align:left;">{{'弹夹号' | translate }}</label>
 				    <div class="col-lg-2">
 					  <input type="text" class="form-control" ng-model="boxNumber" />
 					</div>
 				 
-				    <label class="col-lg-1 col-sm-2" style="width:90px;text-align:left;">{{'漫游宝类型' | translate}}</label>
+				    <label class="col-lg-1 col-sm-2" style="width:100px;text-align:left;">{{'漫游宝类型' | translate}}</label>
 				    <div class="col-lg-2">
 					    <select class="form-control" ng-model="deviceType">
-					    	<option selected hidden=""></option>
 					    	<option value="">{{'全部' | translate}}</option>
 					    	<option value="1" selected>3G漫游宝</option>
 					    </select>
 					</div>
 				 
-				    <label class="col-lg-1 col-sm-2" style="width:90px;text-align:left;">{{'状态'| translate}}</label>
+				    <label class="col-lg-1 col-sm-2" style="width:90px;">{{'状态'| translate}}</label>
 				    <div class="col-lg-2">
 					    <select class="form-control" ng-model="status">
-					    	<option selected hidden=""></option>
 					    	<option value="">{{ '全部' | translate}}</option>
 					    	<option value="1">{{ '已占用'| translate}}</option>
 					    	<option value="0">{{ '未占用'| translate}}</option>
@@ -58,10 +56,10 @@
 						<th width="80" align="center">{{'弹夹号' | translate }}
 						</th>
 						<th width="110">{{'漫游宝类型' | translate}}</th>
-						<th colspan="7">SN码</th>
-						<th width="110">导入时间</th>
-						<th width="90">弹夹状态</th>
-						<th width="140">操作</th>
+						<th colspan="7">{{'SN码' | translate}}</th>
+						<th width="110">{{'导入时间'| translate}}</th>
+						<th width="100">{{'弹夹状态'| translate}}</th>
+						<th width="132">{{'操作'| translate}}</th>
 					</tr>
 				</thead>
 		  		<tbody>
@@ -75,17 +73,17 @@
 		  					class="sn-span" 
 		  					>{{ sn }}</span>
 		  				</td>
-		  				<td ng-if="data.sns == null || data.sns.length==0" colspan="7">无</td>
+		  				<td ng-if="data.sns == null || data.sns.length==0" colspan="7">{{'无' | translate }}</td>
 		  				<td> {{ data.createDate  }} </td>
-		  				<td> {{ data.status | clipStatusFilter }} </td>
+		  				<td> {{ data.status | clipStatusFilter | translate}} </td>
 		  				<td>
 		  					<a ui-sref="layout.editSN({code:data.boxNumber,type:'add'})" ng-if="data.sns == null">
-		  						<button type="button" class="btn btn-warning btn-sm">添加</button>
+		  						<button type="button" class="btn btn-warning btn-sm">{{'添加' | translate }}</button>
 		  					</a>
 		  					<a ui-sref="layout.editSN({code:data.boxNumber,type:'edit'})" ng-if="data.sns != null">
-		  						<button type="button" class="btn btn-warning btn-sm">编辑</button>
+		  						<button type="button" class="btn btn-warning btn-sm">{{'编辑' | translate }}</button>
 		  					</a>
-		  					<button type="button" class="btn btn-danger btn-sm" ng-click="delectDeviceBox(data.boxNumber)">删除</button>
+		  					<button type="button" class="btn btn-danger btn-sm" ng-click="delectDeviceBox(data.boxNumber)">{{'删除' | translate}}</button>
 		  				</td>
 		  			</tr>
 		  		</tbody>
@@ -97,7 +95,7 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<!-- <a ui-sref="clipsin"> -->
-				<button class="btn btn-warning btn-sm" ng-click="showUploadModel()">批量导入SN</button>
+				<button class="btn btn-warning btn-sm" ng-click="showUploadModel()">{{'批量导入SN'| translate}}</button>
 				<!-- </a> -->
 			</div>
 			<div class="col-lg-9">

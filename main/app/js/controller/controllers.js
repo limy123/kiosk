@@ -2,7 +2,7 @@
 'use strict';
  
 angular.module('myApp')
-.controller('mainCtr',function($rootScope,$scope,serviceFactory,$location,$state,$cookieStore,$modal){
+.controller('mainCtr',function($rootScope,$scope,serviceFactory,$location,$state,$cookieStore,$modal,$filter){
 	 
 	$scope.toggleTwoMenu = function(id){
 		$scope.currentId = id;
@@ -54,19 +54,19 @@ angular.module('myApp')
 	$scope.loginOut = function(){
 		swal({   
 				title: "",   
-				text: "确定退出？",   
+				text: $filter("translate")("确定退出")+"?",   
 				type: "warning",   
 				showCancelButton: true,   
 				confirmButtonColor: "#DD6B55",   
-				confirmButtonText: "确定",   
-				cancelButtonText: "取消",   
+				confirmButtonText: $filter("translate")("确定"),   
+				cancelButtonText: $filter("translate")("取消"),
 				closeOnConfirm: true,  
 				loseOnCancel: false 
 			}, 
 			function(){
 				serviceFactory.loginOut().success(function(response){
 					console.log(response);
-					if(response.code == 0){
+					if(response.code == 0 || response.code == result_code){
 						$state.go("login");
 					}
 				})

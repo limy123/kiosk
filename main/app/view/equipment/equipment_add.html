@@ -4,11 +4,11 @@
 	</div>
   <div class="panel-body">
   	<div class="row">
-  	  <div class="col-lg-offset-3 col-lg-6">
+  	  <div class="col-lg-offset-1 col-lg-8">
      	<form class="form-horizontal" name="add_form">
 		  <div class="form-group">
-		    <label for="eqId" class="col-sm-2 control-label">{{'柜子简码' | translate }}</label>
-		    <div class="col-sm-10">
+		    <label for="eqId" class="col-sm-4 control-label">{{'柜子简码' | translate }}</label>
+		    <div class="col-sm-8">
 		      <!-- <input type="number" name="kioskNo" ng-model="kioskNo" class="form-control"
 		       ng-maxlength=4
 		       ng-minlength=4 
@@ -40,8 +40,8 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-2 control-label">{{'柜子SN' | translate }}</label>
-		    <div class="col-sm-10">
+		    <label class="col-sm-4 control-label">{{'柜子SN' | translate }}</label>
+		    <div class="col-sm-8">
 		      <input type="text" class="form-control" name="lsn" ng-model="lSN" required />
 		        <div class="error" 
 			        ng-show="add_form.lsn.$dirty && add_form.lsn.$invalid">
@@ -53,8 +53,8 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="eqId" class="col-sm-2 control-label">{{'地区' | translate}}</label>
-		    <div class="col-sm-10">
+		    <label for="eqId" class="col-sm-4 control-label">{{'地区' | translate}}</label>
+		    <div class="col-sm-8">
 		        <div class="row"> 
 					<div class="col-sm-4">
 					  <!-- <select class="form-control" name="country"
@@ -125,8 +125,8 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="address" class="col-sm-2 control-label">{{ '详细地址' | translate}}</label>
-		    <div class="col-sm-10">
+		    <label for="address" class="col-sm-4 control-label">{{ '详细地址' | translate}}</label>
+		    <div class="col-sm-8">
 		      	<input type="text" class="form-control" id="address" name="address" ng-model="address" required />
 		    	<div class="error" 
 			        ng-show="add_form.address.$dirty && add_form.address.$invalid">
@@ -138,8 +138,8 @@
 			</div>
 		  </div>
 		  <div class="form-group">
-		    <label for="custom" class="col-sm-2 control-label">{{ '归属客户' | translate}}</label>
-		    <div class="col-sm-10">
+		    <label for="custom" class="col-sm-4 control-label">{{ '归属客户' | translate}}</label>
+		    <div class="col-sm-8">
 		      	<select class="form-control">
 		    		<option value="1" selected>skyroam</option>
 		    	</select>

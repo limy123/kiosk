@@ -82,11 +82,12 @@
 				return $http.post(url,paramers);
 			},
 			getCountry : function(){
+				console.log(window.localStorage.lang);
 				var url = configFactory.apiBaseUrl + "/base/location/getCountry";
 				var paramers = {'token' : $cookieStore.get("token")}
 				return $http.post(url,paramers, {
 	                headers: {
-	                    'Accept-Language': 'en_US'
+	                    'Accept-Language': window.localStorage.lang
 	                }
 	            });
 			},
@@ -100,7 +101,7 @@
 
 				return $http.post(url,paramers, {
 	                headers: {
-	                    'Accept-Language': 'en_US'
+	                    'Accept-Language': window.localStorage.lang
 	                }
 	            });
 			},
@@ -112,7 +113,7 @@
 				}
 				return $http.post(url,paramers, {
 	                headers: {
-	                    'Accept-Language': 'en_US'
+	                    'Accept-Language': window.localStorage.lang
 	                }
 	            });
 			},
@@ -126,51 +127,83 @@
 				var url = configFactory.apiBaseUrl + "/kiosk/query";
 				return $http.post(url,paramers,{
 					headers: {
-	                    /*'token': */
+	                    'Accept-Language': window.localStorage.lang
 	                }
 				});
 			},
 			addKiosk : function(paramers){	
 				var url = configFactory.apiBaseUrl + "/kiosk/add";
 				console.log(paramers);
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			getkioskDetail : function(id){
 				var url = configFactory.apiBaseUrl +"/kiosk/query/" + id;
 				var paramers = {'token' : $cookieStore.get("token")};
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			deleteKiosk : function(id){
 				console.log(id)
 				var url = configFactory.apiBaseUrl +"/kiosk/disable/" + id;
 				var paramers = {'token' : $cookieStore.get("token")}
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			updateKiosk : function(paramers){
 				var url = configFactory.apiBaseUrl + "/kiosk/update";
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			//校验柜子简码是否唯一
 			isKioskNo : function(id){
 				var url = configFactory.apiBaseUrl + "/kiosk/check/" + id;
 				var paramers = {'token' : $cookieStore.get("token")};
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			//校验sn是否唯一
 			isLsnNo : function(lSn){
 				var url = configFactory.apiBaseUrl + "/kiosk/checkLSn/" + lSn;
 				var paramers = {'token' : $cookieStore.get("token")};
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			//故障列表//////////////////////
 			getBreakDownList : function(paramers){
 				var url = configFactory.apiBaseUrl + "/breakDownHistory/query";
 				console.log(paramers)
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			getBreakDownHisList : function(paramers){
 				var url = configFactory.apiBaseUrl + "/breakDownHistory/queryHis";
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			//弹夹/////////////////////////
 			addDeviceBox : function(count){
@@ -180,28 +213,47 @@
 					"count" : parseInt(count),
 					'token' : $cookieStore.get("token")
 				};
-				console.log(paramers);
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			getDeviceBoxList : function(paramers){
 				var url = configFactory.apiBaseUrl + "/deviceBox/query";
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			addOrUpdateSNs : function(paramers){
 				var url = configFactory.apiBaseUrl + "/deviceBox/addOrUpdateSNs";
 				 //skych5913uu896d7
 				 console.log(paramers)
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			delectDeviceBox : function(id){
 				var url = configFactory.apiBaseUrl +"/deviceBox/disable/" + id;
 				var paramers = {'token' : $cookieStore.get("token")};
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			upload : function(fileName){
 				var url = configFactory.apiBaseUrl + "/deviceBox/batchUpdateSNs";
 				var paramers = {'token' : $cookieStore.get("token")};
-				return $http.post(url,fileName);
+				return $http.post(url,fileName,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 			},
 			loginTimeout : function(text){
 	        //登录超时提示
@@ -226,7 +278,11 @@
 	      	getOrderlist : function(paramers){
 	      		var url = configFactory.apiBaseUrl + "/order/query";
 	      		//var paramers = {'token' : $cookieStore.get("token")};
-				return $http.post(url,paramers);
+				return $http.post(url,paramers,{
+					headers: {
+	                    'Accept-Language': window.localStorage.lang
+	                }
+				});
 	      	}
 
 			

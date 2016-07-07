@@ -115,3 +115,24 @@ input:focus,select:focus
 		text-align: left;
 	}
 }
+.detail-sn{
+	margin: 20px auto;
+}
+.detail-sn td{
+	color: #919699;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+
+}
+.detail-sn td span{
+	display: block;
+	border-radius: 3px;
+	border:1px solid #e6e6e6;
+	padding: 6px 50px;
+    margin: 8px 14px;
+}
+.detail-sn .sn-td{
+	color: #e5e9ec;
+	font-weight: 100;
+}

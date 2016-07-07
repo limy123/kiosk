@@ -19,14 +19,8 @@
 			"name" : "柜子列表",
 			"isChild" : "false",
 			"url" : "layout.equipmentList"
-		},
-		{
-			"id" : "00103",
-			"icon" : "",
-			"name" : "定位地图",
-			"isChild" : "false",
-			"url" : "layout.maps"
 		}
+		
 	]
 },
 {
@@ -72,14 +66,8 @@
 			"name" : "弹夹列表",
 			"isChild" : "false",
 			"url" : "layout.clipList"
-		},
-		{
-			"id" : "00303",
-			"icon" : "",
-			"name" : "上货示意图",
-			"isChild" : "false",
-			"url" : "layout.diagram"
-		} 
+		}
+		
 	]
 },
 {
@@ -104,15 +92,11 @@
 			"url" : "layout.returnDepositList"
 		}
 	]
-},
-{
-	"id":"005",
-	"isicon":"true",
-	"icon" : "icon-bar-chart",
-	"name" : "数据统计",
-	"isChild" : "false",
-	"purl" : "layout.dates"
 }
 
 
+
 ]
+
+
+

@@ -11,6 +11,15 @@
 	"详情":"Details",
 	"无":"there is not",
 	"确定退出":"Exit",
+	"SN码":"SN",
+	"导入时间" :"Update time",
+	"弹夹状态":"Cartridge Type",
+	"漫游宝类型":"Device Type",
+	"用户邮箱":"User E-mail",
+	"用户电话":"User Phone",
+	"扣款项":"Penalty items",
+	"扣款金额":"Penalty fee",
+	"返回" : "Return",
 
 
 	"账户":"Account",
@@ -45,6 +54,7 @@
 	"国家":"Country",
 	"省":"State/Province",
 	"市":"City",
+	"地区":"area",
 	"详细地址":"Address",
 	"归属客户":"Client",
 	"提交":"Submit",

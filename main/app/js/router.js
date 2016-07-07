@@ -199,3 +199,27 @@ angular.module('myApp')
     	'layout/equipmentList'
     );
   });
+
+//{
+//  "id" : "00103",
+//  "icon" : "",
+//  "name" : "定位地图",
+//  "isChild" : "false",
+//  "url" : "layout.maps"
+//}
+
+//{
+//          "id" : "00303",
+//          "icon" : "",
+//          "name" : "上货示意图",
+//          "isChild" : "false",
+//          "url" : "layout.diagram"
+//      } 
+//{
+//  "id":"005",
+//  "isicon":"true",
+//  "icon" : "icon-bar-chart",
+//  "name" : "数据统计",
+//  "isChild" : "false",
+//  "purl" : "layout.dates"
+//}

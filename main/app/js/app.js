@@ -1,6 +1,6 @@
 'use strict';
 
-var result_code = "6";
+var result_code = "10";//登录已过期或未登录
 var myOtherModal = "";//上传文件弹出框
 var cookies = "";
 angular.module('myApp', [
@@ -29,9 +29,10 @@ angular.module('myApp', [
          });
     }])
   .factory('configFactory',function(){
+     
     return{
-      apiBaseUrl:"http://192.168.14.35:9090/kop-rim/web",
-      //apiBaseUrl:"http://192.168.10.88:9090/kop-rim/web",
+     // apiBaseUrl:"http://192.168.14.42:9090/kop-rim/web",
+      apiBaseUrl:"http://192.168.10.88:9090/kop-rim/web",
       //apiBaseUrl : "http://192.168.12.12:9090/kop-rim/web",
 
 

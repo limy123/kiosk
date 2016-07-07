@@ -149,9 +149,9 @@ angular.module('myApp')
                     return false;
                 }
                 var _cookies = $(element).find('#token').val(cookies);
+                console.log(_cookies);
                 formData.append('file', dfile);
-                formData.append('token',_cookies);
-                console.log(cookies);
+                formData.append('token',_cookies.val());
                 $.ajax({
                     url : configFactory.apiBaseUrl + "/deviceBox/batchUpdateSNs",
                     //url: 'http://192.168.14.35:9090/kop-rim/web/deviceBox/batchUpdateSNs',

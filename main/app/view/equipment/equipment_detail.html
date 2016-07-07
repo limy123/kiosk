@@ -112,33 +112,45 @@
 		     	</div> 
 	     	</div>
      	</div>
-
+  -->
      	<div class="panel">
      		<div class="panel-heading">
-     			<h5 class="title-detail">柜内状态</h5>
+     			<h5 class="title-detail">{{'柜内状态' | translate}}</h5>
      		</div>
 	     	<div class="panel-body">
 		        <div class="row">
 		        	<div class="col-lg-3 col-sm-6">
-			        	<strong class="">漫游宝数量:</strong>
+			        	<strong class="">{{'漫游宝数量' | translate}}:</strong>
 			        	<label class="">
-			        		<span class="text-danger">120/60</span>
+			        		<span class="text-danger">{{ snStatisVo.totalOccupy }}/{{ snStatisVo.total }}</span>
 			        	</label>
 		        	</div>
 		        	<div class="col-lg-3 col-sm-6">
-		        		<strong class=" ">需上货:</strong>
-		        		<label class="">100</label>
+		        		<strong class=" ">{{'需上货' | translate}}:</strong>
+		        		<label class="">{{ snStatisVo.total-snStatisVo.totalOccupy }}</label>
 		        	</div>
 		        	<div class="col-lg-3 col-sm-6 ">
-		        		<strong class=" ">已回收:</strong>
-		        		<label class="">100/150</label>
+		        		<strong class=" ">{{'已回收' | translate}}:</strong>
+		        		<label class="">{{ snStatisVo.recycleOccupy }}/{{ snStatisVo.recycle }}</label>
 		        	</div>
 		        </div>
-		        <div class="">
-
-		        </div>
+	            <table class="detail-sn">
+	            	<tr>
+	            	 	<td></td>
+	            		<td class="sn-td" ng-repeat="snIndex in snStatisVo.snTable[0] track by $index">
+	            			  1{{ $index+1 }} 
+	            		</td>
+	            	</tr>
+						<tr ng-repeat="sns in snStatisVo.snTable">
+							<td class="sn-td">2{{ $index+1 }}</td>
+							<td ng-repeat="sn in sns track by $index">
+								<span ng-class="{true:'error'}[sn==0 || sn==1]">{{sn}}</span>
+							</td>
+						</tr>
+	            </table>
+		      
 		    </div>
-		</div> -->
+		</div> 
 		<div class="panel">
      		<!-- <div class="panel-heading">
      			<h5 class="title-detail">故障记录</h5>

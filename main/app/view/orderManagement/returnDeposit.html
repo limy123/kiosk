@@ -1,22 +1,36 @@
  <div class="panel">
 	<div class="panel-body">
-	<form class="form-inline">
-		<div class="form-group">
-		    <label for="clipId">还机柜子简码:</label>
-		    <input type="text" class="form-control" id="clipId" />
+	<div class="row">
+		<div class="col-lg-11">
+			<div class="col-lg-4">
+				<div class="form-inline">
+					<div class="form-group">
+					    <label for="clipId">{{'还机柜子简码' | translate }}</label>
+					    <input type="text" class="form-control" id="clipId" />
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="form-inline">
+					<div class="form-group">
+					    <label for="clipId">{{'系统订单号' | translate }}</label>
+					    <input type="text" class="form-control" />
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="form-inline">
+					<div class="form-group">
+					    <label for="clipId">{{'漫游宝SN' | translate }}</label>
+					    <input type="text" class="form-control" />
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="form-group">
-		    <label for="clipId">系统订单号:</label>
-		    <input type="text" class="form-control" />
-		</div>
-		<div class="form-group">
-		    <label for="clipId">漫游宝SN:</label>
-		    <input type="text" class="form-control" />
-		</div>
-		<div class="form-group pull-right">
-			<button type="button" class="btn btn-warning" ng-click="selectForm()">筛选</button>
-		</div>
-	</form>
+		<div class="col-lg-1">
+			<button type="button" class="btn btn-warning" ng-click="selectForm()">{{'筛选' | translate}}</button>
+		 
+	 	</div>
 	</div>
 </div>
 <div class="panel">
@@ -24,27 +38,27 @@
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th>还机柜子简码</th>
-				<th>系统订单号</th>
-				<th>漫游宝SN</th>
-				<th>扣款项</th>
-				<th>扣款金额</th>
-				<th>备注</th>
-				<th>操作</th>
+				<th>{{'还机柜子简码' | translate }}</th>
+				<th>{{'系统订单号' | translate }}</th>
+				<th>{{'漫游宝SN' | translate}}</th>
+				<th>{{'扣款项' | translate}}</th>
+				<th>{{'扣款金额' | translate}}</th>
+				<th>{{'备注' | translate}}</th>
+				<th>{{'操作' | translate}}</th>
 			</tr>
 		</thead>
   		<tbody>
   			<tr>
-  				<td>1001</td>
+  				<!-- <td>1001</td>
   				<td>2124 5458 2326 2546</td>
   				<td>sky18666596536</td>
   				<td>屏幕损坏;数据线丢失</td>
   				<td>$700</td>
   				<td>哈哈哈</td>
   				<td>
-  					<button type="button" class="btn btn-warning btn-sm" ng-click="showModal()">添加扣款项</button>
-  					<button type="button" class="btn btn-warning btn-sm">提交</button>
-  				</td>
+  					<button type="button" class="btn btn-warning btn-sm" ng-click="showModal()">{{'添加扣款项' | translate }}</button>
+  					<button type="button" class="btn btn-warning btn-sm">{{'提交' | translate}}</button>
+  				</td> -->
   				 
   				 
   			</tr>

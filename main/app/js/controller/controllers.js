@@ -3,6 +3,7 @@
  
 angular.module('myApp')
 .controller('mainCtr',function($rootScope,$scope,serviceFactory,$location,$state,$cookieStore,$modal,$filter){
+	console.log($location);
 	 
 	$scope.toggleTwoMenu = function(id){
 		$scope.currentId = id;
@@ -89,10 +90,11 @@ angular.module('myApp')
 	    $scope.cur_lang = $translate.use(); 
 	}
 	$scope.cur_lang = window.localStorage.lang;
- 
+
 })
 
-.controller('loginCtrl', function($rootScope,$scope,$state,serviceFactory,$cookieStore) {
+.controller('loginCtrl', function($rootScope,$scope,$state,serviceFactory,$cookieStore,$location) {
+	console.log($location.absUrl());
     $scope.username = "" ;
     $scope.password = "";
     $scope.submitLogin = function(){
@@ -106,12 +108,12 @@ angular.module('myApp')
 	    }
 	    if($scope.loginForm.$valid){ //校验通过
 	    	serviceFactory.loginIn($scope.username,$scope.password).success(function(response){
-	    		console.log(response);
+	    	 
 	    		if(response.code == 0){
 	    			 
 	    			$cookieStore.put("token",response.data.token);
 	    			cookies = $cookieStore.get("token");
-	    			console.log($rootScope.token)
+	    		 
 
 	    			$state.go("layout.equipmentList");//跳转到主界面
 	    		}else if(response.code == -1){

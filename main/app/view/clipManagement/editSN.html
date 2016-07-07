@@ -7,28 +7,28 @@
   	  <div class="col-sm-offset-3 col-lg-6">
      	<form class="form-horizontal" name="add_sn">
 		  <div class="form-group">
-		    <label class="col-sm-3 control-label">弹夹号:</label>
+		    <label class="col-sm-3 control-label">{{'弹夹号' |translate }}:</label>
 		    <div class="col-sm-9 col-lg-4"><label class="control-label"> {{ boxNumber }} </label></div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-3 control-label">漫游宝类型:</label>
+		    <label class="col-sm-3 control-label">{{'漫游宝类型'|translate}}:</label>
 		    <div class="col-sm-9">
 		      	<select class="form-control" ng-model="deviceType">
 		    		<option selected hidden=""></option>
-		    		<option value="1" selected>3G漫游宝</option>
+		    		<option value="1" selected>{{'3G漫游宝'|translate}}</option>
 		    	</select>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-3 control-label">SN码(NO.1):</label>
+		    <label class="col-sm-3 control-label">{{'SN码'|translate}}(NO.1):</label>
 			    <div class="col-sm-9">
 			        <input type="text" name="sn1" ng-model="sn1" ng-change="validSnChange(sn1)" class="form-control"/>
 		        <div class="error" 
-			        ng-show="!validSn(sn1)">必须是16个数字+字母</div>
+			        ng-show="!validSn(sn1)">{{'必须是16个数字+字母' |translate}}</div>
 			  </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-3 control-label">SN码(NO.2):</label>
+		    <label class="col-sm-3 control-label">{{'SN码'|translate}}(NO.2):</label>
 		    <div class="col-sm-9">
 		        <input type="text" name="sn2" ng-model="sn2" ng-change="validSnChange(sn2)" class="form-control"/>
 		        <div class="error" 
@@ -36,7 +36,7 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-3 control-label">SN码(NO.3):</label>
+		    <label class="col-sm-3 control-label">{{'SN码'|translate}}(NO.3):</label>
 		    <div class="col-sm-9">
 		        <input type="text" name="sn3" ng-model="sn3" ng-change="validSnChange(sn3)" class="form-control"/>
 		        <div class="error" 
@@ -44,7 +44,7 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-3 control-label">SN码(NO.4):</label>
+		    <label class="col-sm-3 control-label">{{'SN码'|translate}}(NO.4):</label>
 		    <div class="col-sm-9">
 		        <input type="text" name="sn4" ng-model="sn4" ng-change="validSnChange(sn4)" class="form-control"/>
 		        <div class="error" 
@@ -52,7 +52,7 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-3 control-label">SN码(NO.5):</label>
+		    <label class="col-sm-3 control-label">{{'SN码'|translate}}(NO.5):</label>
 		    <div class="col-sm-9">
 		        <input type="text" name="sn5" ng-model="sn5" ng-change="validSnChange(sn5)" class="form-control"/>
 		        <div class="error" 
@@ -60,7 +60,7 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-3 control-label">SN码(NO.6):</label>
+		    <label class="col-sm-3 control-label">{{'SN码'|translate}}(NO.6):</label>
 		    <div class="col-sm-9">
 		        <input type="text" name="sn6" ng-model="sn6" ng-change="validSnChange(sn6)" class="form-control"/>
 		        <div class="error" 
@@ -68,7 +68,7 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-sm-3 control-label">SN码(NO.7):</label>
+		    <label class="col-sm-3 control-label">{{'SN码'|translate}}(NO.7):</label>
 		    <div class="col-sm-9">
 		        <input type="text" name="sn7" ng-model="sn7" ng-change="validSnChange(sn7)" class="form-control"/>
 		        <div class="error" 
@@ -82,9 +82,9 @@
 	<div class="row form-add">
     	<div class="center-block" style="width:190px;">
     	<a ui-sref="layout.clipList">
-    		<button type="button" class="btn btn-default btn-search">返回</button>
+    		<button type="button" class="btn btn-default btn-search">{{'返回' | translate }}</button>
     	</a>
-  	 	<button type="button" class="btn btn-warning btn-search" ng-click="saveSns()">保存</button> 
+  	 	<button type="button" class="btn btn-warning btn-search" ng-click="saveSns()">{{'提交' | translate }}</button> 
   	 	</div>
   	</div>
   </div>

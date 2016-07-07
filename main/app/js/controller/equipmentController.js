@@ -15,6 +15,7 @@ angular.module('myApp')
     $rootScope.curLink = $state.current.name;
     //获取列表
     $scope.getKioskList = function(paramers){
+    	 
     	serviceFactory.getKioskList(paramers).success(function(response){
     		 
     		console.log(response)
@@ -243,8 +244,10 @@ angular.module('myApp')
 .controller('equipmentDetailCtrl',function($rootScope,$scope,$state,$stateParams,serviceFactory){
 	$scope.id = $stateParams.id;
 	serviceFactory.getkioskDetail($stateParams.id).success(function(response){
+		console.log(response)
 		if (response.code == 0) {
 			$rootScope.kioskDetail = response.data.kioskInfoVo;
+			$scope.snStatisVo = response.data.snStatisVo;
 		}else if(response.code == result_code){
     			serviceFactory.loginTimeout(response.message);
     		}
